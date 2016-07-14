@@ -1,0 +1,95 @@
+//$path:               "http://localhost:8888/nd/v1/public/";
+$path: 				"http://192.168.1.85:8888/nd/NextDegreeWeb/public/";
+$path: 	"http://dev.lawriecate.com/nd/public/";
+
+
+body {
+	background-image:url('#{$path}assets/images/geometry.png');
+	height:100%;
+}
+
+
+@import "bower_components/uikit/scss/uikit-mixins.scss";
+@import "bower_components/uikit/scss/uikit-variables.scss";
+
+$base-link-hover-color: #217bea;
+$base-link-color: #217bea;
+$navbar-link-color: #217bea;
+$subnav-hover-color:  #217bea;
+$subnav-active-color:   #217bea; 
+$nav-navbar-hover-background:   #217bea;
+$contrast-button-primary-background:#217bea;
+$nav-dropdown-hover-background:#217bea;
+$subnav-pill-active-background:#217bea;
+$nav-autocomplete-active-background:  #217bea; 
+$block-primary-background:#217bea;
+$button-primary-background:#217bea;
+
+
+$button-primary-hover-background:#0579FF;
+
+ $button-primary-active-background:#055ECB;
+
+// your custom code goes here, e.g. mixins, variables
+
+@import "bower_components/uikit/scss/uikit.scss";
+//@import "bower_components/uikit/scss/components/autocomplete.scss";
+@import 'https://fonts.googleapis.com/css?family=Work%20Sans';
+
+body,html {
+	//font-family:'Work Sans',Helvetica,Arial,sans-serif;
+	height:100%;
+}
+
+
+.splash-bg {
+
+		/*background-image: linear-gradient(
+      rgba(255, 255, 255, 0.33), 
+      rgba(255, 255, 255, 0.33)
+    ),url('#{$path}assets/images/splash3.jpg');*/
+	background:url('#{$path}assets/images/splash3_h.jpg');
+	//height:100vh;
+	//background-size:cover !important;
+}
+
+.bg2 {
+	background:url('#{$path}assets/images/splash2_h.jpg');
+	height:400px;
+}
+
+.banner1 {
+	background:url('#{$path}assets/images/banner1.jpg');
+	height:300px;
+}
+.banner2 {
+	background:url('#{$path}assets/images/banner2_h.jpg');
+	height:300px;
+}
+.banner3 {
+	background:url('#{$path}assets/images/banner5.jpg');
+	height:300px;
+}
+
+.h300 {
+	min-height:300px;
+}
+
+.footer {
+
+}
+
+.navpad {
+	padding-top: 7px;
+	padding-bottom: 7px;
+}
+
+
+@media only screen and (min-width: 600px) {
+    .splash-bg  {
+       	background:url('#{$path}assets/images/splash3.jpg');
+    }
+    .banner2 {
+	background:url('#{$path}assets/images/banner2b.jpg');
+	}
+}

@@ -1,0 +1,1 @@
+{"version":3,"sources":["app.scss"],"names":[],"mappings":"AAEA;EACC,wCAAuC,EACvC","file":"app.css","sourcesContent":["//@import \"node_modules/bootstrap-sass/assets/stylesheets/bootstrap\";\n\nbody,html {\n\tfont-family:Helvetica,Arial,sans-serif;\n}"],"sourceRoot":"/source/"}
