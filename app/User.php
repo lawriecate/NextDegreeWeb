@@ -15,6 +15,10 @@ class User extends Authenticatable
         'name', 'email', 'password',
     ];
 
+    protected $casts = [
+        'admin' => 'boolean',
+    ];
+
     /**
      * The attributes that should be hidden for arrays.
      *
@@ -27,4 +31,5 @@ class User extends Authenticatable
     public function student() {
         return $this->hasOne('App\Student');
     }
+
 }

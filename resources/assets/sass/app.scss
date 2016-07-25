@@ -33,7 +33,10 @@ $button-primary-hover-background:#0579FF;
 // your custom code goes here, e.g. mixins, variables
 
 @import "bower_components/uikit/scss/uikit.scss";
-//@import "bower_components/uikit/scss/components/autocomplete.scss";
+@import "bower_components/uikit/scss/components/form-file.scss";
+@import "bower_components/uikit/scss/components/upload.scss";
+@import "bower_components/uikit/scss/components/placeholder.scss";
+@import "bower_components/uikit/scss/components/progress.scss";
 @import 'https://fonts.googleapis.com/css?family=Work%20Sans';
 
 body,html {

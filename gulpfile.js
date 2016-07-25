@@ -22,4 +22,10 @@ elixir(function(mix) {
         './bower_components/uikit/js/components/sticky.min.js',
         './resources/assets/js/splash.js'
     ],'public/assets/js/all.js');
+
+    mix.scripts([
+
+    	'./bower_components/uikit/js/components/upload.min.js',
+    	'./resources/assets/js/admin.files.js'
+    ],'public/assets/js/admin.js');
 });

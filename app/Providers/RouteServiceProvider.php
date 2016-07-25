@@ -26,8 +26,10 @@ class RouteServiceProvider extends ServiceProvider
     {
         //
 
+        $router->model('post', 'App\Post');
         parent::boot($router);
     }
+
 
     /**
      * Define the routes for the application.

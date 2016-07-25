@@ -28,7 +28,9 @@
                         <li><a href="#">Item</a></li>
                         <li><a href="#">Another item</a></li>
                         <li class="uk-nav-divider"></li>
-                        <li><a href="#">Separated item</a></li>
+                        @if(Auth::user()->admin)
+                        <li><a href="{{action('AdminController@index')}}">Admin Panel</a></li>
+                        @endif
                     </ul>
                 </div>
 

@@ -11,7 +11,7 @@
 		                <div class="uk-width-medium-1-1 uk-margin-large-top  " >
 		                	<h1 class="uk-hidden">Next Degree</h1>
 		                	<img class="" width="800" height="193" src="{{asset('assets/images/Logo_800x193.png')}}" alt="Next Degree Logo" />
-		                	
+		                	<a class="uk-button uk-button-primary uk-float-right" href="{{url('home/')}}">Sign In <i class="uk-icon-arrow-right"></i></a>
 		                </div>
 		</div>
 	</div>

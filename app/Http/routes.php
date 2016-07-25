@@ -40,6 +40,14 @@ Route::get('/home', 'HomeController@index');
 Route::get('/settings', 'SettingsController@accountForm');
 Route::post('/settings', 'SettingsController@update');
 
+Route::get('/admin', 'AdminController@index');
+Route::get('/admin/files', 'AdminController@files');
+Route::post('/admin/files/upload', 'AdminController@uploadFile');
+
+Route::get('/{post}', function(App\Post $post) {
+	return view('post')->with('post',$post);
+});
+
 Route::get('/{page}', function($page) {
 	if(file_exists('../resources/views/pages/'.$page.'.blade.php')) {
 		return view('pages.'.$page);

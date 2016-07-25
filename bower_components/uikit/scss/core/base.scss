@@ -94,7 +94,7 @@ html {
     -webkit-text-size-adjust: 100%;
     -ms-text-size-adjust: 100%;
     /* 3 */
-   // background: $base-body-background;
+    background: $base-body-background;
     color: $base-body-color;
     @include hook-base-body();
 }

@@ -12,7 +12,8 @@ class SplashController extends Controller
 
 
     public function splash() {
-    	$tweets = Twitter::getUserTimeline(['screen_name' => 'next_degree', 'count' => 4, 'format' => 'array']);
+    	//$tweets = Twitter::getUserTimeline(['screen_name' => 'next_degree', 'count' => 4, 'format' => 'array']);
+    	$tweets = array();
     	return view('splash')->with('tweets',$tweets);
     }
 }

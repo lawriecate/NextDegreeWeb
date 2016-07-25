@@ -16,9 +16,9 @@ class CreateImagesTable extends Migration
             $table->increments('id');
             $table->integer('file_id')->unsigned();
             $table->foreign('file_id')->references('id')->on('files');
-            $table->string('image_path');
-            $table->integer('width');
-            $table->integer('height');
+            $table->text('image_cache_json');
+            $table->integer('original_width');
+            $table->integer('original_height');
             $table->timestamps();
         });
     }
