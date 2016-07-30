@@ -26,6 +26,11 @@ elixir(function(mix) {
     mix.scripts([
 
     	'./bower_components/uikit/js/components/upload.min.js',
-    	'./resources/assets/js/admin.files.js'
+        './bower_components/uikit/js/components/datepicker.min.js',
+        './bower_components/uikit/js/components/timepicker.min.js',
+        './bower_components/uikit/js/components/autocomplete.min.js',
+    	'./resources/assets/js/admin.misc.js',
+        './resources/assets/js/admin.files.js',
+        './resources/assets/js/admin.imageselect.js'
     ],'public/assets/js/admin.js');
 });

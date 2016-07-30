@@ -46,7 +46,7 @@ class QuickSignupController extends Controller
     	return view('ndauth.signup',['email'=>$email,'password'=>$password]);
     }
 
-    public function continue() {
+    public function redirect() {
     	return redirect('home');
     }
 

@@ -6,3 +6,5 @@ Homestead.json
 .env
 
 .env.example
+
+public/uploads

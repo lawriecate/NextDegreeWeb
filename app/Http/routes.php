@@ -29,7 +29,7 @@ Route::post('password/email', 'Auth\PasswordController@sendResetLinkEmail');
 Route::post('password/reset', 'Auth\PasswordController@reset');
 
 Route::post('/signup/welcome','QuickSignupController@makeUser');
-Route::post('/signup/start','QuickSignupController@continue');
+Route::post('/signup/start','QuickSignupController@redirect');
 Route::get('/signup/error','QuickSignupController@error');
 
 Route::get('/signup/verification/{token?}','VerificationController@status');
@@ -40,15 +40,38 @@ Route::get('/home', 'HomeController@index');
 Route::get('/settings', 'SettingsController@accountForm');
 Route::post('/settings', 'SettingsController@update');
 
-Route::get('/admin', 'AdminController@index');
+
+
+/*
 Route::get('/admin/files', 'AdminController@files');
 Route::post('/admin/files/upload', 'AdminController@uploadFile');
+Route::delete('/admin/files/{file}', 'AdminController@deleteFile');*/
 
-Route::get('/{post}', function(App\Post $post) {
+Route::group(['prefix' => 'admin'], function () {
+	Route::get('/', 'AdminController@index');
+    Route::resource('file', 'FileController', ['only' => [
+	    'index', 'store', 'destroy'
+	]]);
+
+	Route::resource('post', 'PostController', ['only' => [
+	    'index', 'store', 'destroy', 'create', 'edit','update'
+	]]);
+
+	Route::post('post/check-slug','PostController@checkSlug');
+
+	Route::resource('user', 'UserController', ['only' => [
+	    'index', 'store', 'destroy', 'create', 'edit','update'
+	]]);
+
+	Route::get('/api/images', 'FileController@imageJson');
+});
+
+
+Route::get('{post}', function(App\Post $post) {
 	return view('post')->with('post',$post);
 });
 
-Route::get('/{page}', function($page) {
+Route::get('{page}', function($page) {
 	if(file_exists('../resources/views/pages/'.$page.'.blade.php')) {
 		return view('pages.'.$page);
 	} else {

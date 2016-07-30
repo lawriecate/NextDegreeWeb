@@ -21,6 +21,7 @@ class CreatePostsTable extends Migration
             $table->integer('display_image')->nullable()->default(null);
             $table->datetime('publish_at')->nullable()->default(null);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

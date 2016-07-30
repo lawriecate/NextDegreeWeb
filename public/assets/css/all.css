@@ -1,9 +1,4 @@
 @charset "UTF-8";
-@import 'https://fonts.googleapis.com/css?family=Work%20Sans';
-body {
-  background-image: url("http://dev.lawriecate.com/nd/public/assets/images/geometry.png");
-  height: 100%; }
-
 /* ========================================================================
    Component: Base
  ========================================================================== */
@@ -12,9 +7,10 @@ body {
  * 2. Prevents iOS text size adjust after orientation change, without disabling user zoom
  * 3. Style
  */
+@import 'https://fonts.googleapis.com/css?family=Work%20Sans';
 html {
   /* 1 */
-  font: normal 14px / 20px "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font: normal 14px / 20px "Work Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
   /* 2 */
   -webkit-text-size-adjust: 100%;
   -ms-text-size-adjust: 100%;
@@ -227,7 +223,7 @@ figure {
  ========================================================================== */
 h1, h2, h3, h4, h5, h6 {
   margin: 0 0 15px 0;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "Work Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: normal;
   color: #444;
   text-transform: none; }
@@ -1850,7 +1846,7 @@ html:not(.uk-touch) .uk-nav-offcanvas ul a:hover {
   /* 2 */
   color: #444;
   font-size: 14px;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "Work Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: normal; }
 
 /* Appear not as link */
@@ -8260,8 +8256,183 @@ a.uk-thumbnail:focus {
   100% {
     background-position: 30px 0; } }
 
+/* ========================================================================
+   Component: Datepicker
+ ========================================================================== */
+/*
+ * 1. Highest z-index
+ * 2. Reset dropdown width
+ * 3. Set animation
+ * 4. Needed for scale animation
+ */
+.uk-datepicker {
+  /* 1 */
+  z-index: 1050;
+  /* 2 */
+  width: auto;
+  /* 3 */
+  animation: uk-fade 0.2s ease-in-out;
+  /* 4 */
+  transform-origin: 0 0; }
+
+/* Sub-object: `uk-datepicker-nav`
+========================================================================== */
+.uk-datepicker-nav {
+  margin-bottom: 15px;
+  text-align: center;
+  line-height: 20px; }
+
+/*
+ * Micro clearfix
+ */
+.uk-datepicker-nav:before,
+.uk-datepicker-nav:after {
+  content: "";
+  display: table; }
+
+.uk-datepicker-nav:after {
+  clear: both; }
+
+/*
+ * Previous and next navigation
+ */
+.uk-datepicker-nav a {
+  color: #444;
+  text-decoration: none; }
+
+.uk-datepicker-nav a:hover {
+  color: #444; }
+
+.uk-datepicker-previous {
+  float: left; }
+
+.uk-datepicker-next {
+  float: right; }
+
+.uk-datepicker-previous:after,
+.uk-datepicker-next:after {
+  width: 20px;
+  font-family: FontAwesome; }
+
+.uk-datepicker-previous:after {
+  content: ""; }
+
+.uk-datepicker-next:after {
+  content: ""; }
+
+/* Sub-object: `uk-datepicker-heading`
+========================================================================== */
+/* Sub-object: `uk-datepicker-table`
+========================================================================== */
+/* Block element behavior */
+.uk-datepicker-table {
+  width: 100%; }
+
+.uk-datepicker-table th,
+.uk-datepicker-table td {
+  padding: 2px; }
+
+.uk-datepicker-table th {
+  font-size: 12px; }
+
+/*
+ * Item
+ */
+.uk-datepicker-table a {
+  display: block;
+  width: 26px;
+  line-height: 24px;
+  text-align: center;
+  color: #444;
+  text-decoration: none; }
+
+/*
+ * Sub-object: `uk-datepicker-table-muted`
+ */
+a.uk-datepicker-table-muted {
+  color: #999; }
+
+/*
+ * Hover
+ * 1. Apply hover style also to focus state
+ * 2. Remove default focus style
+ */
+.uk-datepicker-table a:hover,
+.uk-datepicker-table a:focus {
+  background-color: #ddd;
+  color: #444;
+  /* 2 */
+  outline: none; }
+
+/* OnClick */
+.uk-datepicker-table a:active {
+  background-color: #ccc;
+  color: #444; }
+
+/*
+ * Active
+ */
+.uk-datepicker-table a.uk-active {
+  background: #00a8e6;
+  color: #fff; }
+
+/* ========================================================================
+   Component: Autocomplete
+ ========================================================================== */
+/*
+ * 1. Container width fits its content
+ * 2. Create position context
+ * 3. Prevent `inline-block` consequences
+ * 4. Remove the gap between the container and its child element
+ */
+.uk-autocomplete {
+  /* 1 */
+  display: inline-block;
+  /* 2 */
+  position: relative;
+  /* 3 */
+  max-width: 100%;
+  /* 4 */
+  vertical-align: middle; }
+
+/* Legacy dropdown modifier */
+.uk-dropdown-flip {
+  left: auto;
+  right: 0; }
+
+/* Nav modifier `uk-nav-autocomplete`
+ ========================================================================== */
+/*
+ * Items
+ */
+.uk-nav-autocomplete > li > a {
+  color: #444; }
+
+/*
+ * Active
+ * 1. Remove default focus style
+ */
+.uk-nav-autocomplete > li.uk-active > a {
+  background: #217bea;
+  color: #fff;
+  /* 1 */
+  outline: none; }
+
+/*
+ * Sub-object: `uk-nav-header`
+ */
+.uk-nav-autocomplete .uk-nav-header {
+  color: #999; }
+
+/*
+ * Sub-object: `uk-nav-divider`
+ */
+.uk-nav-autocomplete .uk-nav-divider {
+  border-top: 1px solid #ddd; }
+
 body, html {
-  height: 100%; }
+  min-height: 100%;
+  background-image: url("http://dev.lawriecate.com/nd/public/assets/images/geometry.png"); }
 
 .splash-bg {
   /*background-image: linear-gradient(

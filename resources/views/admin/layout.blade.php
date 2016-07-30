@@ -22,17 +22,16 @@
 <body>
 
 <div class="uk-grid">
-    <div class="uk-width-3-10 adminSidebar">
+    <div class="uk-width-2-10 adminSidebar">
     <img style="padding:8px" class="uk-responsive-height" src="{{asset('assets/images/Logo_400x97.png')}}"/>
     <ul class="uk-nav uk-nav-side">
         <li @if(Route::getCurrentRoute()->getActionName() == "App\Http\Controllers\AdminController@index")class="uk-active"@endif><a href="{{action('AdminController@index')}}">Dashboard</a></li>
-        <li><a href="#">Pages</a></li>
-        <li><a href="#">Posts</a></li>
-        <li @if(Route::getCurrentRoute()->getActionName() == "App\Http\Controllers\AdminController@files")class="uk-active"@endif><a href="{{action('AdminController@files')}}">Files</a></li>
-        <li><a href="#">Users</a></li>
+        <li @if(Route::getCurrentRoute()->getActionName() == "App\Http\Controllers\PostController@index")class="uk-active"@endif><a href="{{action('PostController@index')}}">Posts</a></li>
+        <li @if(Route::getCurrentRoute()->getActionName() == "App\Http\Controllers\FileController@index")class="uk-active"@endif><a href="{{action('FileController@index')}}">Files</a></li>
+        <li @if(Route::getCurrentRoute()->getActionName() == "App\Http\Controllers\UserController@index")class="uk-active"@endif><a href="{{action('UserController@index')}}">Users</a></li>
     </ul>
 </div>
-    <div class="uk-width-7-10">@yield('admin-panel')</div>
+    <div class="uk-width-8-10">@yield('admin-panel')</div>
 
 </div>
 <script src="{{asset('assets/js/all.js')}}"></script>

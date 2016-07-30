@@ -211,7 +211,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'Twitter' => Thujohn\Twitter\Facades\Twitter::class,
         'Random' => Webcraft\Random\RandomFacade::class,
-        'Image' => Intervention\Image\Facades\Image::class,
+        'ImageProcessing' => Intervention\Image\Facades\Image::class,
     ],
 
 ];

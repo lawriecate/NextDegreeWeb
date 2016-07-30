@@ -2,13 +2,6 @@
 $path: 				"http://192.168.1.85:8888/nd/NextDegreeWeb/public/";
 $path: 	"http://dev.lawriecate.com/nd/public/";
 
-
-body {
-	background-image:url('#{$path}assets/images/geometry.png');
-	height:100%;
-}
-
-
 @import "bower_components/uikit/scss/uikit-mixins.scss";
 @import "bower_components/uikit/scss/uikit-variables.scss";
 
@@ -30,6 +23,10 @@ $button-primary-hover-background:#0579FF;
 
  $button-primary-active-background:#055ECB;
 
+$base-heading-font-family: 'Work Sans','Helvetica Neue',Helvetica,Arial,sans-serif;
+$base-body-font-family: 'Work Sans','Helvetica Neue',Helvetica,Arial,sans-serif;
+$navbar-nav-font-family:'Work Sans','Helvetica Neue',Helvetica,Arial,sans-serif;
+
 // your custom code goes here, e.g. mixins, variables
 
 @import "bower_components/uikit/scss/uikit.scss";
@@ -37,11 +34,15 @@ $button-primary-hover-background:#0579FF;
 @import "bower_components/uikit/scss/components/upload.scss";
 @import "bower_components/uikit/scss/components/placeholder.scss";
 @import "bower_components/uikit/scss/components/progress.scss";
+@import "bower_components/uikit/scss/components/datepicker.scss";
+@import "bower_components/uikit/scss/components/autocomplete.scss";
 @import 'https://fonts.googleapis.com/css?family=Work%20Sans';
 
 body,html {
 	//font-family:'Work Sans',Helvetica,Arial,sans-serif;
-	height:100%;
+	min-height:100%;
+	background-image:url('#{$path}assets/images/geometry.png');
+	
 }
 
 

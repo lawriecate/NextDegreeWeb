@@ -1,7 +1,7 @@
 @extends('layout')
 
 @section('content')
- <div class="uk-vertical-align uk-text-center uk-height-1-1 ">
+ <div class="uk-vertical-align uk-text-center uk-height-1-1  uk-height-viewport">
      <div class="uk-vertical-align-middle uk-animation-scale" style="width: 500px;">
 
               <img class="uk-margin-bottom" width="400" height="97" src="{{asset('assets/images/Logo_800x193.png')}}" alt="Next Degree Logo" />
