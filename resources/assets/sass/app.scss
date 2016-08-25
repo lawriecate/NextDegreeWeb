@@ -1,10 +1,10 @@
-//$path:               "http://localhost:8888/nd/v1/public/";
-$path: 				"http://192.168.1.85:8888/nd/NextDegreeWeb/public/";
-$path: 	"http://dev.lawriecate.com/nd/public/";
+$path:               "http://localhost:8888/nd/NextDegreeWeb/public/";
+//$path: 				"http://192.168.1.85:8888/nd/NextDegreeWeb/public/";
+//$path: 	"http://dev.lawriecate.com/nd/public/";
 
 @import "bower_components/uikit/scss/uikit-mixins.scss";
 @import "bower_components/uikit/scss/uikit-variables.scss";
-
+/*
 $base-link-hover-color: #217bea;
 $base-link-color: #217bea;
 $navbar-link-color: #217bea;
@@ -17,6 +17,25 @@ $subnav-pill-active-background:#217bea;
 $nav-autocomplete-active-background:  #217bea; 
 $block-primary-background:#217bea;
 $button-primary-background:#217bea;
+*/
+
+$base-link-hover-color: #86339a;
+$base-link-color: #86339a;
+$navbar-link-color: #86339a;
+$subnav-hover-color:  #86339a;
+$subnav-active-color:   #86339a; 
+$nav-navbar-hover-background:   #86339a;
+$contrast-button-primary-background:#86339a;
+$nav-dropdown-hover-background:#86339a;
+$subnav-pill-active-background:#86339a;
+$nav-autocomplete-active-background:  #86339a; 
+$block-primary-background:#86339a;
+$button-primary-background:#86339a;
+
+.nd-red-background {
+	background-color: #86339a;
+	background: url('#{$path}assets/images/geometry_purple.gif');
+}
 
 
 $button-primary-hover-background:#0579FF;

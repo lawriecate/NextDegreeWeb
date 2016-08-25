@@ -1,4 +1,23 @@
 @charset "UTF-8";
+/*
+$base-link-hover-color: #217bea;
+$base-link-color: #217bea;
+$navbar-link-color: #217bea;
+$subnav-hover-color:  #217bea;
+$subnav-active-color:   #217bea; 
+$nav-navbar-hover-background:   #217bea;
+$contrast-button-primary-background:#217bea;
+$nav-dropdown-hover-background:#217bea;
+$subnav-pill-active-background:#217bea;
+$nav-autocomplete-active-background:  #217bea; 
+$block-primary-background:#217bea;
+$button-primary-background:#217bea;
+*/
+@import 'https://fonts.googleapis.com/css?family=Work%20Sans';
+.nd-red-background {
+  background-color: #86339a;
+  background: url("http://localhost:8888/nd/NextDegreeWeb/public/assets/images/geometry_purple.gif"); }
+
 /* ========================================================================
    Component: Base
  ========================================================================== */
@@ -7,7 +26,6 @@
  * 2. Prevents iOS text size adjust after orientation change, without disabling user zoom
  * 3. Style
  */
-@import 'https://fonts.googleapis.com/css?family=Work%20Sans';
 html {
   /* 1 */
   font: normal 14px / 20px "Work Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -44,13 +62,13 @@ a:hover {
  */
 a,
 .uk-link {
-  color: #217bea;
+  color: #86339a;
   text-decoration: none;
   cursor: pointer; }
 
 a:hover,
 .uk-link:hover {
-  color: #217bea;
+  color: #86339a;
   text-decoration: underline; }
 
 /* Text-level semantics
@@ -1360,7 +1378,7 @@ iframe {
  * Primary
  */
 .uk-block-primary {
-  background: #217bea; }
+  background: #86339a; }
 
 /*
  * Secondary
@@ -1677,7 +1695,7 @@ ul.uk-nav-sub {
  */
 .uk-nav-dropdown > li > a:hover,
 .uk-nav-dropdown > li > a:focus {
-  background: #217bea;
+  background: #86339a;
   color: #fff;
   /* 2 */
   outline: none; }
@@ -1718,7 +1736,7 @@ ul.uk-nav-sub {
  */
 .uk-nav-navbar > li > a:hover,
 .uk-nav-navbar > li > a:focus {
-  background: #217bea;
+  background: #86339a;
   color: #fff;
   /* 2 */
   outline: none; }
@@ -1924,7 +1942,7 @@ html:not(.uk-touch) .uk-nav-offcanvas ul a:hover {
  * Link colors
  */
 .uk-navbar-content > a:not([class]) {
-  color: #217bea; }
+  color: #86339a; }
 
 .uk-navbar-content > a:not([class]):hover {
   color: #059; }
@@ -2057,14 +2075,14 @@ html:not(.uk-touch) .uk-nav-offcanvas ul a:hover {
  */
 .uk-subnav > * > :hover,
 .uk-subnav > * > :focus {
-  color: #217bea;
+  color: #86339a;
   text-decoration: none; }
 
 /*
  * Active
  */
 .uk-subnav > .uk-active > * {
-  color: #217bea; }
+  color: #86339a; }
 
 /* Modifier: 'subnav-line'
  ========================================================================== */
@@ -2101,7 +2119,7 @@ html:not(.uk-touch) .uk-nav-offcanvas ul a:hover {
  * `li` needed for higher specificity to override hover
  */
 .uk-subnav-pill > .uk-active > * {
-  background: #217bea;
+  background: #86339a;
   color: #fff; }
 
 /* Disabled state
@@ -3316,7 +3334,7 @@ select.uk-form-width-mini {
  * Modifier: `uk-button-primary`
  */
 .uk-button-primary {
-  background-color: #217bea;
+  background-color: #86339a;
   color: #fff; }
 
 /* Hover */
@@ -8041,7 +8059,7 @@ a.uk-thumbnail:focus {
     background-color: fade(#fff, 70%);
     color: #444; }
   .uk-contrast .uk-button-primary {
-    background-color: #217bea;
+    background-color: #86339a;
     color: #fff; }
   .uk-contrast .uk-button-primary:hover,
   .uk-contrast .uk-button-primary:focus {
@@ -8413,7 +8431,7 @@ a.uk-datepicker-table-muted {
  * 1. Remove default focus style
  */
 .uk-nav-autocomplete > li.uk-active > a {
-  background: #217bea;
+  background: #86339a;
   color: #fff;
   /* 1 */
   outline: none; }
@@ -8432,29 +8450,29 @@ a.uk-datepicker-table-muted {
 
 body, html {
   min-height: 100%;
-  background-image: url("http://dev.lawriecate.com/nd/public/assets/images/geometry.png"); }
+  background-image: url("http://localhost:8888/nd/NextDegreeWeb/public/assets/images/geometry.png"); }
 
 .splash-bg {
   /*background-image: linear-gradient(
       rgba(255, 255, 255, 0.33), 
       rgba(255, 255, 255, 0.33)
-    ),url('http://dev.lawriecate.com/nd/public/assets/images/splash3.jpg');*/
-  background: url("http://dev.lawriecate.com/nd/public/assets/images/splash3_h.jpg"); }
+    ),url('http://localhost:8888/nd/NextDegreeWeb/public/assets/images/splash3.jpg');*/
+  background: url("http://localhost:8888/nd/NextDegreeWeb/public/assets/images/splash3_h.jpg"); }
 
 .bg2 {
-  background: url("http://dev.lawriecate.com/nd/public/assets/images/splash2_h.jpg");
+  background: url("http://localhost:8888/nd/NextDegreeWeb/public/assets/images/splash2_h.jpg");
   height: 400px; }
 
 .banner1 {
-  background: url("http://dev.lawriecate.com/nd/public/assets/images/banner1.jpg");
+  background: url("http://localhost:8888/nd/NextDegreeWeb/public/assets/images/banner1.jpg");
   height: 300px; }
 
 .banner2 {
-  background: url("http://dev.lawriecate.com/nd/public/assets/images/banner2_h.jpg");
+  background: url("http://localhost:8888/nd/NextDegreeWeb/public/assets/images/banner2_h.jpg");
   height: 300px; }
 
 .banner3 {
-  background: url("http://dev.lawriecate.com/nd/public/assets/images/banner5.jpg");
+  background: url("http://localhost:8888/nd/NextDegreeWeb/public/assets/images/banner5.jpg");
   height: 300px; }
 
 .h300 {
@@ -8466,8 +8484,8 @@ body, html {
 
 @media only screen and (min-width: 600px) {
   .splash-bg {
-    background: url("http://dev.lawriecate.com/nd/public/assets/images/splash3.jpg"); }
+    background: url("http://localhost:8888/nd/NextDegreeWeb/public/assets/images/splash3.jpg"); }
   .banner2 {
-    background: url("http://dev.lawriecate.com/nd/public/assets/images/banner2b.jpg"); } }
+    background: url("http://localhost:8888/nd/NextDegreeWeb/public/assets/images/banner2b.jpg"); } }
 
 /*# sourceMappingURL=all.css.map */
