@@ -86,5 +86,10 @@ $(function() {
 		e.preventDefault();
 		stope();
 		$("#signUpInput").focus();
-	})
+	});
+
+
+	if($("#nd-contact-sent").length) {
+		UIkit.notify("Your message has been sent, thanks for getting in touch.  <br>We will reply ASAP!", {status:'success'})
+	}
 });

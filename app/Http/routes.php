@@ -12,7 +12,7 @@
 */
 
 Route::get('/', 'SplashController@splash');
-
+Route::post('/contact-form','SplashController@sendContactForm');
 // Authentication Routes...
 //Route::get('login', 'Auth\AuthController@showLoginForm');
 Route::get('signin', 'Auth\AuthController@showLoginForm');
@@ -36,6 +36,10 @@ Route::get('/signup/verification/{token?}','VerificationController@status');
 Route::post('/signup/verification/','VerificationController@request_resend');
 
 Route::get('/home', 'HomeController@index');
+Route::post('/profile/save-profile', 'ProfileController@saveProfile');
+Route::post('/profile/save-profile-ajax', 'ProfileController@saveProfileAjax');
+Route::post('/profile/send-photo','ProfileController@updateProfilePhoto');
+Route::post('/profile/send-cv','ProfileController@updateStudentCv');
 
 Route::get('/settings', 'SettingsController@accountForm');
 Route::post('/settings', 'SettingsController@update');
@@ -46,8 +50,8 @@ Route::post('/settings', 'SettingsController@update');
 Route::get('/admin/files', 'AdminController@files');
 Route::post('/admin/files/upload', 'AdminController@uploadFile');
 Route::delete('/admin/files/{file}', 'AdminController@deleteFile');*/
-
-Route::group(['prefix' => 'admin'], function () {
+Route::get('/admin/cron','CronController@run');
+Route::group(['prefix' => 'admin','middleware' => ['auth.admin']], function () {
 	Route::get('/', 'AdminController@index');
     Route::resource('file', 'FileController', ['only' => [
 	    'index', 'store', 'destroy'
@@ -63,18 +67,36 @@ Route::group(['prefix' => 'admin'], function () {
 	    'index', 'store', 'destroy', 'create', 'edit','update'
 	]]);
 
+	Route::resource('institution', 'InstitutionController', ['only' => [
+	    'index', 'store', 'destroy', 'create', 'edit','update'
+	]]);
+
+	Route::resource('job', 'JobController', ['only' => [
+	    'index'
+	]]);
+
+	Route::resource('job-type', 'JobTypeController', ['only' => [
+	    'store','create'
+	]]);
+
+
+
 	Route::get('/api/images', 'FileController@imageJson');
+	Route::post('/api/institution', 'InstitutionController@autocompleteJson');
+	Route::get('/api/editor/{post}', 'PostController@getJson');
+	Route::post('/api/profile/resetStudentProfile', 'ProfileController@resetStudentProfile');
 });
 
 
-Route::get('{post}', function(App\Post $post) {
-	return view('post')->with('post',$post);
-});
+Route::get('/articles/feed.xml', 'PostController@feed');
+Route::get('/articles/{post}', 'PostController@show');
+
 
 Route::get('{page}', function($page) {
-	if(file_exists('../resources/views/pages/'.$page.'.blade.php')) {
+	if(file_exists(base_path('resources/views/pages/'.$page.'.blade.php'))) {
 		return view('pages.'.$page);
 	} else {
 		abort(404);
 	}
 });
+

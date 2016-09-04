@@ -113,7 +113,7 @@ class FileController extends Controller
                 //$image->image_cache_json = json_encode($imarray);
 
                
-                $file_json['image'] = array('id'=>$image->id,'width'=>$image->original_width,'height'=>$image->original_height,'thumbnail'=>$image->generateResize(300));
+                $file_json['image'] = array('id'=>$image->id,'width'=>$image->original_width,'height'=>$image->original_height,'large'=>$image->generateResize(1200),'thumbnail'=>$image->generateResize(300));
             }
 
              $response['files'][] = $file_json;
@@ -129,8 +129,7 @@ class FileController extends Controller
         return response()->json($response);
         } 
         else {
-
-             return response()->json(['upload_status'=>'fail','upload_errors'=>$validator->messages()],200);
+            return response()->json(['upload_status'=>'fail','upload_errors'=>$validator->messages()],200);
           //return redirect(action('AdminController@files'))->withInput()->withErrors($validator);
         }
     }

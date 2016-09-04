@@ -19,7 +19,9 @@ class CreateStudentsTable extends Migration
             $table->integer('institution_id')->unsigned();
             $table->foreign('institution_id')->references('id')->on('institutions');
             $table->string('degree');
-            $table->string('bio');
+            $table->string('bio')->nullable()->default(null);
+            $table->string('cv_path')->nullable()->default(null);
+             $table->datetime('cv_uploaded_at')->nullable()->default(null);
             $table->string('job_seek_json');
             $table->timestamps();
         });

@@ -11,12 +11,16 @@
 		                <div class="uk-width-medium-1-1 uk-margin-large-top  " >
 		                	<h1 class="uk-hidden">Next Degree</h1>
 		                	<img class="" width="800" height="193" src="{{asset('assets/images/Logo_800x193_Purple.png')}}" alt="Next Degree Logo" />
+		                	@if(Auth::guest())
 		                	<a class="uk-button uk-button-primary uk-float-right" href="{{url('home/')}}">Sign In <i class="uk-icon-arrow-right"></i></a>
+		                	@else
+		                	<a class="uk-button uk-button-primary uk-float-right" href="{{url('home/')}}">Your Dashboard <i class="uk-icon-arrow-right"></i></a>
+		                	@endif
 		                </div>
 		</div>
 	</div>
 </div>
-<div class="uk-width-1-1  nd-red-background">
+<div class="uk-width-1-1  nd-bg-dark-geo">
 	<div class="uk-container uk-container-center ">
 		<div class="uk-grid " data-uk-grid-margin>
 		                <div class="uk-width-medium-1-1 uk-margin-top uk-margin-large-bottom uk-contrast ">
@@ -85,54 +89,19 @@ You can use the skills you're developing at University to gain paid work experie
 		                	</ul>--}}
 
 		                	<div class="uk-grid uk-grid-match" data-uk-grid-match="{target:'.uk-panel'}">
-		                	
-		                	
-		                	 <div class="uk-width-medium-1-4" >
+		                		@foreach(App\Post::stream()->take(4)->get() as $post)
+		                		<div class="uk-width-medium-1-4" >
 						        <div class="uk-panel-box" >
-							        <a href="#">
+							        <a href="{{$post->url}}">
 							        <div class="uk-panel-teaser">
-							        	<img src="{{asset('assets/images/article.gif')}}"/>
+							        	<img src="{{$post->preview_image_url}}"/>
 							        </div> 
 							        
-Exclusive Interview: Why I stayed in Nottingham after graduating as a law student</p>
+<h3>{{$post->title}}</h3><p>{{$post->description}}</p>
 						        	</a>
 						        </div>
 						     </div>
-						         <div class="uk-width-medium-1-4" >
-						        <div class="uk-panel-box" >
-							        <a href="#">
-							        <div class="uk-panel-teaser">
-							        	<img src="{{asset('assets/images/article.gif')}}"/>
-							        </div> 
-							        
-						        	<p>Writing your CV 101</p>
-						        	</a>
-						        </div>
-</div>
-						         <div class="uk-width-medium-1-4" >
-						        <div class="uk-panel-box" >
-							        <a href="#">
-							        <div class="uk-panel-teaser">
-							        	<img src="{{asset('assets/images/article.gif')}}"/>
-							        </div> 
-							        
-						        	<p>Making the right impression: how to nail an interview</p>
-						        	</a>
-						        </div>
-						        </div>
-						         <div class="uk-width-medium-1-4" >
-						        <div class="uk-panel-box" >
-							        <a href="#">
-							        <div class="uk-panel-teaser">
-							        	<img src="{{asset('assets/images/article.gif')}}"/>
-							        </div> 
-							        
-						        	<p>Jobs Opportunities starting in Autumn 2016</p>
-						        	</a>
-						        </div>
-						        
-						    </div>
-		            
+		                		@endforeach
 						   </div>
 						    
 		                </div>
@@ -150,7 +119,7 @@ Exclusive Interview: Why I stayed in Nottingham after graduating as a law studen
 		                <div class="uk-width-medium-1-1 uk-margin-top ">
 		                	<h1>Sunny Days</h1>
 		                	<p class="uk-text-large">Working in a small business while studying, during your summer break or after graduating will let you develop a wider range of your skills in a friendly atmosphere.</p>
-		                	<blockquote class="uk-text-large">"Quote about working in a small business goes here."</blockquote> - Some Person
+		                	{{--<blockquote class="uk-text-large">"Quote about working in a small business goes here."</blockquote> - Some Person--}}
 		                </div>
 		</div>
 	</div>

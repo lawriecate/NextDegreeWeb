@@ -1,10 +1,10 @@
 @extends('layout')
 
 @section('content')
- <div class="uk-vertical-align uk-text-center uk-height-1-1  uk-height-viewport">
+ <div class="uk-vertical-align uk-text-center uk-height-1-1  uk-height-viewport nd-bg-dark-geo">
      <div class="uk-vertical-align-middle uk-animation-scale" style="width: 500px;">
 
-              <img class="uk-margin-bottom" width="400" height="97" src="{{asset('assets/images/Logo_800x193.png')}}" alt="Next Degree Logo" />
+              <img class="uk-margin-bottom" width="400" height="97" src="{{asset('assets/images/Logo_800x193_Purple.png')}}" alt="Next Degree Logo" />
 
                {{-- <form class="uk-panel uk-panel-box uk-form">
                     <div class="uk-form-row">

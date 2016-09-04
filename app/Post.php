@@ -19,7 +19,7 @@ class Post extends Model
 
 	public function getUrlAttribute() 
 	{
-		return url('/'.$this->slug);
+		return action('PostController@show',$this->slug);
 	}
 
 	public function getStatusAttribute()
@@ -39,5 +39,21 @@ class Post extends Model
 	public function image()
 	{
 		return $this->hasOne('App\Image','id','display_image');
+	}
+
+	public function getPreviewImageUrlAttribute()
+	{
+		if(is_null($this->image)) {
+			return url('assets/images/article.gif');
+		} 
+		else
+		{
+			return $this->image->thumbnail->path;
+		}
+	}
+
+	public static function stream()
+	{
+		return Post::where('publish_at','<=',date('Y-m-d H:i:s'))->orderBy('publish_at','desc');
 	}
 }

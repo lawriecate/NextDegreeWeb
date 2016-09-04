@@ -24,14 +24,17 @@ class StorePostRequest extends Request
     public function rules()
     {
         $post = $this->route('post');
+        $append = '';
+        if(isset($post->id)) {
+            $append = ','.$post->id;
+        }
         return [
             'title' => 'required|max:255',
-            'slug' => 'required|max:255|unique:posts,id,'.$post->id,
+            'slug' => 'required|max:255|unique:posts,id'.$append,
             'description' => 'max:400',
             'publish_date' => 'date',
             'publish_time' => 'date_format:h:i A',
-            'display_image' => 'exists:images,id',
-            'html' => 'required'
+            'display_image' => 'exists:images,id'
         ];
     }
 }

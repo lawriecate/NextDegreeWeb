@@ -6,7 +6,7 @@
 
             action: ROOT_URL+'admin/file', // upload url
             params: { "_token": $('[name="csrf_token"]').attr('content') },
-            allow: '*.(jpg|jpeg|gif|png)', // allow only images
+            allow: '*.(jpg|jpeg|gif|png|pdf|doc|docx|txt|zip)', // allow only images
             
 
             loadstart: function() {

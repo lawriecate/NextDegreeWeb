@@ -53,10 +53,17 @@
         var select = UIkit.uploadSelect($("#imageselect-upload-select"), settings),
             drop   = UIkit.uploadDrop($("#imageselect-upload-drop"), settings);
 
-
-
         $("#imageselect_browse_button").click(function() {
-            var modal = UIkit.modal(".imageselect_modal");
+            
+            var image = getImageFromModel(function(image) {
+                $("#imageselect_id").val(image.id);
+                $(".imageselect_preview img").attr("src",ROOT_URL+image.thumbnail.path);
+            });
+            
+        });
+
+    function getImageFromModel(callback) {
+        var modal = UIkit.modal(".imageselect_modal");
 
             if ( modal.isActive() ) {
                 modal.hide();
@@ -65,15 +72,14 @@
                 function displayImageResults(results) {
                     resultDisplay = $("<div></div>");
                     $.each(results,function(key,image){ // for each image
-                        // generate thubmanil
-             
+                        // generate thumbnail
                       
                         var thumbnail = $('<a href="#" class="uk-thumbnail uk-thumbnail-small"></a>');
                         thumbnail.append('  <img src="'+ROOT_URL+image.thumbnail.path+'"  /> <div class="uk-thumbnail-caption">'+image.original_name+'</div>');
                         thumbnail.click(function() {
-                            $("#imageselect_id").val(image.id);
-                            $(".imageselect_preview img").attr("src",ROOT_URL+image.thumbnail.path);
                             modal.hide();
+                            return callback(image);
+                            
                         });
                         resultDisplay.append(thumbnail);
                         // add to results
@@ -87,6 +93,7 @@
                     displayImageResults(response.results);
                 });
             }
-            
-        });
+    }
+
     });
+

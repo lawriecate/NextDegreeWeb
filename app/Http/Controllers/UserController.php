@@ -26,7 +26,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.create_user')->with('user',new User)->with('submit_to',action('UserController@store'));
     }
 
     /**
@@ -37,7 +37,19 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $user = new User;
+        $user->email = $request->email;
+        $user->name = $request->name;
+        $user->password = bcrypt($request->password);
+        
+        if($request->admin == "true") {
+            $user->admin = true;
+        } else {
+            $user->admin = false;
+        }
+        $user->save();
+        return redirect(action('UserController@edit',$user->id));
+
     }
 
     /**

@@ -4,12 +4,7 @@
 
 <div class="uk-container uk-margin-top">
 	<h1>Users</h1>
-	<div class="uk-form-file">
-
-
-	    
-	</div>
-
+	   <a href="{{action('UserController@create')}}" class="uk-button-primary uk-button uk-button-large">Register User Manually</a>
 
 	<div class="uk-overflow-container">
 	    <table class="uk-table uk-table-striped">

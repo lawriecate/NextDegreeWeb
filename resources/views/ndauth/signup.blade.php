@@ -3,10 +3,11 @@
 @section('title', 'Sign Up')
 
 @section('modal')
+<div class="uk-contrast">
 <h1>Welcome!</h1>
 <p>To verify your identity, we have emailed you a link which you must open in the next 7 days!</p>
 <p>Your password is: <span class="uk-text-danger">{{$password}}</span>.  <br>You can change it from your settings.</p>
-
+</div>
 <form method="post" action="{{action('QuickSignupController@redirect')}}" id="signUpForm" class="uk-panel uk-panel-box uk-form">
 {{ csrf_field() }}
 	{{--<input id="signUpInput" type="email" class="uk-hidden" name="email" value="">

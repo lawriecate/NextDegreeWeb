@@ -48,15 +48,12 @@
         </div>
 
         <div class="uk-form-row">
-            @if ($errors->has('html'))
-                <div class="uk-alert uk-alert-danger">{{ $errors->first('html') }}</div>
-            @endif
-		    <textarea rows="20" placeholder="HTML" class="uk-width-1-1 " name="html">{{old('html',$post->html)}}</textarea>
-		    <p class="uk-form-help-block">i</p>
+            @include('components.posteditor')
 		</div>
        
        <div class="uk-form-row">
        		<button class="uk-button-primary uk-button uk-button-large" type="submit">Save</button>
+            @if(isset($post->id)) <a target="_new" href="{{$post->url}}" class="uk-button uk-button-large">Preview </a>@endif
        </div>
     </form>
 

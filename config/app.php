@@ -163,7 +163,7 @@ return [
 
         App\Providers\EmailDomainValidationProvider::class,
         Intervention\Image\ImageServiceProvider::class,
-
+       
     ],
 
     /*

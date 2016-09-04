@@ -17,7 +17,7 @@ class PostController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        //$this->middleware('auth');
     }
 
     /**
@@ -51,7 +51,11 @@ class PostController extends Controller
         $post = new Post;
         $post->title = $request->title;
         $post->slug = $request->slug;
-        $post->html = $request->html;
+        
+        $editor = $request->input('editor');
+        $post->editor_json = json_encode($editor);
+        $post->html = $this->generate_html($editor);
+
         $post->description = $request->description;
         $post->display_image = $request->display_image;
         if($request->display_image=="") { $post->display_image =null;}
@@ -75,12 +79,12 @@ class PostController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  App\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($post)
     {
-        //
+        return view('post')->with('post',$post);
     }
 
     /**
@@ -104,21 +108,22 @@ class PostController extends Controller
      */
     public function update(StorePostRequest $request, $post)
     {
-
+        $editor = $request->input('editor');
+        $post->editor_json = json_encode($editor);
+        $post->html = $this->generate_html($editor);
         $post->title = $request->title;
         $post->slug = $request->slug;
-        $post->html = $request->html;
         $post->description = $request->description;
         $post->display_image = $request->display_image;
         if($request->display_image=="") { $post->display_image =null;}
  
         $status = $request->status;
         if($status == "publish") {
-            $publish_time =  date( 'Y-m-d H:i:s', strtotime($request->publish_date . ' ' . $request->publish_time) );
+            $publish_time =  date('Y-m-d H:i:s', strtotime($request->publish_date . ' ' . $request->publish_time) );
             $post->publish_at = $publish_time;
         }
         elseif ($status=="publish_now") {
-            $post->publish_at = date( 'Y-m-d H:i:s');
+            $post->publish_at = date('Y-m-d H:i:s');
         } 
         else {
             $post->publish_at = null;
@@ -147,4 +152,46 @@ class PostController extends Controller
         }
         return response()->json(true);
     }
+
+    private function generate_html($components) 
+    {
+        $output = '';
+        foreach ($components as $key => $component) {
+            switch ($component['type']) {
+                case 'html':
+                    $output .= '<div>'.$component['value'].'</div>';
+                    break;
+                case 'video':
+                    $output .= 'VIDEO: '.$component['value'];
+                    break;
+                case 'image':
+                    $output .= '<div><img src="'.$component['value'].'"  /></div>';
+                    break;
+                
+                default:
+                    # code...
+                    break;
+            }
+        }
+        return $output;
+    }
+
+    public function getJson($post) 
+    {
+        return response()->json(json_decode($post->editor_json));
+    }
+
+    public function feed()
+    {
+        $output = '<rss>';
+        foreach(Post::stream()->take(10)->get() as $post) 
+        {
+            $output .= '<item>
+                            <title>'.$post->title.'</title>
+                        </item>';
+        }
+        $output .= '</rss>';
+        return $output; 
+    }
+
 }

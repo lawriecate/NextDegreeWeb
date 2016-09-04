@@ -1,4 +1,3 @@
-var ROOT_URL = "http://localhost:8888/nd/NextDegreeWeb/public/";
 $(function() {
 	$(".confirmDelete").submit(function(e) {
 		if(!confirm("Are you sure you want to delete this?")) {
@@ -34,7 +33,7 @@ $(function() {
 	$(".checkSlug").change(function() {
 		$.post(ROOT_URL + 'admin/post/check-slug',{ "_token": $('[name="csrf_token"]').attr('content'), 'slug': $(this).val() })
 		.done(function(isSlugFree) {
-			console.log(isSlugFree);
+			//console.log(isSlugFree);
 			if(isSlugFree) {
 				$(".checkSlug").removeClass("uk-form-danger");
 				$(".checkSlug").addClass("uk-form-success");
