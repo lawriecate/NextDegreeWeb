@@ -26,8 +26,10 @@
 		                <div class="uk-width-medium-1-1 uk-margin-top uk-margin-large-bottom uk-contrast ">
 		 
 		                	<h2 class="uk-heading-large ">Jumpstart Your Career</h2>
-		                	<p class="uk-text-large uk-text-bold">Next Degree connects students and local businesses to help develop student careers from freshers week to graduation and beyond. </p><p class="uk-text-large">
-You can use the skills you're developing at University to gain paid work experience, boosting your income and your CV. <br>From programming to tuition, Next Degree brings work to you.</p>
+		                	<p class="uk-text-large uk-text-bold">Next Degree connects students and local businesses to help develop student careers from freshers week to graduation and beyond. </p>{{--<p class="uk-text-large">
+You can use the skills you're developing at University to gain paid work experience, boosting your income and your CV. <br>From programming to tuition, Next Degree brings work to you.</p>--}}
+<p class="uk-text-large">Next Degree is being developed for students in Nottingham. Our website will give you your own profile and schedule.  Based on your profile and interests employers will be able to contact you to offer work opportunities. </p>
+<p class="uk-text-large ">Sign up now to create your basic profile, to access careers and university advice written by recent graduates and current students, and to stay up to date with Next Degree's development</p>
 		                	<h2>Sign up now with your university email</h2>
 		                	<p>Open to students of the University of Nottingham or Nottingham Trent University</p>
 		                	@if(Auth::guest())
@@ -77,8 +79,8 @@ You can use the skills you're developing at University to gain paid work experie
 	<div class="uk-container uk-container-center uk-margin-large-bottom">
 		<div class="uk-grid" data-uk-grid-margin>
 		                <div class="uk-width-medium-1-1 uk-margin-top " >
-		                	<h1>Why waste your time?</h1>
-		                	<p class="uk-text-large">There are hundreds of businesses in Nottingham that need the skills you have, which could provide you with lucrative opportunities.</p>
+		                	<h1>Get the Know How</h1>
+		                	<p class="uk-text-large">Hear advice from Nottingham graduates to help you learn from their experience, mistakes and top tips for university.</p>
 		                	<p>Read the latest articles posted on Next Degree:</p>
 		                	{{--<ul>
 		                		<li><a href="#">Writing your CV 101</a></li>
@@ -117,8 +119,20 @@ You can use the skills you're developing at University to gain paid work experie
 	<div class="uk-container uk-container-center uk-margin-large-bottom">
 		<div class="uk-grid" data-uk-grid-margin>
 		                <div class="uk-width-medium-1-1 uk-margin-top ">
-		                	<h1>Sunny Days</h1>
-		                	<p class="uk-text-large">Working in a small business while studying, during your summer break or after graduating will let you develop a wider range of your skills in a friendly atmosphere.</p>
+		                	<h1>What's on Offer? </h1>
+		                	<p class="uk-text-large">
+		                		<ul>
+		                		<li>Flexible Part Time Work</li>
+		                		<li>Freelancing</li>
+		                		<li>Graduate Jobs
+</li>
+<li>Holiday Jobs &amp; Work Experience
+</li>
+<li>Paid Internships
+</li>
+		                		</ul>
+		                		<a href="{{url('faq')}}">Read our FAQ to find out more!</a>
+		                	</p>
 		                	{{--<blockquote class="uk-text-large">"Quote about working in a small business goes here."</blockquote> - Some Person--}}
 		                </div>
 		</div>
