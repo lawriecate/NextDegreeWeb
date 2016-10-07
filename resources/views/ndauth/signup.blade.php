@@ -4,11 +4,11 @@
 
 @section('modal')
 <div class="uk-contrast">
-<h1>Welcome!</h1>
+<h1>Welcome to Next Degree!</h1>
 <p>To verify your identity, we have emailed you a link which you must open in the next 7 days!</p>
 <p>Your password is: <span class="uk-text-danger">{{$password}}</span>.  <br>You can change it from your settings.</p>
 </div>
-<form method="post" action="{{action('QuickSignupController@redirect')}}" id="signUpForm" class="uk-panel uk-panel-box uk-form">
+<form method="post" action="{{action('QuickSignupController@redirectToFacebook')}}" id="signUpForm" class="uk-panel uk-panel-box uk-form">
 {{ csrf_field() }}
 	{{--<input id="signUpInput" type="email" class="uk-hidden" name="email" value="">
 	<input type="password" value="" class="uk-hidden">--}}
@@ -23,7 +23,7 @@
                     <div class="uk-form-row">
              			<input id="email" type="text"  disabled="disabled" name="email" value="{{$email}}">
              			<input id="password" type="password" disabled="disabled"  name="password" value="{{$password}}">
-                        <button type="submit" class="uk-width-1-1 uk-button uk-button-primary uk-button-large" href="#" type="submit">Continue <i class="uk-icon-arrow-right"></i></button>
+                        <button type="submit" class="uk-width-1-1 uk-button uk-button-primary uk-button-large" href="#" type="submit">Connect Account to Facebook <i class="uk-icon-facebook-square"></i></button>
                        
                     </div>
                     {{--<div class="uk-form-row uk-text-small">
@@ -32,4 +32,5 @@
                     </div>--}}
 
 </form>
+<p><a href="{{action('QuickSignupController@redirect')}}" class="uk-button uk-button-small">Skip connecting to Facebook</a></p>
 @endsection

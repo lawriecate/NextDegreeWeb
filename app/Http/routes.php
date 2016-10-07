@@ -30,12 +30,15 @@ Route::post('password/reset', 'Auth\PasswordController@reset');
 
 Route::post('/signup/welcome','QuickSignupController@makeUser');
 Route::post('/signup/start','QuickSignupController@redirect');
+Route::post('/signup/facebook','QuickSignupController@redirectToFacebook');
 Route::get('/signup/error','QuickSignupController@error');
 
 Route::get('/signup/verification/{token?}','VerificationController@status');
 Route::post('/signup/verification/','VerificationController@request_resend');
 
 Route::get('/home', 'HomeController@index');
+Route::get('/student', 'StudentHomeController@index');
+Route::get('/business', 'BusinessHomeController@index');
 Route::post('/profile/save-profile', 'ProfileController@saveProfile');
 Route::post('/profile/save-profile-ajax', 'ProfileController@saveProfileAjax');
 Route::post('/profile/send-photo','ProfileController@updateProfilePhoto');
@@ -43,6 +46,13 @@ Route::post('/profile/send-cv','ProfileController@updateStudentCv');
 
 Route::get('/settings', 'SettingsController@accountForm');
 Route::post('/settings', 'SettingsController@update');
+Route::get('/settings/{network}/copyphoto', 'SettingsController@promptCopyProfile');
+Route::post('/settings/{network}/copyphoto', 'SettingsController@copyProfile');
+Route::get('/settings/facebook/callback', 'SettingsController@facebookCallback');
+Route::get('/settings/facebook/connect', 'SettingsController@redirectToFacebook');
+Route::get('/settings/linkedin/callback', 'SettingsController@linkedInCallback');
+Route::get('/settings/linkedin/connect', 'SettingsController@redirectToLinkedIn');
+
 
 
 
@@ -75,6 +85,10 @@ Route::group(['prefix' => 'admin','middleware' => ['auth.admin']], function () {
 	    'index'
 	]]);
 
+	Route::resource('case', 'SupportController', ['only' => [
+	    'index','edit'
+	]]);
+
 	Route::resource('job-type', 'JobTypeController', ['only' => [
 	    'store','create'
 	]]);
@@ -85,6 +99,7 @@ Route::group(['prefix' => 'admin','middleware' => ['auth.admin']], function () {
 	Route::post('/api/institution', 'InstitutionController@autocompleteJson');
 	Route::get('/api/editor/{post}', 'PostController@getJson');
 	Route::post('/api/profile/resetStudentProfile', 'ProfileController@resetStudentProfile');
+	Route::post('/api/profile/resetBusinessProfile', 'ProfileController@resetBusinessProfile');
 });
 
 

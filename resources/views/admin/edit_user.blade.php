@@ -7,7 +7,7 @@
 	<p>Registered on {{ $user->created_at}}</p>
 	<p>Verification Status: @if($user->verified)<i class="uk-icon uk-icon-check"></i> Verified @else<i class="uk-icon uk-icon-exclamation-triangle"></i> Not Verified @endif</p>
   <p>Student Profile:@if(is_null($user->student)) <i class="uk-icon-close"></i> No <a href="#" id="ndAdminUserAddStudentProfile" class="uk-button uk-button-mini">Add Profile</a>  @else <i class="uk-icon-check"></i> belongs to <span id="nd-user-institution-name">{{$user->student->institution->name}}</span> <a href="#" id="ndAdminUserAddStudentProfile" class="uk-button uk-button-mini">Switch Institution</a>@endif </p>
-  <p>Business Profile: <i class="uk-icon-close"></i> No</p>
+  <p>Business Profile: @if(is_null($user->business)) <i class="uk-icon-close"></i> No <a href="#" id="ndAdminUserAddBusinessProfile" class="uk-button uk-button-mini">Add Profile</a>  @else <i class="uk-icon-check"></i> Yes {{ $user->business->name or '' }} @endif </p>
 
 	<form class="uk-form" action="{{$submit_to}}" method="POST"  enctype="multipart/form-data">
 	{{csrf_field()}}

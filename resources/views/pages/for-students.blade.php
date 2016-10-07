@@ -8,7 +8,7 @@
                             <h1 class="uk-heading-large nd-splash-text-highlight">For Students</h1>
                             <p class="uk-text-large nd-splash-text-highlight">Next Degree gives you exclusive access to news and opportunities to help you <span class="uk-text-bold">earn money</span> and <span class="uk-text-bold">gain experience</span> as a student or a graduate.</p>
                             <p>
-                                <a class="uk-button uk-button-primary uk-button-large" href="{{url('')}}">Sign Up Now!</a>
+                                <a class="uk-button uk-button-primary uk-button-large" href="{{url('')}}#signUpFormDiv">Sign Up Now!</a>
                    
                             </p>
                         </div>

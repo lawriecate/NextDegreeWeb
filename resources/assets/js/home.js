@@ -24,6 +24,8 @@
                 $("#nd-cv-upload-button").attr("disabled","");
                if(response.status == "success") {
                     $("#nd-cv-upload-status").text("CV Uploaded ");
+                    $("[name=cv-exists]").val('1');
+                    showChecks();
                 } 
                else {
                     // failure
@@ -63,6 +65,7 @@
                if(response.status == "success") {
                     $("#profileProgress").addClass("uk-hidden");
                     $("[name=profile-exists]").val('1');
+                    showChecks();
                		$("#profile-upload-drop").css('background-image','url('+ROOT_URL+'profiles/'+response.prefix + '_300.jpg)');
                } 
                else {
@@ -90,7 +93,7 @@
 function showChecks() {
     var completed = 0;
     var fields = 0;
-    $('input[name=profile-exists],input[name=cv-exists],input[name=name],input[name=bio],input[name=degree],textarea').each(function() {
+    $('.nd-profile-cocheck').each(function() {
         fields++;
         if($(this).val()!="") {
             completed++;

@@ -32,12 +32,22 @@ class User extends Authenticatable
         return $this->hasOne('App\Student');
     }
 
+
+    public function business() {
+        return $this->hasOne('App\Business');
+    }
+
     public function profile_image() {
         return $this->hasOne('App\ProfileImage');
     }
 
     public function job_types() {
         return $this->belongsToMany('App\JobType');
+    }
+
+    
+    public function social_accounts() {
+        return $this->hasMany('App\SocialAccount');
     }
 
 }

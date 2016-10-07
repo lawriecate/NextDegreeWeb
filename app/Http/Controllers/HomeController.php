@@ -25,7 +25,18 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        if(!is_null(Auth::user()->student)) 
+        {
+            return redirect(action('StudentHomeController@index'));
+        }
+        else if(!is_null(Auth::user()->business)) 
+        {
+            return redirect(action('BusinessHomeController@index'));
+        }
+        else 
+        {
+            return '<h1>No profile available</h1>';
+        }
     }
 
 

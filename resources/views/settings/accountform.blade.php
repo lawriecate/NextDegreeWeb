@@ -32,6 +32,21 @@
                         <input class="uk-width-1-1 uk-form-large {{ $errors->has('password_confirmation') ? ' uk-form-danger' : '' }}" type="text" placeholder="Confirm Password" name="password_confirmation">
                     </div>
                     <div class="uk-form-row">
+                    @if(Auth::user()->social_accounts()->where('provider','facebook')->count() > 0) 
+                        <a href="{{action('SettingsController@redirectToFacebook')}}" class="uk-button uk-button-success uk-button-large"><i class="uk-icon-facebook-square"></i> Your account has been connected to Facebook</a>
+                    @else
+                        <a href="{{action('SettingsController@redirectToFacebook')}}" class="uk-button uk-button-primary uk-button-large"><i class="uk-icon-facebook-square"></i> Connect your account to Facebook</a>
+                    @endif
+                    </div>
+                    <div class="uk-form-row">
+                    @if(Auth::user()->social_accounts()->where('provider','linkedin')->count() > 0) 
+                        <a href="{{action('SettingsController@redirectToLinkedIn')}}" class="uk-button uk-button-success uk-button-large"><i class="uk-icon-linkedin-square"></i> Your account has been connected to LinkedIn</a>
+                    @else
+                        <a href="{{action('SettingsController@redirectToLinkedIn')}}" class="uk-button uk-button-primary uk-button-large"><i class="uk-icon-linkedin-square"></i> Connect your account to LinkedIn</a>
+                    @endif
+                    
+                    </div>
+                    <div class="uk-form-row">
                         <button  class="uk-button uk-button-large uk-button-primary" type="submit"><i class="uk-icon-save"></i> Save Settings</button>                    </div>
                   
 

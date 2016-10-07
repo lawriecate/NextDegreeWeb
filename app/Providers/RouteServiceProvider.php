@@ -29,6 +29,7 @@ class RouteServiceProvider extends ServiceProvider
         $router->model('post', 'App\Post');
         $router->model('user', 'App\User');
         $router->model('institution', 'App\Institution');
+        $router->model('case', 'App\SupportMessage');
         parent::boot($router);
     }
 

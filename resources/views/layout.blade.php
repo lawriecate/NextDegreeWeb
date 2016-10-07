@@ -18,7 +18,7 @@
   <link rel="icon" type="image/png" href="{{asset('images/favicon_256.png')}}">
   <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
   <link rel="apple-touch-icon-precomposed" href="{{asset('images/favicon_256.png')}}">
-
+<meta property="og:image" content="{{asset('assets/images/facebook_share.jpg')}}" />
 </head>
 <body>
 

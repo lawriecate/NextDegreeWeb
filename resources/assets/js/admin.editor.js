@@ -65,19 +65,67 @@ $(function() {
 		if(value==undefined) {value = "";}
 		switch(ctype) {
 			case "html":
-			editArea = $('<textarea name="editor['+i+'][value]" rows="20" placeholder="Type here..." class="uk-width-1-1 " name="html">'+value+'</textarea>');
+			editArea = $('<textarea name="editor['+i+'][value]" rows="10" placeholder="Type here..." class="uk-width-1-1 ">'+value+'</textarea>');
+			break;
+			case "text":
+			editArea = $('<div></div>');
+			var textStyles = {
+				p: "Paragraph",
+				h1: "Heading",
+				blockquote: "Quote"
+			}
+
+			styleField = $('<select name="editor['+i+'][value][class]" ></select>');
+			editArea.append(styleField);
+			editArea.append($('<textarea name="editor['+i+'][value][text]" rows="5" placeholder="Type here..." class="uk-width-1-1 " >'+value.text+'</textarea>'));
+			
+			
+
+
+			$.each(textStyles,function(key,val) {
+				sel = '';
+				
+				if(value.class == key) {
+					sel = ' selected="selected"';
+				}
+				styleField.append('  <option value="'+key+'" '+sel+'>'+val+'</option>');
+			});
+
+			
 			break;
 			case "video":
-			editArea = $('Enter Youtube URL: <input name="editor['+i+'][value]" type="text" value="'+value+'" />');
+			editArea = $('<span>Enter Youtube URL: </span>').append($('<input name="editor['+i+'][value]" type="text" value="'+value+'" />'));
 			break;
 			case "image":
 			editArea = $('<div>Enter Image URL: </div>');
-			field = $('<input name="editor['+i+'][value]" type="text" value="'+value+'" />');
+
+			field = $('<input name="editor['+i+'][value][url]" type="text" value="'+(value.url===undefined ? "" : value.url)+'" />');
 			editArea.append(field);
 			button = $('<a class="uk-form-file uk-button">Upload Image </a> ');
 			fileField = $('<input type="file"> ');
 			button.append(fileField);
+
+			
 			editArea.append(button);
+
+			var imageStyles = {
+				full: "Full Size",
+				medium: "Medium",
+				small: "Small"
+			}
+
+			styleField = $('<select name="editor['+i+'][value][class]" ></select>');
+			editArea.append(styleField);
+
+
+			$.each(imageStyles,function(key,val) {
+				sel = '';
+				
+				if(value.class == key) {
+					sel = ' selected="selected"';
+				}
+				styleField.append('  <option value="'+key+'" '+sel+'>'+val+'</option>');
+			});
 			makeUploader(fileField,field);
 			
 			break;
@@ -118,6 +166,9 @@ $(function() {
 	});
 	$(".nd-editor-add-image").click(function() {
 		addComponent('image');
+	});
+	$(".nd-editor-add-text").click(function() {
+		addComponent('text');
 	});
 
 	var slug = $("input[name=nd-editor-slug]").val();

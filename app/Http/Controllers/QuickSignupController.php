@@ -8,6 +8,7 @@ use Validator;
 use App\Http\Requests;
 use App\User;
 use App\Student;
+use App\Business;
 use App\Institution;
 use Random;
 use Auth;
@@ -15,39 +16,82 @@ class QuickSignupController extends Controller
 {
     use CanSendVerificationEmail;
     public function makeUser(Request $request) {
-    	$validator = Validator::make($request->all(), [
-            'email' => 'required|email|max:255|unique:users|studentdomain'
-        ]);
+        if($request->type == "business") 
+        {
+            $validator = Validator::make($request->all(), [
+                'email' => 'required|email|max:255|unique:users'
+            ]);
 
-        if ($validator->fails()) {
-            return redirect(action('QuickSignupController@error'))
-                        ->withErrors($validator)
-                        ->withInput();
+            if ($validator->fails()) {
+                return redirect(action('QuickSignupController@error'))
+                            ->withErrors($validator)
+                            ->withInput();
+            }
+            $email = $request->email;
+            $password = Random::generateString(12, 'abcdefghjkmnpqrstuvwxyzABCDEFGHJKMNPQRSTUVWXYZ23456789!@#$%&*?');
+            $user = User::create([
+                'email' => $email,
+                'password' => bcrypt($password),
+            ]);
+
+            // create business profile
+           
+            $profile = new Business;
+            $profile->user_id=$user->id;
+            $profile->save();
+            // login user
+            Auth::login($user);
+
+            // send verification email, must happen AFTER login so can send to current user
+            $this->sendVerificationEmail();
+          
+            return view('ndauth.signup',['email'=>$email,'password'=>$password]);
         }
-    	$email = $request->email;
-    	$password = Random::generateString(12, 'abcdefghjkmnpqrstuvwxyzABCDEFGHJKMNPQRSTUVWXYZ23456789!@#$%&*?');
-    	$user = User::create([
-            'email' => $email,
-            'password' => bcrypt($password),
-        ]);
+        else if($request->type == "student") 
+        {
+            $validator = Validator::make($request->all(), [
+                'email' => 'required|email|max:255|unique:users|studentdomain'
+            ]);
 
-    	// create student profile
-        $domain = substr(strrchr($email, "@"), 1);
-        $profile = new Student;
-        $profile->user_id=$user->id;
-        $profile->institution_id=Institution::where('domain',$domain)->first()->id;
-        $profile->save();
-        // login user
-    	Auth::login($user);
+            if ($validator->fails()) {
+                return redirect(action('QuickSignupController@error'))
+                            ->withErrors($validator)
+                            ->withInput();
+            }
+            $email = $request->email;
+            $password = Random::generateString(12, 'abcdefghjkmnpqrstuvwxyzABCDEFGHJKMNPQRSTUVWXYZ23456789!@#$%&*?');
+            $user = User::create([
+                'email' => $email,
+                'password' => bcrypt($password),
+            ]);
 
-        // send verification email, must happen AFTER login so can send to current user
-        $this->sendVerificationEmail();
-      
-    	return view('ndauth.signup',['email'=>$email,'password'=>$password]);
+            // create student profile
+            $domain = substr(strrchr($email, "@"), 1);
+            $profile = new Student;
+            $profile->user_id=$user->id;
+            $profile->institution_id=Institution::where('domain',$domain)->first()->id;
+            $profile->save();
+            // login user
+            Auth::login($user);
+
+            // send verification email, must happen AFTER login so can send to current user
+            $this->sendVerificationEmail();
+          
+            return view('ndauth.signup',['email'=>$email,'password'=>$password]);
+        }
+        else 
+        {
+            return abort(401, 'Unauthorized action.');
+        }
+    	
     }
 
     public function redirect() {
     	return redirect('home');
+    }
+
+    public function redirectToFacebook() {
+        return redirect(action('SettingsController@redirectToFacebook'));
     }
 
     public function error(Request $request) {

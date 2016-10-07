@@ -1,8 +1,18 @@
-@extends('onecol')
+@extends('onecol_100')
 @section('title', $post->title)
 @section('description', $post->description)
 
 @section('container')
+@if(!is_null($post->image))
+<div class="uk-vertical-align uk-text-center uk-margin-bottom" style="height:450px;background: url('{{asset($post->image->resizedImage(1200)->path)}}');background-size:cover;background-position: center bottom;">
+                        <div class="uk-vertical-align-middle uk-width-1-2 uk-contrast ">
+                            <h1 class="uk-heading-large nd-splash-text-highlight">{{$post->title}}</h1>
+                            
+                        </div>
+                    </div>
+@endif
+<div class="uk-container uk-container-center uk-margin-large-bottom">
+
 	{!! $post->html !!}
 
 	<div id="disqus_thread"></div>
@@ -28,4 +38,5 @@
 	    })();
 	</script>
 	<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+</div>
 @endsection

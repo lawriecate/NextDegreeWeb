@@ -10,7 +10,7 @@
 
 </ul>
 </div>
-
+<a href="#" class="uk-button-small uk-button nd-editor-add-text">+ Text</a>
 <a href="#" class="uk-button-small uk-button nd-editor-add-html">+ HTML</a>
 <a href="#" class="uk-button-small uk-button nd-editor-add-image">+ Image</a>
 <a href="#" class="uk-button-small uk-button nd-editor-add-video">+ Video</a>

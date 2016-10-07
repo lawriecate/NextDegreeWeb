@@ -31,6 +31,7 @@
         <li @if(Route::getCurrentRoute()->getActionName() == "App\Http\Controllers\UserController@index")class="uk-active"@endif><a href="{{action('UserController@index')}}">Users</a></li>
         <li @if(Route::getCurrentRoute()->getActionName() == "App\Http\Controllers\InstitutionController@index")class="uk-active"@endif><a href="{{action('InstitutionController@index')}}">Institutions</a></li>
         <li @if(Route::getCurrentRoute()->getActionName() == "App\Http\Controllers\JobController@index")class="uk-active"@endif><a href="{{action('JobController@index')}}">Jobs</a></li>
+        <li @if(Route::getCurrentRoute()->getActionName() == "App\Http\Controllers\SupportController@index")class="uk-active"@endif><a href="{{action('SupportController@index')}}">Support</a></li>
          <li><a href="{{url('')}}" target="_new">Go To Site</a></li>
     </ul>
 </div>

@@ -11,6 +11,7 @@ use App\File;
 use App\User;
 use App\JobType;
 use App\Student;
+use App\Business;
 use App\Image;
 use App\Institution;
 use ImageProcessing;
@@ -22,23 +23,34 @@ class ProfileController extends Controller
     {
         $user = Auth::user();
         $user->name = $request->name;
-        $user->student->bio = $request->bio;
-        $user->student->degree = $request->degree;
-        $user->student->save();
-
-        $user->save();
-
-        // user job types
-        $user->job_types()->detach();
-        if(null!==($request->input('jobtype'))) 
+        if(isset($request->bio)) 
         {
-            foreach($request->input('jobtype') as $id => $job_type_input) {
-                if($job_type_input=="1") {
-                    $job_type = JobType::find($id);
-                    $user->job_types()->attach($job_type);
+            $user->student->bio = $request->bio;
+            $user->student->degree = $request->degree;
+            $user->student->save();
+
+            // user job types
+            $user->job_types()->detach();
+            if(null!==($request->input('jobtype'))) 
+            {
+                foreach($request->input('jobtype') as $id => $job_type_input) {
+                    if($job_type_input=="1") {
+                        $job_type = JobType::find($id);
+                        $user->job_types()->attach($job_type);
+                    }
                 }
             }
         }
+        if(isset($request->businessname))
+        {
+            $user->business->name = $request->businessname;
+            $user->business->location = $request->businesslocation;
+            $user->business->description = $request->businessdescription;
+            $user->business->save();
+        }
+        $user->save();
+
+        
 
         if($request->ajax()){
             return response()->json(array('status'=>'success'));
@@ -222,5 +234,22 @@ class ProfileController extends Controller
         $profile->institution()->associate($institution);
         $profile->save();
         return response()->json(array('status'=>'success','institution_name'=>$institution->name));
+    }
+
+    public function resetBusinessProfile(Request $request) 
+    {
+        $user = User::findOrFail($request->user_id);
+        $profile;
+        if(is_null($user->business)) {
+            $profile = new Business;
+            $profile->user_id=$user->id;
+        } 
+        else
+        {
+            $profile = $user->business;
+        }
+      
+        $profile->save();
+        return response()->json(array('status'=>'success'));
     }
 }

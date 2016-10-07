@@ -11,6 +11,16 @@ $(function() {
 		}
 	});
 
+	$("#ndAdminUserAddBusinessProfile").click(function() {
+		$.post(ROOT_URL+"admin/api/profile/resetBusinessProfile",{  'user_id': $("#nd-user-id").val() })
+		.done(function(response) {
+			if(response.status=="success") {
+				$("#nd-user-business-name").text(response.institution_name);
+				location.reload();
+			}
+		});
+	});
+
 	/*UIkit.autocomplete($('#nd-select-institution-modal-autocomplete'), {
 	      source: ROOT_URL + 'admin/api/institution'
 	}).on('selectitem.uk.autocomplete', function (e, data, ac) {

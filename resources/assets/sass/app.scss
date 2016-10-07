@@ -1,7 +1,7 @@
-//$path:               "http://localhost:8888/nd/NextDegreeWeb/public/";
+$path:               "http://localhost:8888/nd/NextDegreeWeb/public/";
 //$path: 				"http://192.168.1.85:8888/nd/NextDegreeWeb/public/";
 //$path: 	"http://dev.lawriecate.com/nd/public/";
-$path:"https://nextdegree.co.uk/";
+//$path:"https://nextdegree.co.uk/";
 @import "bower_components/uikit/scss/uikit-mixins.scss";
 @import "bower_components/uikit/scss/uikit-variables.scss";
 /*
@@ -179,4 +179,16 @@ body,html {
 .nd-contact-form-textarea {
 	min-width: 300px;
 	min-height: 200px;
+}
+
+.nd-article-image-full {
+
+}
+
+.nd-article-image-medium {
+	max-width: 600px;
+}
+
+.nd-article-image-small {
+	max-width: 300px;
 }

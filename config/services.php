@@ -39,4 +39,16 @@ return [
         'secret' => env('STRIPE_SECRET'),
     ],
 
+    'facebook' => [
+        'client_id' => '163964194055948',
+        'client_secret' => '44218e01b94b30583acfe9d886e073ea',
+        'redirect' => 'http://localhost:8888/nd/NextDegreeWeb/public/settings/facebook/callback',
+    ],
+
+     'linkedin' => [
+        'client_id' => '7797po61yyxddc',
+        'client_secret' => 'fCzx8grP07sUE61z',
+        'redirect' => 'http://localhost:8888/nd/NextDegreeWeb/public/settings/linkedin/callback',
+    ],
+
 ];

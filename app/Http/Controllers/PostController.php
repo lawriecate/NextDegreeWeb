@@ -161,11 +161,17 @@ class PostController extends Controller
                 case 'html':
                     $output .= '<div>'.$component['value'].'</div>';
                     break;
+                case 'text':
+                    $tag = $component['value']['class'];
+                    $output .= '<'.$tag.'>'.$component['value']['text'].'</'.$tag.'>';
+                    break;
                 case 'video':
-                    $output .= 'VIDEO: '.$component['value'];
+                    parse_str( parse_url( $component['value'], PHP_URL_QUERY ), $params );
+                    $v= $params['v'];  
+                    $output .= '<iframe width="640" height="360" src="https://www.youtube.com/embed/'.$v.'?rel=0&amp;showinfo=0" frameborder="0" allowfullscreen></iframe>';
                     break;
                 case 'image':
-                    $output .= '<div><img src="'.$component['value'].'"  /></div>';
+                    $output .= '<div><img src="'.$component['value']['url'].'" class="nd-article-image-'.$component['value']['class'].'"  /></div>';
                     break;
                 
                 default:

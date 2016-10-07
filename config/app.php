@@ -163,6 +163,7 @@ return [
 
         App\Providers\EmailDomainValidationProvider::class,
         Intervention\Image\ImageServiceProvider::class,
+        Laravel\Socialite\SocialiteServiceProvider::class,
        
     ],
 
@@ -212,6 +213,7 @@ return [
         'Twitter' => Thujohn\Twitter\Facades\Twitter::class,
         'Random' => Webcraft\Random\RandomFacade::class,
         'ImageProcessing' => Intervention\Image\Facades\Image::class,
+        'Socialite' => Laravel\Socialite\Facades\Socialite::class,
     ],
 
 ];
