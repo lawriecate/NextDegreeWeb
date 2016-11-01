@@ -14,7 +14,8 @@ class SettingsController extends Controller
 {
 	public function __construct()
     {
-        $this->middleware('auth');
+
+       // $this->middleware('auth');
     }
 
 	public function accountForm() {
@@ -50,18 +51,40 @@ class SettingsController extends Controller
 
     public function facebookCallback(SocialAccountService $service,Request $request)
     {
-        $fb_user = Socialite::driver('facebook')->user();
-        $service->setSocialConnection('facebook',$fb_user,Auth::user());
+        try {
+            $fb_user = Socialite::driver('facebook')->user();
+            if(Auth::guest()) {
+                // login request
+                try {
+                    $service->authenticateWith('facebook',$fb_user);
+                    return redirect()->action('HomeController@index'); 
+                } catch (\Exception $e) {
+                    $request->session()->flash('social_login_error',true);
+                    return redirect()->action('Auth\AuthController@showLoginForm'); 
+                }
+            }
+            else {
+                // association request
+                $service->setSocialConnection('facebook',$fb_user,Auth::user());
 
-        // All Providers
-        /*var_dump($fb_user->getId());
+                // All Providers
+                /*var_dump($fb_user->getId());
+                
+                var_dump($fb_user->getName());
+                var_dump($fb_user->getEmail());
+                var_dump($fb_user->getAvatar());*/
+                $request->session()->flash('social_name', $fb_user->getName());
+                $request->session()->flash('social_avatar', $fb_user->getAvatar());
+                return redirect()->action('SettingsController@promptCopyProfile',['network'=>'facebook']); 
+            }
+            
+        } catch (\Exception $e) {
+            echo $e;
+            exit(0);
+            $request->session()->flash('social_connect_error',true);
+            return redirect()->action('SettingsController@accountForm');
+        }
         
-        var_dump($fb_user->getName());
-        var_dump($fb_user->getEmail());
-        var_dump($fb_user->getAvatar());*/
-        $request->session()->flash('social_name', $fb_user->getName());
-        $request->session()->flash('social_avatar', $fb_user->getAvatar());
-        return redirect()->action('SettingsController@promptCopyProfile',['network'=>'facebook']);
     }
 
     public function redirectToLinkedIn()
@@ -71,18 +94,52 @@ class SettingsController extends Controller
 
     public function linkedInCallback(SocialAccountService $service,Request $request)
     {
-        $li_user = Socialite::driver('linkedin')->user();
-        $service->setSocialConnection('linkedin',$li_user,Auth::user());
+        try {
+            $li_user = Socialite::driver('linkedin')->user();
+            $service->setSocialConnection('linkedin',$li_user,Auth::user());
 
-        // All Providers
-        /*var_dump($fb_user->getId());
+            // All Providers
+            /*var_dump($fb_user->getId());
+            
+            var_dump($fb_user->getName());
+            var_dump($fb_user->getEmail());
+            var_dump($fb_user->getAvatar());*/
+            $request->session()->flash('social_name', $li_user->getName());
+            $request->session()->flash('social_avatar', $li_user->getAvatar());
+            return redirect()->action('SettingsController@promptCopyProfile',['network'=>'linkedin']);
+        } catch (\Exception $e) {
+            $request->session()->flash('social_connect_error',true);
+            return redirect()->action('SettingsController@accountForm');
+        }
         
-        var_dump($fb_user->getName());
-        var_dump($fb_user->getEmail());
-        var_dump($fb_user->getAvatar());*/
-        $request->session()->flash('social_name', $li_user->getName());
-        $request->session()->flash('social_avatar', $li_user->getAvatar());
-        return redirect()->action('SettingsController@promptCopyProfile',['network'=>'linkedin']);
+    }
+
+    public function redirectToTwitter()
+    {
+        return Socialite::driver('twitter')->redirect();
+    }
+
+    public function twitterCallback(SocialAccountService $service,Request $request)
+    {
+        try {
+            $li_user = Socialite::driver('twitter')->user();
+            $service->setSocialConnection('twitter',$li_user,Auth::user());
+
+            // All Providers
+            /*var_dump($fb_user->getId());
+            
+            var_dump($fb_user->getName());
+            var_dump($fb_user->getEmail());
+            var_dump($fb_user->getAvatar());*/
+            /*$request->session()->flash('social_name', $li_user->getName());
+            $request->session()->flash('social_avatar', $li_user->getAvatar());
+            return redirect()->action('SettingsController@promptCopyProfile',['network'=>'twitter']);*/
+            return redirect()->action('SettingsController@accountForm');
+        } catch (\Exception $e) {
+            $request->session()->flash('social_connect_error',true);
+            return redirect()->action('SettingsController@accountForm');
+        }
+        
     }
 
     public function promptCopyProfile($network,Request $request)

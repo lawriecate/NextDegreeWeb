@@ -26,4 +26,12 @@ class SupportMessage extends Model
     {
         return json_decode($this->attachments_json);
     }
+
+    public function getVerbAttribute()
+    {
+        if($this->is_incoming) {
+            return 'recieved';
+        }
+        return 'sent';
+    }
 }

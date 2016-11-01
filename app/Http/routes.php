@@ -19,6 +19,10 @@ Route::get('signin', 'Auth\AuthController@showLoginForm');
 Route::post('signin', 'Auth\AuthController@login');
 Route::get('signout', 'Auth\AuthController@logout');
 
+Route::get('signin/facebook', 'SettingsController@redirectToFacebook');
+//Route::get('signin/facebook', 'FacebookSignInController@redirectToFacebook');
+//Route::get('signin/facebook/callback', 'FacebookSignInController@facebookLoginCallback');
+
 // Registration Routes...
 Route::get('register', 'Auth\AuthController@showRegistrationForm');
 Route::post('register', 'Auth\AuthController@register');
@@ -44,15 +48,20 @@ Route::post('/profile/save-profile-ajax', 'ProfileController@saveProfileAjax');
 Route::post('/profile/send-photo','ProfileController@updateProfilePhoto');
 Route::post('/profile/send-cv','ProfileController@updateStudentCv');
 
-Route::get('/settings', 'SettingsController@accountForm');
-Route::post('/settings', 'SettingsController@update');
-Route::get('/settings/{network}/copyphoto', 'SettingsController@promptCopyProfile');
-Route::post('/settings/{network}/copyphoto', 'SettingsController@copyProfile');
-Route::get('/settings/facebook/callback', 'SettingsController@facebookCallback');
-Route::get('/settings/facebook/connect', 'SettingsController@redirectToFacebook');
-Route::get('/settings/linkedin/callback', 'SettingsController@linkedInCallback');
-Route::get('/settings/linkedin/connect', 'SettingsController@redirectToLinkedIn');
 
+Route::get('/settings/facebook/callback', 'SettingsController@facebookCallback');//seperate because allows login
+Route::group(['prefix' => 'settings','middleware' => ['auth']], function () {
+Route::get('/', 'SettingsController@accountForm');
+Route::post('/', 'SettingsController@update');
+Route::get('/{network}/copyphoto', 'SettingsController@promptCopyProfile');
+Route::post('/{network}/copyphoto', 'SettingsController@copyProfile');
+
+Route::get('/facebook/connect', 'SettingsController@redirectToFacebook');
+Route::get('/linkedin/callback', 'SettingsController@linkedInCallback');
+Route::get('/linkedin/connect', 'SettingsController@redirectToLinkedIn');
+Route::get('/twitter/callback', 'SettingsController@twitterCallback');
+Route::get('/twitter/connect', 'SettingsController@redirectToTwitter');
+});
 
 
 
@@ -85,9 +94,11 @@ Route::group(['prefix' => 'admin','middleware' => ['auth.admin']], function () {
 	    'index'
 	]]);
 
-	Route::resource('case', 'SupportController', ['only' => [
+	Route::resource('ticket', 'SupportController', ['only' => [
 	    'index','edit'
 	]]);
+	Route::post('/ticket/{ticket}/reply', 'SupportController@reply');
+	Route::get('/ticket/{ticket}/{message}/{filename}', 'SupportController@downloadAttachment');
 
 	Route::resource('job-type', 'JobTypeController', ['only' => [
 	    'store','create'

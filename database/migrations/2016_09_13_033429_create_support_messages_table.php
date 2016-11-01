@@ -12,12 +12,20 @@ class CreateSupportMessagesTable extends Migration
      */
     public function up()
     {
+         Schema::create('support_tickets', function (Blueprint $table) {
+            $table->increments('id');
+            $table->timestamps();
+            $table->string('email');
+            $table->integer('status')->default(0);
+        });
         Schema::create('support_messages', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
+            
+            $table->integer('support_ticket_id')->unsigned();
+            $table->foreign('support_ticket_id')->references('id')->on('support_tickets');  
+
             $table->integer('is_incoming')->default(1);
-            $table->string('email_from');
-            $table->string('email_to');
             $table->string('email_subject');
             $table->string('email_body');
             $table->string('email_attachments_json')->nullable();
@@ -25,6 +33,8 @@ class CreateSupportMessagesTable extends Migration
             $table->integer('resolved_by')->unique()->unsigned()->nullable()->default(null);
             $table->foreign('resolved_by')->references('id')->on('users');  
         });
+
+       
     }
 
     /**
@@ -35,5 +45,6 @@ class CreateSupportMessagesTable extends Migration
     public function down()
     {
         Schema::drop('support_messages');
+        Schema::drop('support_tickets');
     }
 }

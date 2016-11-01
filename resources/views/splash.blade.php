@@ -12,7 +12,10 @@
 		                	<h1 class="uk-hidden">Next Degree</h1>
 		                	<img class="" width="800" height="193" src="{{asset('assets/images/Logo_800x193_Purple.png')}}" alt="Next Degree Logo" />
 		                	@if(Auth::guest())
+		                	<a class="uk-button uk-button-primary uk-float-right" href="{{url('signin/facebook/')}}">With Facebook <i class="uk-icon-facebook-square"></i></a>
 		                	<a class="uk-button uk-button-primary uk-float-right" href="{{url('home/')}}">Sign In <i class="uk-icon-arrow-right"></i></a>
+
+		                	
 		                	@else
 		                	<a class="uk-button uk-button-primary uk-float-right" href="{{url('home/')}}">Your Dashboard <i class="uk-icon-arrow-right"></i></a>
 		                	@endif

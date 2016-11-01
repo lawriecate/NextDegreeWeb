@@ -10,7 +10,7 @@ class SocialAccountService
     public function setSocialConnection(String $provider,ProviderUser $providerUser,User $user)
     {
         $account = SocialAccount::whereProvider($provider)
-            ->whereProviderUserId($providerUser->getId())
+            ->whereUserId($user->id)
             ->first();
 
         if ($account) {
@@ -19,7 +19,8 @@ class SocialAccountService
 
             $account = new SocialAccount([
                 'provider_user_id' => $providerUser->getId(),
-                'provider' => $provider
+                'provider' => $provider,
+                'user_id'=>$user->id
             ]);
 
             //$user = Auth::user();
@@ -41,5 +42,19 @@ class SocialAccountService
 
         }
 
+    }
+
+    public function authenticateWith(String $provider,ProviderUser $providerUser)
+    {
+
+         $account = SocialAccount::whereProvider($provider)
+            ->whereProviderUserId($providerUser->getId())
+            ->first();
+
+        if ($account) {
+            Auth::loginUsingId($account->user_id, true);
+            return true;
+        } 
+        return false;
     }
 }

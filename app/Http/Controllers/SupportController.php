@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 
+use App\SupportMessage;
+use Mail;
+
 class SupportController extends Controller
 {
     /**
@@ -56,9 +59,9 @@ class SupportController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($case)
+    public function edit($ticket)
     {
-        return view('admin.view_support_case')->with('case',$case); 
+        return view('admin.view_support_case')->with('ticket',$ticket); 
     }
 
     /**
@@ -82,5 +85,38 @@ class SupportController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function reply($ticket,Request $request)
+    {
+         Mail::send('emails.support_reply', ['ticket' => $ticket,'reply_msg'=>$request->msg], function ($m) use ($ticket) {
+            $m->from('support@nextdegree.co.uk', 'Next Degree Support');
+
+            $m->to($ticket->email,$ticket->email)->subject('RE Support Enquiry #'.$ticket->id);
+        });
+
+        $message = new SupportMessage;
+        $message->support_ticket_id = $ticket->id;
+        $message->is_incoming = 0;
+        $message->email_subject = 'RE Support Enquiry #'.$ticket->id;
+        $message->email_body = $request->msg;
+        $message->save();
+        return redirect()->action('SupportController@edit',array('ticket'=>$ticket));
+    }
+
+    public function downloadAttachment($ticket,$message,$filename) 
+    {
+        $message = SupportMessage::findOrFail($message);
+        $found = false;
+        foreach($message->attachments as $attachment) {
+            if($filename == $attachment->filename) {
+                $found = true;
+            }
+        }
+        if($found) {
+            return response()->file('../piping/attachments/'.$filename);
+        }
+        abort(404);
+
     }
 }

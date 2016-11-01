@@ -24,6 +24,7 @@
                         <input class="uk-width-1-1 uk-form-large {{ $errors->has('password') ? ' uk-form-danger' : '' }}" type="password" placeholder="Password" name="password">
                     </div>
                     <div class="uk-form-row">
+                    <a  class="uk-button uk-button-large uk-button-primary" href="{{url('signin/facebook')}}">Sign In with Facebook <i class="uk-icon-facebook-square"></i></a>    
                         <button  class="uk-button uk-button-large uk-button-primary" type="submit">Sign In <i class="uk-icon-arrow-right"></i></button>                    </div>
                     <div class="uk-form-row uk-text-small">
                         <label class="uk-float-left"><input name="remember" type="checkbox"> Remember Me</label>

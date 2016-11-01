@@ -8,3 +8,10 @@ Homestead.json
 .env.example
 
 public/uploads
+
+/public/profiles
+
+
+public/profiles/57f6e807efe11_100.jpg
+
+public/profiles/57f6e807efe11_300.jpg

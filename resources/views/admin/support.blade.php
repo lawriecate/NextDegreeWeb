@@ -16,13 +16,13 @@
                 </tr>
             </thead>
             <tbody>
-            	@foreach(App\SupportMessage::orderBy('created_at', 'desc')->get() as $msg)
+            	@foreach(App\SupportTicket::orderBy('created_at', 'desc')->get() as $ticket)
                 <tr>
-                    <td>{{$msg->id}}</td>
-                    <td>{{$msg->email_from}}</td>
-                    <td>{{$msg->status}}</td>
+                    <td>{{$ticket->id}}</td>
+                    <td>{{$ticket->email}}</td>
+                    <td>{!!$ticket->status!!}</td>
                     <td>
-	                   <a href="{{action('SupportController@edit',$msg->id)}}" class="uk-button-mini uk-button uk-button-primary">Open</a>
+	                   <a href="{{action('SupportController@edit',$ticket->id)}}" class="uk-button-mini uk-button uk-button-primary">Open</a>
                     </td>
                 </tr>
                 @endforeach

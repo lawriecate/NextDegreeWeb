@@ -1,8 +1,8 @@
-@extends('onecol')
+@extends('layouts.modal')
 @section('title', 'Account Connected')
 
-@section('container')
-	<h1>You have connected your account succesfully</h1>
+@section('modal')
+<div class="uk-contrast">
     <h2>Would you like to copy your profile photo and name from {{$network}}?</h2>
     <div class="uk-text-center">
     <h1>{{session('social_name')}}</h1>
@@ -17,6 +17,6 @@
     <a href="{{action('SettingsController@accountForm')}}" class=" uk-button uk-button">No thanks</a>
     </p>
     </div>
-    
+</div> 
     
 @endsection

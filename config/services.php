@@ -51,4 +51,10 @@ return [
         'redirect' => 'http://localhost:8888/nd/NextDegreeWeb/public/settings/linkedin/callback',
     ],
 
+    'twitter' => [
+        'client_id' => '9dcGqvRHY0W7Hjj5WgVCL9MQR',
+        'client_secret' => 'T3YVuSx7xC9tEpjWYWYye8hEa4holwMWAfsxi0c3e2oU9FJfjD',
+        'redirect' => 'http://localhost:8888/nd/NextDegreeWeb/public/settings/twitter/callback',
+    ],
+
 ];
