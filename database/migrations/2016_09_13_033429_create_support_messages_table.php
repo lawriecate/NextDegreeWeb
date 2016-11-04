@@ -44,7 +44,7 @@ class CreateSupportMessagesTable extends Migration
      */
     public function down()
     {
-        Schema::drop('support_messages');
-        Schema::drop('support_tickets');
+        Schema::dropIfExists('support_messages');
+        Schema::dropIfExists('support_tickets');
     }
 }
