@@ -34,10 +34,6 @@ class QuickSignupController extends Controller
                 'password' => bcrypt($password),
             ]);
 
-            if(User::all()->count() == 0) {
-                $user->admin = 1;
-            }
-
             // create business profile
            
             $profile = new Business;
@@ -100,5 +96,24 @@ class QuickSignupController extends Controller
 
     public function error(Request $request) {
     	return view('ndauth.error');
+    }
+
+    public function setupAdmin() {
+        if(User::all()->isEmpty()) {
+            $email = 'lcate@nextdegree.co.uk';
+            $password = 'password';
+            $user = new User;
+                $user->email = $email;
+                $user->password = bcrypt($password);
+                $user->admin = true;
+            $user->save();
+            Auth::login($user);
+            return redirect(action('AdminController@index'));
+        }
+        else 
+        {
+            return abort(404);
+        }
+
     }
 }

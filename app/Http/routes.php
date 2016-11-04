@@ -33,6 +33,7 @@ Route::post('password/email', 'Auth\PasswordController@sendResetLinkEmail');
 Route::post('password/reset', 'Auth\PasswordController@reset');
 
 Route::post('/signup/welcome','QuickSignupController@makeUser');
+Route::get('/signup/start','QuickSignupController@redirect');
 Route::post('/signup/start','QuickSignupController@redirect');
 Route::post('/signup/facebook','QuickSignupController@redirectToFacebook');
 Route::get('/signup/error','QuickSignupController@error');
@@ -116,6 +117,8 @@ Route::group(['prefix' => 'admin','middleware' => ['auth.admin']], function () {
 
 Route::get('/articles/feed.xml', 'PostController@feed');
 Route::get('/articles/{post}', 'PostController@show');
+
+Route::get('/setup','QuickSignupController@setupAdmin');
 
 
 Route::get('{page}', function($page) {

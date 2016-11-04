@@ -34,7 +34,8 @@ class CreateJobTypesTable extends Migration
      */
     public function down()
     {
-        Schema::drop('job_types');
+       
         Schema::drop('job_type_user');
+         Schema::drop('job_types');
     }
 }
