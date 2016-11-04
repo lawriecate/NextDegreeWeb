@@ -34,6 +34,10 @@ class QuickSignupController extends Controller
                 'password' => bcrypt($password),
             ]);
 
+            if(User::all()->count() == 0) {
+                $user->admin = 1;
+            }
+
             // create business profile
            
             $profile = new Business;
