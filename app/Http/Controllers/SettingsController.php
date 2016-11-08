@@ -79,9 +79,12 @@ class SettingsController extends Controller
             }
             
         } catch (\Exception $e) {
-            echo $e;
-            exit(0);
+            
             $request->session()->flash('social_connect_error',true);
+            if(Auth::guest()) {
+                $request->session()->flash('social_login_error',true);
+                return redirect()->action('Auth\AuthController@showLoginForm'); 
+            }
             return redirect()->action('SettingsController@accountForm');
         }
         
