@@ -19,6 +19,16 @@ Route::get('signin', 'Auth\AuthController@showLoginForm');
 Route::post('signin', 'Auth\AuthController@login');
 Route::get('signout', 'Auth\AuthController@logout');
 
+Route::get('goto/facebook', function() {
+	return redirect('https://www.facebook.com/Next-Degree-1765218520360175/');
+});
+Route::get('goto/twitter', function() {
+	return redirect('https://twitter.com/next_degree');
+});
+Route::get('goto/instagram', function() {
+	return redirect('https://instagram.com/next_degree');
+});
+
 Route::get('signin/facebook', 'SettingsController@redirectToFacebook');
 //Route::get('signin/facebook', 'FacebookSignInController@redirectToFacebook');
 //Route::get('signin/facebook/callback', 'FacebookSignInController@facebookLoginCallback');
