@@ -43,7 +43,7 @@ class QuickSignupController extends Controller
             Auth::login($user);
 
             // send verification email, must happen AFTER login so can send to current user
-            $this->sendVerificationEmail();
+            $this->sendWelcomeEmail('business');
           
             return view('ndauth.signup',['email'=>$email,'password'=>$password]);
         }
@@ -75,7 +75,7 @@ class QuickSignupController extends Controller
             Auth::login($user);
 
             // send verification email, must happen AFTER login so can send to current user
-            $this->sendVerificationEmail();
+            $this->sendWelcomeEmail('student');
           
             return view('ndauth.signup',['email'=>$email,'password'=>$password]);
         }
