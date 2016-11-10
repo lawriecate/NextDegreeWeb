@@ -40,7 +40,7 @@ class InstitutionController extends Controller
         $institution = new Institution;
         $institution->name = $request->name;
         $institution->slug = $request->slug;
-        $institution->domain = $request->slug;
+        $institution->domain = $request->domain;
       
         if($request->enable_registration == "true") {
             $institution->enable_registration = true;
