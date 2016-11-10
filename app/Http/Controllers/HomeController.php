@@ -25,6 +25,10 @@ class HomeController extends Controller
      */
     public function index()
     {
+        if(Auth::user()->long_id == null) {
+            Auth::user()->long_id= Hashids::encode(Auth::user()->id);
+            Auth::user()->save();
+        }
         if(!is_null(Auth::user()->student)) 
         {
             return redirect(action('StudentHomeController@index'));
