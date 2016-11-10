@@ -20,7 +20,7 @@ class SocialAccountService
             $account = new SocialAccount([
                 'provider_user_id' => $providerUser->getId(),
                 'provider' => $provider,
-                'user_id'=>$user->id
+                'user_id' => $user->id
             ]);
 
             //$user = Auth::user();

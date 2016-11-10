@@ -15,9 +15,11 @@ Route::get('/', 'SplashController@splash');
 Route::post('/contact-form','SplashController@sendContactForm');
 // Authentication Routes...
 //Route::get('login', 'Auth\AuthController@showLoginForm');
-Route::get('signin', 'Auth\AuthController@showLoginForm');
-Route::post('signin', 'Auth\AuthController@login');
-Route::get('signout', 'Auth\AuthController@logout');
+//Route::get('signin', 'Auth\AuthController@showLoginForm');
+//Route::post('signin', 'Auth\AuthController@login');
+//Route::get('signout', 'Auth\AuthController@logout');
+
+
 
 Route::get('goto/facebook', function() {
 	return redirect('https://www.facebook.com/Next-Degree-1765218520360175/');
@@ -38,9 +40,9 @@ Route::get('register', 'Auth\AuthController@showRegistrationForm');
 Route::post('register', 'Auth\AuthController@register');
 
 // Password Reset Routes...
-Route::get('password/reset/{token?}', 'Auth\PasswordController@showResetForm');
-Route::post('password/email', 'Auth\PasswordController@sendResetLinkEmail');
-Route::post('password/reset', 'Auth\PasswordController@reset');
+//Route::get('password/reset/{token?}', 'Auth\PasswordController@showResetForm');
+//Route::post('password/email', 'Auth\PasswordController@sendResetLinkEmail');
+//Route::post('password/reset', 'Auth\PasswordController@reset');
 
 Route::post('/signup/welcome','QuickSignupController@makeUser');
 Route::get('/signup/start','QuickSignupController@redirect');
@@ -50,10 +52,18 @@ Route::get('/signup/error','QuickSignupController@error');
 
 Route::get('/signup/verification/{token?}','VerificationController@status');
 Route::post('/signup/verification/','VerificationController@request_resend');
+Route::get('/logout', 'Auth\LoginController@logout');
+Auth::routes();
 
 Route::get('/home', 'HomeController@index');
 Route::get('/student', 'StudentHomeController@index');
+
+Route::get('/profile/{longid}', 'ProfileController@getProfile');
+Route::get('/search','SearchController@search');
+
+
 Route::get('/business', 'BusinessHomeController@index');
+Route::get('/business/search', 'BusinessHomeController@search');
 Route::post('/profile/save-profile', 'ProfileController@saveProfile');
 Route::post('/profile/save-profile-ajax', 'ProfileController@saveProfileAjax');
 Route::post('/profile/send-photo','ProfileController@updateProfilePhoto');

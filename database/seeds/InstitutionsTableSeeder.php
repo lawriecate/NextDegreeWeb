@@ -16,5 +16,7 @@ class InstitutionsTableSeeder extends Seeder
             'enable_registration' => true,
             'domain' => 'ntu.ac.uk'
         ]);
+
+         
     }
 }

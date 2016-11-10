@@ -26,7 +26,7 @@
                     <ul class="uk-nav uk-nav-navbar">
                         @if(!Auth::user()->verified)<li ><a href="{{action('VerificationController@status')}}" class="uk-text-danger"><i class="uk-icon-exclamation-triangle "></i> Verify Account</a></li>@endif
                         <li><a href="{{action('SettingsController@accountForm')}}"><i class="uk-icon-justify uk-icon-wrench"></i> Settings</a></li>
-                        <li><a href="{{ url('/signout') }}"><i class="uk-icon-justify uk-icon-sign-out"></i> Sign Out </a></li>
+                        <li><a href="{{ url('/logout') }}"><i class="uk-icon-justify uk-icon-sign-out"></i> Sign Out </a></li>
                         {{--<li class="uk-nav-header">Header</li>
                         <li><a href="#">Item</a></li>
                         <li><a href="#">Another item</a></li>

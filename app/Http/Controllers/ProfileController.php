@@ -16,9 +16,15 @@ use App\Image;
 use App\Institution;
 use ImageProcessing;
 use App\ProfileImage;
+use App\Skill;
 
 class ProfileController extends Controller
 {
+    public function getProfile(Request $request,string $lid) 
+    {
+        $user = User::where('long_id',$lid)->firstOrFail();
+        return view('profile')->with('user',$user);
+    }
     public function saveProfile(Request $request)
     {
         $user = Auth::user();
@@ -40,6 +46,29 @@ class ProfileController extends Controller
                     }
                 }
             }
+
+            $user->skills()->detach();
+            if(null!==($request->input('skills'))) 
+            {
+                $skills = explode(",", $request->input('skills'));
+                foreach($skills as $skill) {
+                    $skillf = ucwords(trim(str_replace( ',', '', $skill )));
+                    if($skillf != "" ) {
+                        if($skill_model = Skill::where('name' , $skillf)->first()) {
+
+                            $user->skills()->attach($skill_model);
+                        }
+                        else
+                        {
+                            $skill_model = new Skill;
+                            $skill_model->name = $skillf;
+                            $skill_model->save();
+                            $user->skills()->attach($skill_model);
+                        }
+                    }
+                }
+            }
+
         }
         if(isset($request->businessname))
         {
