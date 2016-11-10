@@ -5,8 +5,8 @@
 <div class="uk-grid">
 	<div class="uk-width-medium-4-6">
 		<h1>Next Degree for Business</h1>
-		<form class="uk-form business-search-form">
-		<input type="text" class="business-search-input uk-form-large uk-width-1-1" placeholder="Search for people, skills, companies" class="uk-width-1-1 uk-form-large">
+		<form method="get" action="{{action('SearchController@search')}}" class="uk-form business-search-form">
+		<input type="text" name="q" class="business-search-input uk-form-large uk-width-1-1" placeholder="Search for people, skills, companies" class="uk-width-1-1 uk-form-large">
 		</form>
 		<hr/>
 		<div class="business-search-results">

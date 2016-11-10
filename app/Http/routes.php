@@ -57,6 +57,11 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index');
 Route::get('/student', 'StudentHomeController@index');
+
+Route::get('/profile/{longid}', 'ProfileController@getProfile');
+Route::get('/search','SearchController@search');
+
+
 Route::get('/business', 'BusinessHomeController@index');
 Route::get('/business/search', 'BusinessHomeController@search');
 Route::post('/profile/save-profile', 'ProfileController@saveProfile');

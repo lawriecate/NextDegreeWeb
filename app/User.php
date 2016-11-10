@@ -2,11 +2,13 @@
 
 namespace App;
 
-use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+
 
 class User extends Authenticatable
 {
+    use Notifiable;
     /**
      * The attributes that are mass assignable.
      *
@@ -42,6 +44,17 @@ class User extends Authenticatable
         return $this->hasOne('App\ProfileImage');
     }
 
+    public function profile_image_or_placeholder() {
+        if($this->profile_image_id == '') {
+            $placeholder = new ProfileImage;
+            $placeholder->prefix = 'placeholder';
+            return $placeholder;
+        } 
+        else {
+            return $this->profile_image;
+        }
+    }
+
     public function job_types() {
         return $this->belongsToMany('App\JobType');
     }
@@ -52,6 +65,11 @@ class User extends Authenticatable
     
     public function social_accounts() {
         return $this->hasMany('App\SocialAccount');
+    }
+
+    public function getProfileUrlAttribute()
+    {
+        return action('ProfileController@getProfile',$this->long_id);
     }
 
 }

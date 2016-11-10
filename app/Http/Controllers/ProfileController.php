@@ -20,6 +20,11 @@ use App\Skill;
 
 class ProfileController extends Controller
 {
+    public function getProfile(Request $request,string $lid) 
+    {
+        $user = User::where('long_id',$lid)->firstOrFail();
+        return view('profile')->with('user',$user);
+    }
     public function saveProfile(Request $request)
     {
         $user = Auth::user();
@@ -48,16 +53,18 @@ class ProfileController extends Controller
                 $skills = explode(",", $request->input('skills'));
                 foreach($skills as $skill) {
                     $skillf = ucwords(trim(str_replace( ',', '', $skill )));
-                    if($skill_model = Skill::where('name' , $skillf)->first()) {
+                    if($skillf != "" ) {
+                        if($skill_model = Skill::where('name' , $skillf)->first()) {
 
-                        $user->skills()->attach($skill_model);
-                    }
-                    else
-                    {
-                        $skill_model = new Skill;
-                        $skill_model->name = $skillf;
-                        $skill_model->save();
-                        $user->skills()->attach($skill_model);
+                            $user->skills()->attach($skill_model);
+                        }
+                        else
+                        {
+                            $skill_model = new Skill;
+                            $skill_model->name = $skillf;
+                            $skill_model->save();
+                            $user->skills()->attach($skill_model);
+                        }
                     }
                 }
             }
