@@ -9,9 +9,8 @@ Homestead.json
 
 public/uploads
 
-/public/profiles
+public/profiles/*
+!public/profiles/placeholder_100.jpg
+!public/profiles/placeholder_200.jpg
+!public/profiles/placeholder_300.jpg
 
-
-public/profiles/57f6e807efe11_100.jpg
-
-public/profiles/57f6e807efe11_300.jpg
