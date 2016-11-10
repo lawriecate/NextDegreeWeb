@@ -22,5 +22,5 @@
                     </div>
 
 </form>
-  <a class="uk-float-right uk-link uk-link-muted uk-margin-top" href="{{ url('/') }}">Return To Homepage</a>
+  <a class="uk-float-right uk-button uk-button-primary  uk-link uk-margin-top" href="{{ url('/') }}">Return To Homepage</a>
 @endsection
