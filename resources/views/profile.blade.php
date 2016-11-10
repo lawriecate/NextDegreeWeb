@@ -47,9 +47,11 @@
 	                    <a href="#" class="uk-button uk-button-primary"><i class="uk-icon-envelope"></i> Send Message</a>
 
 	                    </p>
+	                    @if(Auth::user()->student->cv_path != null)
 	                    <p>
-	                    <a href="#" class="uk-button uk-button-primary"><i class="uk-icon-download"></i> Download CV</a>
+	                    <a href="{{Auth::user()->student->cv_path}}" class="uk-button uk-button-primary"><i class="uk-icon-download"></i> Download CV</a>
 	                    </p>
+	                    @endif
 	                </div>
 	            </div>
 	        </div>
