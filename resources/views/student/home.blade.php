@@ -4,7 +4,7 @@
 @section('container')
 <div class="uk-grid">
 	<div class="uk-width-medium-4-6">
-		<h1>Updates</h1>
+		<h1>Next Degree {{Auth::user()->student->institution->name}}</h1>
 	<form method="get" action="{{action('SearchController@search')}}" class="uk-form business-search-form">
 		<input type="text" name="q" class="business-search-input uk-form-large uk-width-1-1" placeholder="Search for people, skills, companies" class="uk-width-1-1 uk-form-large">
 		</form>

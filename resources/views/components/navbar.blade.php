@@ -38,7 +38,7 @@
                 </div>
 
             </li>
-            @if(!is_null(Auth::user()->student) && !is_null(Auth::user()->student))
+            @if(!is_null(Auth::user()->student) && !is_null(Auth::user()->business))
             <li class="uk-parent" data-uk-dropdown="" aria-haspopup="true" aria-expanded="false">
                 <a href="#">Switch Account <i class="uk-icon-caret-down"></i></a>
 
