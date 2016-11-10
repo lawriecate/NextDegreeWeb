@@ -29,6 +29,7 @@ elixir(function(mix) {
         './resources/assets/js/timeago.js',
         './resources/assets/js/splash.js',
         './resources/assets/js/home.js',
+        './resources/assets/js/search.js',
         './resources/assets/js/universal.js'
     ],'public/assets/js/all.js');
 

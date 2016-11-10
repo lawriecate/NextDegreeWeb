@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
@@ -12,7 +13,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password','long_id'
     ];
 
     protected $casts = [
@@ -25,7 +26,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'password', 'remember_token', 'verification_token', 'verified','created_at','updated_at','email','admin'
     ];
 
     public function student() {
@@ -45,6 +46,9 @@ class User extends Authenticatable
         return $this->belongsToMany('App\JobType');
     }
 
+    public function skills() {
+        return $this->belongsToMany('App\Skill');
+    }
     
     public function social_accounts() {
         return $this->hasMany('App\SocialAccount');

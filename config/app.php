@@ -149,6 +149,7 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
+        Illuminate\Notifications\NotificationServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -164,6 +165,7 @@ return [
         App\Providers\EmailDomainValidationProvider::class,
         Intervention\Image\ImageServiceProvider::class,
         Laravel\Socialite\SocialiteServiceProvider::class,
+        Illuminate\Notifications\NotificationServiceProvider::class,
        
     ],
 
@@ -214,6 +216,7 @@ return [
         'Random' => Webcraft\Random\RandomFacade::class,
         'ImageProcessing' => Intervention\Image\Facades\Image::class,
         'Socialite' => Laravel\Socialite\Facades\Socialite::class,
+        'Notification'=>Illuminate\Support\Facades\Notification::class,
     ],
 
 ];

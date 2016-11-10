@@ -12,10 +12,11 @@ use App\Business;
 use App\Institution;
 use Random;
 use Auth;
+use App\UserCreationService;
 class QuickSignupController extends Controller
 {
     use CanSendVerificationEmail;
-    public function makeUser(Request $request) {
+    public function makeUser(Request $request,UserCreationService $userCreationService) {
         if($request->type == "business") 
         {
             $validator = Validator::make($request->all(), [
@@ -29,11 +30,7 @@ class QuickSignupController extends Controller
             }
             $email = $request->email;
             $password = Random::generateString(12, 'abcdefghjkmnpqrstuvwxyzABCDEFGHJKMNPQRSTUVWXYZ23456789!@#$%&*?');
-            $user = User::create([
-                'email' => $email,
-                'password' => bcrypt($password),
-            ]);
-
+            $user = $userCreationService->createUser($email,$password,false);
             // create business profile
            
             $profile = new Business;
@@ -60,10 +57,7 @@ class QuickSignupController extends Controller
             }
             $email = $request->email;
             $password = Random::generateString(12, 'abcdefghjkmnpqrstuvwxyzABCDEFGHJKMNPQRSTUVWXYZ23456789!@#$%&*?');
-            $user = User::create([
-                'email' => $email,
-                'password' => bcrypt($password),
-            ]);
+            $user = $userCreationService->createUser($email,$password,false);
 
             // create student profile
             $domain = substr(strrchr($email, "@"), 1);
@@ -104,7 +98,7 @@ class QuickSignupController extends Controller
             $password = 'password';
             $user = new User;
                 $user->email = $email;
-                $user->password = bcrypt($password);
+                $user->password = encrypt($password);
                 $user->admin = true;
             $user->save();
             Auth::login($user);

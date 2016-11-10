@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Requests\UserPostRequest;
 use App\User;
+use App\UserCreationService;
 class UserController extends Controller
 {
     /**
@@ -35,19 +36,9 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request,UserCreationService $userCreationService)
     {
-        $user = new User;
-        $user->email = $request->email;
-        $user->name = $request->name;
-        $user->password = bcrypt($request->password);
-        
-        if($request->admin == "true") {
-            $user->admin = true;
-        } else {
-            $user->admin = false;
-        }
-        $user->save();
+        $user = $userCreationService->createUser($request->email,$request->password,$request->admin=="true",$request->name);
         return redirect(action('UserController@edit',$user->id));
 
     }

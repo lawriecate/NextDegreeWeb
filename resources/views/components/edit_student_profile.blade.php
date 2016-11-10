@@ -20,6 +20,12 @@
 		 <input type="text" class="nd-profile-cocheck nd-profile-autosave uk-form-small uk-width-1-1" name="degree" value="{{old('degree',Auth::user()->student->degree)}}" />
 		 </div>
 		</div>
+		<div class="uk-form-row uk-width-1-1">
+		<label class="uk-form-label" for="skills">What are your top skills? <i class="uk-icon-check uk-text-success uk-hidden" id="skills-check"></i></label>
+		<div class="uk-form-controls  uk-width-1-1">
+		 <input type="text" class="nd-profile-cocheck nd-profile-autosave uk-form-small uk-width-1-1" name="skills" value="{{old('skills',Auth::user()->student->skills_string)}}" />
+		 </div>
+		</div>
 		<div class="uk-form-row  uk-width-1-1"> 
 			@if(Auth::user()->student->cv_path != null)
 			<input type="hidden" name="cv-exists" class="nd-profile-cocheck" value="1" >
@@ -41,5 +47,6 @@
 		@endforeach
 		<input id="profileFormSave" type="submit"/>
 		<span class="uk-text-small" id="profileFormStatus">&nbsp;</span>
+
 	</div>
 		</form>
