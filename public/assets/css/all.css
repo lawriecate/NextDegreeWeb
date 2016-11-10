@@ -16,7 +16,7 @@ $button-primary-background:#217bea;
 @import 'https://fonts.googleapis.com/css?family=Work%20Sans';
 .nd-red-background {
   background-color: #86339a;
-  background: url("https://nextdegree.co.uk/assets/images/geometry_purple.gif"); }
+  background: url("https://www.nextdegree.co.uk/assets/images/geometry_purple.gif"); }
 
 /* ========================================================================
    Component: Base
@@ -8651,33 +8651,33 @@ a.uk-datepicker-table-muted {
 
 body, html {
   min-height: 100%;
-  background-image: url("https://nextdegree.co.uk/assets/images/geometry.png"); }
+  background-image: url("https://www.nextdegree.co.uk/assets/images/geometry.png"); }
 
 .nd-bg-dark-geo {
-  background-image: url("https://nextdegree.co.uk/assets/images/geometry_purple.gif");
+  background-image: url("https://www.nextdegree.co.uk/assets/images/geometry_purple.gif");
   background-color: #713b7e; }
 
 .splash-bg {
   /*background-image: linear-gradient(
       rgba(255, 255, 255, 0.33), 
       rgba(255, 255, 255, 0.33)
-    ),url('https://nextdegree.co.uk/assets/images/splash3.jpg');*/
-  background: url("https://nextdegree.co.uk/assets/images/splash3_h.jpg"); }
+    ),url('https://www.nextdegree.co.uk/assets/images/splash3.jpg');*/
+  background: url("https://www.nextdegree.co.uk/assets/images/splash3_h.jpg"); }
 
 .bg2 {
-  background: url("https://nextdegree.co.uk/assets/images/splash2_h.jpg");
+  background: url("https://www.nextdegree.co.uk/assets/images/splash2_h.jpg");
   height: 400px; }
 
 .banner1 {
-  background: url("https://nextdegree.co.uk/assets/images/banner1.jpg");
+  background: url("https://www.nextdegree.co.uk/assets/images/banner1.jpg");
   height: 300px; }
 
 .banner2 {
-  background: url("https://nextdegree.co.uk/assets/images/banner2_h.jpg");
+  background: url("https://www.nextdegree.co.uk/assets/images/banner2_h.jpg");
   height: 300px; }
 
 .banner3 {
-  background: url("https://nextdegree.co.uk/assets/images/banner5.jpg");
+  background: url("https://www.nextdegree.co.uk/assets/images/banner5.jpg");
   height: 300px; }
 
 .h300 {
@@ -8692,9 +8692,9 @@ body, html {
 
 @media only screen and (min-width: 600px) {
   .splash-bg {
-    background: url("https://nextdegree.co.uk/assets/images/splash3.jpg"); }
+    background: url("https://www.nextdegree.co.uk/assets/images/splash3.jpg"); }
   .banner2 {
-    background: url("https://nextdegree.co.uk/assets/images/banner2b.jpg"); } }
+    background: url("https://www.nextdegree.co.uk/assets/images/banner2b.jpg"); } }
 
 .nd-editor-components {
   list-style: none;
