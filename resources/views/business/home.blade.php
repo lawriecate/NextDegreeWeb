@@ -5,6 +5,7 @@
 <div class="uk-grid">
 	<div class="uk-width-medium-4-6">
 		<h1>Next Degree for Business</h1>
+		<h3>Search</h3>
 		<form method="get" action="{{action('SearchController@search')}}" class="uk-form business-search-form">
 		<input type="text" name="q" class="business-search-input uk-form-large uk-width-1-1" placeholder="Search for people, skills, companies" class="uk-width-1-1 uk-form-large">
 		</form>
@@ -17,9 +18,11 @@
 			
 			<p>Let people know what you're looking for and we'll match you with students who can help you.</p>  
 			<p>What skills do you need?</p>
-			<form method="get" action="#" class="uk-form">
-			<input type="text" name="skills" class="uk-form-large uk-width-1-1" placeholder="Enter skills you need" class="uk-width-1-1 uk-form-large">
+			<form method="post" action="{{url('/business/save-radar')}}" class="uk-form">
+			{{csrf_field() }}
+			<input type="text" name="rskills" class="uk-form-large uk-width-1-1" placeholder="Enter skills you need" class="uk-width-1-1 uk-form-large" value="{{old('rskills',Auth::user()->business->skills_string)}}">
 			</form>
+			<p>Results go here</p>
 		</div>
 		<hr/>
 		<div class="business-feed">

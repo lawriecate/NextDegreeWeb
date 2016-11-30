@@ -66,6 +66,7 @@ Route::get('/partner', 'InstitutionHomeController@index');
 
 Route::get('/business', 'BusinessHomeController@index');
 Route::get('/business/search', 'BusinessHomeController@search');
+Route::post('/business/save-radar', 'BusinessHomeController@saveRadarSkills');
 Route::post('/profile/save-profile', 'ProfileController@saveProfile');
 Route::post('/profile/save-profile-ajax', 'ProfileController@saveProfileAjax');
 Route::post('/profile/send-photo','ProfileController@updateProfilePhoto');

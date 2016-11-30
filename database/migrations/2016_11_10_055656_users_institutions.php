@@ -29,6 +29,6 @@ class UsersInstitutions extends Migration
      */
     public function down()
     {
-        Schema::create('institution_user');
+        Schema::dropIfExists('institution_user');
     }
 }

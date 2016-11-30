@@ -16,10 +16,12 @@ class InstitutionHomeController extends Controller
      */
     public function index()
     {
-    	// /{{App\Student::where('institution_id',Auth::user()->institution->id)->count() }}
+    	// /
     	$user = Auth::user();
     	$institution = $user->institution->first();
         return view('institution.home')->with('institution',$institution);
     }
+
+  
 
 }
