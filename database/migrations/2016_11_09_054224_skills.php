@@ -26,6 +26,14 @@ class Skills extends Migration
             $table->integer('skill_id')->unsigned();
             $table->foreign('skill_id')->references('id')->on('skills');
         });
+
+        Schema::create('skill_business', function (Blueprint $table) {
+            $table->increments('id');
+            $table->integer('business_id')->unsigned();
+            $table->foreign('business_id')->references('id')->on('users');
+            $table->integer('skill_id')->unsigned();
+            $table->foreign('skill_id')->references('id')->on('skills');
+        });
     }
 
     /**

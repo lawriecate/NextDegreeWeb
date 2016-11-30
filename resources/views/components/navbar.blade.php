@@ -38,15 +38,23 @@
                 </div>
 
             </li>
-            @if(!is_null(Auth::user()->student) && !is_null(Auth::user()->business))
+
+            @if((!is_null(Auth::user()->student) + !is_null(Auth::user()->business) + !is_null(Auth::user()->institution)) > 1)
             <li class="uk-parent" data-uk-dropdown="" aria-haspopup="true" aria-expanded="false">
                 <a href="#">Switch Account <i class="uk-icon-caret-down"></i></a>
 
                 <div class="uk-dropdown uk-dropdown-navbar uk-dropdown-bottom" style="top: 40px; left: 0px;">
                     <ul class="uk-nav uk-nav-navbar">
                         
+                        @if(!is_null(Auth::user()->student))
                         <li><a href="{{action('StudentHomeController@index')}}">Student</a></li>
-                        <li><a href="{{action('BusinessHomeController@index')}}">Business</a></li>
+                        @endif
+                       @if(!is_null(Auth::user()->business)) 
+                       <li><a href="{{action('BusinessHomeController@index')}}">Business</a></li>
+                       @endif
+                       @if(!is_null(Auth::user()->institution))
+                        <li><a href="{{action('InstitutionHomeController@index')}}">Partner</a></li>
+                        @endif
                     </ul>
                 </div>
 

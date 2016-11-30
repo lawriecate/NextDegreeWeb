@@ -22,12 +22,13 @@
 		</div>
 		
 		<div class="uk-form-row uk-width-1-1">
-				<label class="uk-form-label" for="businessdescription">Describe your business and who you look for <i class="uk-icon-check uk-text-success uk-hidden" id="businessdescription-check"></i></label>
+				<label class="uk-form-label" for="businessdescription">Describe your business<i class="uk-icon-check uk-text-success uk-hidden" id="businessdescription-check"></i></label>
 				<div class="uk-form-controls">
                     <textarea class="nd-profile-autosave uk-width-1-1 nd-profile-cocheck" placeholder="Describe your business and who you look for" name="businessdescription">{{old('businessdescription',Auth::user()->business->description)}}</textarea>
                 </div>
             </p>
-			</div>
+		</div>
+		
 	<div class="uk-form-row  uk-width-1-1"> 
 		
 		<input id="profileFormSave" type="submit"/>

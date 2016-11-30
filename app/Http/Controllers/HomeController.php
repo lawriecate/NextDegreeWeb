@@ -38,6 +38,10 @@ class HomeController extends Controller
         {
             return redirect(action('BusinessHomeController@index'));
         }
+        else if(!is_null(Auth::user()->institution)) 
+        {
+            return redirect(action('InstitutionHomeController@index'));
+        }
         else 
         {
             return '<h1>No profile available</h1>';

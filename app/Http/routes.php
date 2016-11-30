@@ -61,6 +61,8 @@ Route::get('/student', 'StudentHomeController@index');
 Route::get('/profile/{longid}', 'ProfileController@getProfile');
 Route::get('/search','SearchController@search');
 
+Route::get('/partner', 'InstitutionHomeController@index');
+
 
 Route::get('/business', 'BusinessHomeController@index');
 Route::get('/business/search', 'BusinessHomeController@search');

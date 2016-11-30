@@ -13,13 +13,13 @@ class UsersInstitutions extends Migration
      */
     public function up()
     {
-     /*   Schema::create('institution_user', function (Blueprint $table) {
+        Schema::create('institution_user', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users');
             $table->integer('institution_id')->unsigned();
             $table->foreign('institution_id')->references('id')->on('institutions');
-        });*/
+        });
     }
 
     /**
@@ -29,6 +29,6 @@ class UsersInstitutions extends Migration
      */
     public function down()
     {
-        //Schema::create('institution_user');
+        Schema::create('institution_user');
     }
 }

@@ -40,6 +40,10 @@ class User extends Authenticatable
         return $this->hasOne('App\Business');
     }
 
+    public function institution() {
+        return $this->belongsToMany('App\Institution', 'institution_user', 'user_id', 'institution_id');
+    }
+
     public function profile_image() {
         return $this->hasOne('App\ProfileImage');
     }
