@@ -19,6 +19,7 @@
 	 <div class="uk-navbar-flip">
 	    <ul class="uk-navbar-nav">
 	    @if(!Auth::guest())
+        <li><a href="{{url('messages')}}"><i class="uk-icon-envelope"></i></a></li>
 	       <li class="uk-parent" data-uk-dropdown="" aria-haspopup="true" aria-expanded="false">
                 <a href="#">@if(!Auth::user()->verified)<i class="uk-icon-asterisk uk-text-danger"></i> @endif {{Auth::user()->email}} <i class="uk-icon-caret-down"></i></a>
 
@@ -39,7 +40,7 @@
 
             </li>
 
-            @if((!is_null(Auth::user()->student) + !is_null(Auth::user()->business) + !is_null(Auth::user()->institution)) > 1)
+            @if((!is_null(Auth::user()->student) + !is_null(Auth::user()->business) + !is_null(Auth::user()->institution->first())) > 1)
             <li class="uk-parent" data-uk-dropdown="" aria-haspopup="true" aria-expanded="false">
                 <a href="#">Switch Account <i class="uk-icon-caret-down"></i></a>
 
@@ -52,7 +53,7 @@
                        @if(!is_null(Auth::user()->business)) 
                        <li><a href="{{action('BusinessHomeController@index')}}">Business</a></li>
                        @endif
-                       @if(!is_null(Auth::user()->institution))
+                       @if(!is_null(Auth::user()->institution->first()))
                         <li><a href="{{action('InstitutionHomeController@index')}}">Partner</a></li>
                         @endif
                     </ul>

@@ -26,10 +26,12 @@ elixir(function(mix) {
         './bower_components/uikit/js/components/upload.min.js',
         './bower_components/uikit/js/components/notify.min.js',
         './bower_components/uikit/js/components/form-select.min.js',
+        './bower_components/uikit/js/components/autocomplete.min.js',
         './resources/assets/js/timeago.js',
         './resources/assets/js/splash.js',
         './resources/assets/js/home.js',
         './resources/assets/js/search.js',
+        './resources/assets/js/messenger.js',
         './resources/assets/js/universal.js'
     ],'public/assets/js/all.js');
 

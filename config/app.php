@@ -167,6 +167,7 @@ return [
         Laravel\Socialite\SocialiteServiceProvider::class,
         Illuminate\Notifications\NotificationServiceProvider::class,
         Vinkla\Hashids\HashidsServiceProvider::class,
+
        
     ],
 
@@ -219,6 +220,7 @@ return [
         'Socialite' => Laravel\Socialite\Facades\Socialite::class,
         'Notification'=>Illuminate\Support\Facades\Notification::class,
         'Hashids' => Vinkla\Hashids\Facades\Hashids::class,
+
     ],
 
 ];

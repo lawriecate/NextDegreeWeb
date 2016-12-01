@@ -1,5 +1,5 @@
-var ROOT_URL = "/";
-//var ROOT_URL = "http://localhost:8888/nd/NextDegreeWeb/public/"
+//var ROOT_URL = "/";
+var ROOT_URL = "http://localhost:8888/nd/NextDegreeWeb/public/"
 $(function() {
 $.ajaxSetup({
     headers: {

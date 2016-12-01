@@ -43,8 +43,9 @@ class Skills extends Migration
      */
     public function down()
     {
-        Schema::drop('skill_user');
-        Schema::drop('skills');
+        Schema::dropIfExists('skill_user');
+        Schema::dropIfExists('skill_business');
+        Schema::dropIfExists('skills');
 
     }
 }

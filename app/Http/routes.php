@@ -87,8 +87,16 @@ Route::get('/twitter/callback', 'SettingsController@twitterCallback');
 Route::get('/twitter/connect', 'SettingsController@redirectToTwitter');
 });
 
+Route::group(['prefix' => 'messages','middleware' => ['auth']], function () {
+	Route::get('/', 'MessageController@index');
+	Route::get('/new', 'MessageController@create');
+	Route::get('/t/{thread}', 'MessageController@view');
+	Route::post('/t/{thread}', 'MessageController@storeToThread');
+	Route::post('autocomplete.json', 'MessageController@userAutocomplete');
+		Route::get('autocomplete.json', 'MessageController@userAutocomplete');
+	Route::post('/send', 'MessageController@store');
 
-
+});
 /*
 Route::get('/admin/files', 'AdminController@files');
 Route::post('/admin/files/upload', 'AdminController@uploadFile');

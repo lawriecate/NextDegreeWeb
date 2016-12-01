@@ -31,6 +31,7 @@ class RouteServiceProvider extends ServiceProvider
         Route::model('user', 'App\User');
         Route::model('institution', 'App\Institution');
         Route::model('ticket', 'App\SupportTicket');
+        Route::model('thread', 'App\Thread');
         parent::boot();
     }
 

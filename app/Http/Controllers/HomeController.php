@@ -38,7 +38,7 @@ class HomeController extends Controller
         {
             return redirect(action('BusinessHomeController@index'));
         }
-        else if(!is_null(Auth::user()->institution)) 
+        else if(!is_null(Auth::user()->institution->first())) 
         {
             return redirect(action('InstitutionHomeController@index'));
         }
