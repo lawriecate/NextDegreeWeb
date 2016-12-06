@@ -8731,6 +8731,48 @@ body, html {
 .nd-article-image-small {
   max-width: 300px; }
 
+.nd-msg-thread {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  clear: both;
+  display: block; }
+
+.nd-msg-m {
+  display: block;
+  max-width: 80%;
+  width: 80%; }
+
+.nd-msg-m .t {
+  width: 100%;
+  display: block;
+  padding: 2px; }
+
+.nd-msg-m-from {
+  float: right;
+  clear: both;
+  margin-bottom: 10px; }
+
+.nd-msg-m .b {
+  padding: 10px;
+  display: block;
+  width: 100%; }
+
+.nd-msg-m-from .b {
+  background-color: #86339a;
+  color: #fff; }
+
+.nd-msg-m-from .t {
+  text-align: right; }
+
+.nd-msg-m-to {
+  float: left;
+  clear: both; }
+
+.nd-msg-m-to .b {
+  background-color: #eee;
+  color: #333; }
+
 .nd-dash-stat {
   font-size: 3em; }
 

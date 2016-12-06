@@ -1,12 +1,34 @@
 $(function() {
+	validSelection =false;
+		$(".msg-enter-box-new").hide();
+	function showNewMsgBox() {
+		if(validSelection==false) {
+
+			$(".msg-enter-box-new").slideDown();
+			validSelection=true;
+			$("#msgTextarea").focus();
+		}
+	}
+
 	$('.msg-name-ac').on('selectitem.uk.autocomplete', function(event, data,acobject){
 	//alert(data.value+' '+data.id);
-	//console.log(data);
+	console.log(data);
 	//	console.log(acobject);
-console.log(event);
+console.log(acobject);
 	puzzle = data.value.split('+');
-//	console.log(puzzle);
+
 		$('.msg-recipient-field').val(puzzle[0]);
 		$('.msg-recipient-name').val(puzzle[1]);
+		showNewMsgBox();
 	});
+
+	$('.new-msg-form').submit(function(e) {
+		$.post($('#newMsgForm').attr('action'),$('#newMsgForm').serialize(),function(r) {
+			if(r.result == "sent") {
+				window.location=r.threadUrl;
+			}
+		});
+		e.preventDefault();
+	});
+
 });

@@ -26,7 +26,340 @@ $.ajaxSetup({
 /*! UIkit 2.26.4 | http://www.getuikit.com | (c) 2014 YOOtheme | MIT License */
 !function(t){var e;window.UIkit&&(e=t(UIkit)),"function"==typeof define&&define.amd&&define("uikit-form-select",["uikit"],function(){return e||t(UIkit)})}(function(t){"use strict";return t.component("formSelect",{defaults:{target:">span:first",activeClass:"uk-active"},boot:function(){t.ready(function(e){t.$("[data-uk-form-select]",e).each(function(){var e=t.$(this);e.data("formSelect")||t.formSelect(e,t.Utils.options(e.attr("data-uk-form-select")))})})},init:function(){var t=this;this.target=this.find(this.options.target),this.select=this.find("select"),this.select.on("change",function(){var e=t.select[0],i=function(){try{"input"===t.options.target?t.target.val(e.options[e.selectedIndex].text):t.target.text(e.options[e.selectedIndex].text)}catch(n){}return t.element[t.select.val()?"addClass":"removeClass"](t.options.activeClass),i};return i()}()),this.element.data("formSelect",this)}}),t.formSelect});
 /*! UIkit 2.26.4 | http://www.getuikit.com | (c) 2014 YOOtheme | MIT License */
-!function(t){var e;window.UIkit&&(e=t(UIkit)),"function"==typeof define&&define.amd&&define("uikit-autocomplete",["uikit"],function(){return e||t(UIkit)})}(function(t){"use strict";var e;return t.component("autocomplete",{defaults:{minLength:3,param:"search",method:"post",delay:300,loadingClass:"uk-loading",flipDropdown:!1,skipClass:"uk-skip",hoverClass:"uk-active",source:null,renderer:null,template:'<ul class="uk-nav uk-nav-autocomplete uk-autocomplete-results">{{~items}}<li data-value="{{$item.value}}"><a>{{$item.value}}</a></li>{{/items}}</ul>'},visible:!1,value:null,selected:null,boot:function(){t.$html.on("focus.autocomplete.uikit","[data-uk-autocomplete]",function(){var e=t.$(this);e.data("autocomplete")||t.autocomplete(e,t.Utils.options(e.attr("data-uk-autocomplete")))}),t.$html.on("click.autocomplete.uikit",function(t){e&&t.target!=e.input[0]&&e.hide()})},init:function(){var e=this,i=!1,s=t.Utils.debounce(function(){return i?i=!1:(e.handle(),void 0)},this.options.delay);this.dropdown=this.find(".uk-dropdown"),this.template=this.find('script[type="text/autocomplete"]').html(),this.template=t.Utils.template(this.template||this.options.template),this.input=this.find("input:first").attr("autocomplete","off"),this.dropdown.length||(this.dropdown=t.$('<div class="uk-dropdown"></div>').appendTo(this.element)),this.options.flipDropdown&&this.dropdown.addClass("uk-dropdown-flip"),this.dropdown.attr("aria-expanded","false"),this.input.on({keydown:function(t){if(t&&t.which&&!t.shiftKey)switch(t.which){case 13:i=!0,e.selected&&(t.preventDefault(),e.select());break;case 38:t.preventDefault(),e.pick("prev",!0);break;case 40:t.preventDefault(),e.pick("next",!0);break;case 27:case 9:e.hide()}},keyup:s}),this.dropdown.on("click",".uk-autocomplete-results > *",function(){e.select()}),this.dropdown.on("mouseover",".uk-autocomplete-results > *",function(){e.pick(t.$(this))}),this.triggercomplete=s},handle:function(){var t=this,e=this.value;return this.value=this.input.val(),this.value.length<this.options.minLength?this.hide():(this.value!=e&&t.request(),this)},pick:function(e,i){var s=this,o=t.$(this.dropdown.find(".uk-autocomplete-results").children(":not(."+this.options.skipClass+")")),n=!1;if("string"==typeof e||e.hasClass(this.options.skipClass)){if("next"==e||"prev"==e){if(this.selected){var a=o.index(this.selected);n="next"==e?o.eq(a+1<o.length?a+1:0):o.eq(0>a-1?o.length-1:a-1)}else n=o["next"==e?"first":"last"]();n=t.$(n)}}else n=e;if(n&&n.length&&(this.selected=n,o.removeClass(this.options.hoverClass),this.selected.addClass(this.options.hoverClass),i)){var l=n.position().top,h=s.dropdown.scrollTop(),r=s.dropdown.height();(l>r||0>l)&&s.dropdown.scrollTop(h+l)}},select:function(){if(this.selected){var t=this.selected.data();this.trigger("selectitem.uk.autocomplete",[t,this]),t.value&&this.input.val(t.value).trigger("change"),this.hide()}},show:function(){return this.visible?void 0:(this.visible=!0,this.element.addClass("uk-open"),e&&e!==this&&e.hide(),e=this,this.dropdown.attr("aria-expanded","true"),this)},hide:function(){return this.visible?(this.visible=!1,this.element.removeClass("uk-open"),e===this&&(e=!1),this.dropdown.attr("aria-expanded","false"),this):void 0},request:function(){var e=this,i=function(t){t&&e.render(t),e.element.removeClass(e.options.loadingClass)};if(this.element.addClass(this.options.loadingClass),this.options.source){var s=this.options.source;switch(typeof this.options.source){case"function":this.options.source.apply(this,[i]);break;case"object":if(s.length){var o=[];s.forEach(function(t){t.value&&-1!=t.value.toLowerCase().indexOf(e.value.toLowerCase())&&o.push(t)}),i(o)}break;case"string":var n={};n[this.options.param]=this.value,t.$.ajax({url:this.options.source,data:n,type:this.options.method,dataType:"json"}).done(function(t){i(t||[])});break;default:i(null)}}else this.element.removeClass(e.options.loadingClass)},render:function(t){return this.dropdown.empty(),this.selected=!1,this.options.renderer?this.options.renderer.apply(this,[t]):t&&t.length&&(this.dropdown.append(this.template({items:t})),this.show(),this.trigger("show.uk.autocomplete")),this}}),t.autocomplete});
+(function(addon) {
+
+    var component;
+
+    if (window.UIkit) {
+        component = addon(UIkit);
+    }
+
+    if (typeof define == "function" && define.amd) {
+        define("uikit-autocomplete", ["uikit"], function(){
+            return component || addon(UIkit);
+        });
+    }
+
+})(function(UI){
+
+    "use strict";
+
+    var active;
+
+    UI.component('autocomplete', {
+
+        defaults: {
+            minLength: 3,
+            param: 'search',
+            method: 'post',
+            delay: 300,
+            loadingClass: 'uk-loading',
+            flipDropdown: false,
+            skipClass: 'uk-skip',
+            hoverClass: 'uk-active',
+            source: null,
+            renderer: null,
+
+            // template
+
+            template: '<ul class="uk-nav uk-nav-autocomplete uk-autocomplete-results">{{~items}}<li data-value="{{$item.value}}"><a>{{$item.value}}</a></li>{{/items}}</ul>'
+        },
+
+        visible  : false,
+        value    : null,
+        selected : null,
+
+        boot: function() {
+
+            // init code
+            UI.$html.on("focus.autocomplete.uikit", "[data-uk-autocomplete]", function(e) {
+
+                var ele = UI.$(this);
+
+                if (!ele.data("autocomplete")) {
+                    UI.autocomplete(ele, UI.Utils.options(ele.attr("data-uk-autocomplete")));
+                }
+            });
+
+            // register outer click for autocompletes
+            UI.$html.on("click.autocomplete.uikit", function(e) {
+                if (active && e.target!=active.input[0]) active.hide();
+            });
+        },
+
+        init: function() {
+
+            var $this   = this,
+                select  = false,
+                trigger = UI.Utils.debounce(function(e) {
+                    if(select) {
+                        return (select = false);
+                    }
+                    $this.handle();
+                }, this.options.delay);
+
+
+            this.dropdown = this.find('.uk-dropdown');
+            this.template = this.find('script[type="text/autocomplete"]').html();
+            this.template = UI.Utils.template(this.template || this.options.template);
+            this.input    = this.find("input:first").attr("autocomplete", "off");
+
+            if (!this.dropdown.length) {
+               this.dropdown = UI.$('<div class="uk-dropdown"></div>').appendTo(this.element);
+            }
+
+            if (this.options.flipDropdown) {
+                this.dropdown.addClass('uk-dropdown-flip');
+            }
+
+            this.dropdown.attr('aria-expanded', 'false');
+
+            this.input.on({
+                "keydown": function(e) {
+
+                    if (e && e.which && !e.shiftKey) {
+
+                        switch (e.which) {
+                            case 13: // enter
+                                select = true;
+
+                                if ($this.selected) {
+                                    e.preventDefault();
+                                    $this.select();
+                                }
+                                break;
+                            case 38: // up
+                                e.preventDefault();
+                                $this.pick('prev', true);
+                                break;
+                            case 40: // down
+                                e.preventDefault();
+                                $this.pick('next', true);
+                                break;
+                            case 27:
+                            case 9: // esc, tab
+                                $this.hide();
+                                break;
+                            default:
+                                break;
+                        }
+                    }
+
+                },
+                "keyup": trigger
+            });
+
+            this.dropdown.on("click", ".uk-autocomplete-results > *", function(){
+                $this.select();
+            });
+
+            this.dropdown.on("mouseover", ".uk-autocomplete-results > *", function(){
+                $this.pick(UI.$(this));
+            });
+
+            this.triggercomplete = trigger;
+        },
+
+        handle: function() {
+
+            var $this = this, old = this.value;
+
+            this.value = this.input.val();
+
+            if (this.value.length < this.options.minLength) return this.hide();
+
+            if (this.value != old) {
+                $this.request();
+            }
+
+            return this;
+        },
+
+        pick: function(item, scrollinview) {
+
+            var $this    = this,
+                items    = UI.$(this.dropdown.find('.uk-autocomplete-results').children(':not(.'+this.options.skipClass+')')),
+                selected = false;
+
+            if (typeof item !== "string" && !item.hasClass(this.options.skipClass)) {
+                selected = item;
+            } else if (item == 'next' || item == 'prev') {
+
+                if (this.selected) {
+                    var index = items.index(this.selected);
+
+                    if (item == 'next') {
+                        selected = items.eq(index + 1 < items.length ? index + 1 : 0);
+                    } else {
+                        selected = items.eq(index - 1 < 0 ? items.length - 1 : index - 1);
+                    }
+
+                } else {
+                    selected = items[(item == 'next') ? 'first' : 'last']();
+                }
+
+                selected = UI.$(selected);
+            }
+
+            if (selected && selected.length) {
+                this.selected = selected;
+                items.removeClass(this.options.hoverClass);
+                this.selected.addClass(this.options.hoverClass);
+
+                // jump to selected if not in view
+                if (scrollinview) {
+
+                    var top       = selected.position().top,
+                        scrollTop = $this.dropdown.scrollTop(),
+                        dpheight  = $this.dropdown.height();
+
+                    if (top > dpheight ||  top < 0) {
+                        $this.dropdown.scrollTop(scrollTop + top);
+                    }
+                }
+            }
+        },
+
+        select: function() {
+
+            if(!this.selected) return;
+
+            var data = this.selected.data();
+
+            this.trigger("selectitem.uk.autocomplete", [data, this]);
+
+            if (data.value) {
+               // this.input.val(data.value).trigger('change');
+            }
+
+            this.hide();
+        },
+
+        show: function() {
+            if (this.visible) return;
+            this.visible = true;
+            this.element.addClass("uk-open");
+
+            if (active && active!==this) {
+                active.hide();
+            }
+
+            active = this;
+
+            // Update aria
+            this.dropdown.attr('aria-expanded', 'true');
+
+            return this;
+        },
+
+        hide: function() {
+            if (!this.visible) return;
+            this.visible = false;
+            this.element.removeClass("uk-open");
+
+            if (active === this) {
+                active = false;
+            }
+
+            // Update aria
+            this.dropdown.attr('aria-expanded', 'false');
+
+            return this;
+        },
+
+        request: function() {
+
+            var $this   = this,
+                release = function(data) {
+
+                    if(data) {
+                        $this.render(data);
+                    }
+
+                    $this.element.removeClass($this.options.loadingClass);
+                };
+
+            this.element.addClass(this.options.loadingClass);
+
+            if (this.options.source) {
+
+                var source = this.options.source;
+
+                switch(typeof(this.options.source)) {
+                    case 'function':
+
+                        this.options.source.apply(this, [release]);
+
+                        break;
+
+                    case 'object':
+
+                        if(source.length) {
+
+                            var items = [];
+
+                            source.forEach(function(item){
+                                if(item.value && item.value.toLowerCase().indexOf($this.value.toLowerCase())!=-1) {
+                                    items.push(item);
+                                }
+                            });
+
+                            release(items);
+                        }
+
+                        break;
+
+                    case 'string':
+
+                        var params ={};
+
+                        params[this.options.param] = this.value;
+
+                        UI.$.ajax({
+                            url: this.options.source,
+                            data: params,
+                            type: this.options.method,
+                            dataType: 'json'
+                        }).done(function(json) {
+                            release(json || []);
+                        });
+
+                        break;
+
+                    default:
+                        release(null);
+                }
+
+            } else {
+                this.element.removeClass($this.options.loadingClass);
+            }
+        },
+
+        render: function(data) {
+
+            this.dropdown.empty();
+
+            this.selected = false;
+
+            if (this.options.renderer) {
+
+                this.options.renderer.apply(this, [data]);
+
+            } else if(data && data.length) {
+
+                this.dropdown.append(this.template({"items":data}));
+                this.show();
+
+                this.trigger('show.uk.autocomplete');
+            }
+
+            return this;
+        }
+    });
+
+    return UI.autocomplete;
+});
+
 /**
  * Timeago is a jQuery plugin that makes it easy to support automatically
  * updating fuzzy timestamps (e.g. "4 minutes ago" or "about 1 day ago").
@@ -501,16 +834,38 @@ $(function() {
 	});
 });
 $(function() {
+	validSelection =false;
+		$(".msg-enter-box-new").hide();
+	function showNewMsgBox() {
+		if(validSelection==false) {
+
+			$(".msg-enter-box-new").slideDown();
+			validSelection=true;
+			$("#msgTextarea").focus();
+		}
+	}
+
 	$('.msg-name-ac').on('selectitem.uk.autocomplete', function(event, data,acobject){
 	//alert(data.value+' '+data.id);
-	//console.log(data);
+	console.log(data);
 	//	console.log(acobject);
-console.log(event);
+console.log(acobject);
 	puzzle = data.value.split('+');
-//	console.log(puzzle);
+
 		$('.msg-recipient-field').val(puzzle[0]);
 		$('.msg-recipient-name').val(puzzle[1]);
+		showNewMsgBox();
 	});
+
+	$('.new-msg-form').submit(function(e) {
+		$.post($('#newMsgForm').attr('action'),$('#newMsgForm').serialize(),function(r) {
+			if(r.result == "sent") {
+				window.location=r.threadUrl;
+			}
+		});
+		e.preventDefault();
+	});
+
 });
 $(function() {
 	$(document).ready(function() {

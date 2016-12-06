@@ -31,6 +31,8 @@ class CreateMessages extends Migration
             $table->increments('id');
             $table->integer('thread_id')->unsigned();
             $table->foreign('thread_id')->references('id')->on('threads');
+            $table->integer('sender_id')->unsigned();
+            $table->foreign('sender_id')->references('id')->on('users');
             $table->string('body');
             $table->timestamps();
         });

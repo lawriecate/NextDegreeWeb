@@ -202,7 +202,7 @@
             this.trigger("selectitem.uk.autocomplete", [data, this]);
 
             if (data.value) {
-                this.input.val(data.value).trigger('change');
+               // this.input.val(data.value).trigger('change');
             }
 
             this.hide();

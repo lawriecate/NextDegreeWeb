@@ -12,7 +12,7 @@ use Auth;
 class MessageController extends Controller
 {
     public function index(){
-    	return view('messenger.index');
+    	return view('messenger.new');
     }
 
     public function store(Request $request) {
@@ -43,18 +43,31 @@ class MessageController extends Controller
     	$message = new Message;
     	$message->body = $request->msg;
     	$message->thread_id = $thread->id;
+        $message->sender_id = $sender->id;
 		$message->save();
 
+        $return = array(
+            'result'=>'sent',
+            'threadUrl'=>$thread->url
+            );
+
+        if($request->ajax()){
+            return response()->json($return);
+        }
     	return redirect($thread->url);
 
     }
 
     public function storeToThread(Request $request,Thread $thread) {
-    	// send message
+    	if(!$thread->users->contains(Auth::user())) {
+           abort(403, 'Unauthorized action.');
+        }
+        // send message
     	
     	$message = new Message;
     	$message->body = $request->msg;
     	$message->thread_id = $thread->id;
+        $message->sender_id = Auth::user()->id;
 		$message->save();
 
     	return redirect($thread->url);
@@ -69,6 +82,9 @@ class MessageController extends Controller
 
     public function view(Request $request, $thread) {
     	// view thread
+        if(!$thread->users->contains(Auth::user())) {
+           abort(403, 'Unauthorized action.');
+        }
 	return view('messenger.view')->with('thread',$thread);
     }
 

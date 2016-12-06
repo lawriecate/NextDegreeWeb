@@ -73,7 +73,7 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UserPostRequest $request, $user)
+    public function update(Request $request, $user)
     {
       //  $user = User::findOrFail($id);
         $user->email = $request->email;
