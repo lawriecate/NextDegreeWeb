@@ -49,6 +49,8 @@ Route::get('/signup/start','QuickSignupController@redirect');
 Route::post('/signup/start','QuickSignupController@redirect');
 Route::post('/signup/facebook','QuickSignupController@redirectToFacebook');
 Route::get('/signup/error','QuickSignupController@error');
+Route::get('/signup/step1','QuickSignupController@namePrompt');
+Route::post('/signup/step1','QuickSignupController@saveName');
 
 Route::get('/signup/verification/{token?}','VerificationController@status');
 Route::post('/signup/verification/','VerificationController@request_resend');
@@ -87,7 +89,7 @@ Route::get('/twitter/callback', 'SettingsController@twitterCallback');
 Route::get('/twitter/connect', 'SettingsController@redirectToTwitter');
 });
 
-Route::group(['prefix' => 'messages','middleware' => ['auth']], function () {
+Route::group(['prefix' => 'messages','middleware' => ['auth','namecheck']], function () {
 	Route::get('/', 'MessageController@index');
 	Route::get('/new', 'MessageController@create');
 	Route::get('/t/{thread}', 'MessageController@view');

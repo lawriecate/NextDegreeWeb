@@ -42,19 +42,19 @@ return [
     'facebook' => [
         'client_id' => '163964194055948',
         'client_secret' => '44218e01b94b30583acfe9d886e073ea',
-        'redirect' => 'https://nextdegree.co.uk/settings/facebook/callback',
+        'redirect' => 'https://www.nextdegree.co.uk/settings/facebook/callback',
     ],
 
      'linkedin' => [
         'client_id' => '7797po61yyxddc',
         'client_secret' => 'fCzx8grP07sUE61z',
-        'redirect' => 'https://nextdegree.co.uk/settings/linkedin/callback',
+        'redirect' => 'https://www.nextdegree.co.uk/settings/linkedin/callback',
     ],
 
     'twitter' => [
         'client_id' => '9dcGqvRHY0W7Hjj5WgVCL9MQR',
         'client_secret' => 'T3YVuSx7xC9tEpjWYWYye8hEa4holwMWAfsxi0c3e2oU9FJfjD',
-        'redirect' => 'https://nextdegree.co.uk/settings/twitter/callback',
+        'redirect' => 'https://www.nextdegree.co.uk/settings/twitter/callback',
     ],
 
 ];

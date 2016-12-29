@@ -16,6 +16,11 @@ use App\UserCreationService;
 class QuickSignupController extends Controller
 {
     use CanSendVerificationEmail;
+
+    public function __construct()
+    {
+        $this->middleware('auth', ['except' => ['makeUser','redirectToFacebook','setupAdmin','error','redirect']]);
+    }
     public function makeUser(Request $request,UserCreationService $userCreationService) {
         if($request->type == "business") 
         {
@@ -80,7 +85,10 @@ class QuickSignupController extends Controller
     	
     }
 
-    public function redirect() {
+    public function redirect(Request $request) {
+        if($request->session()->get('postAuthRedirect') != '') {
+            return redirect($request->session()->get('postAuthRedirect'));
+        }
     	return redirect('home');
     }
 
@@ -109,5 +117,26 @@ class QuickSignupController extends Controller
             return abort(404);
         }
 
+    }
+
+    public function namePrompt() {
+        return view('ndauth.nameprompt');
+    }
+
+    public function saveName(Request $request) {
+        $valid = false;
+        $name = $request->name;
+        if($name!="") {
+            $valid = true;
+        }
+
+        if($valid) {
+            $user = Auth::user();
+            $user->name = $name;
+            $user->save();
+
+            return $this->redirect($request);
+        }
+return view('ndauth.nameprompt');
     }
 }

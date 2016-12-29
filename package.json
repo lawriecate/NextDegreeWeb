@@ -8,5 +8,10 @@
     "gulp": "^3.9.1",
     "laravel-elixir": "^5.0.0",
     "bootstrap-sass": "^3.3.0"
+  },
+  "dependencies": {
+    "express": "^4.14.0",
+    "ioredis": "^2.4.3",
+    "socket.io": "^1.7.2"
   }
 }

@@ -32,5 +32,5 @@
                     </div>--}}
 
 </form>
-<p><a href="{{action('QuickSignupController@redirect')}}" class="uk-button uk-button-small">Skip connecting to Facebook</a></p>
+<p><a href="{{action('QuickSignupController@namePrompt')}}" class="uk-button uk-button-small">Skip connecting to Facebook</a></p>
 @endsection
