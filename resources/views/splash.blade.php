@@ -198,7 +198,7 @@ You can use the skills you're developing at University to gain paid work experie
 						        	<p> {{ $tweet['text'] }}</p>
 						        </div>
 						        
-						        <p><i class="uk-icon-twitter uk-icon-small"></i> {{ $tweet['created_at'] }}</p>
+						        <p><i class="uk-icon-twitter uk-icon-small"></i> {{ date("M jS",strtotime($tweet['created_at'])) }}</p>
 						    	
 
 						    </div>

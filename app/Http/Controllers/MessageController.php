@@ -11,6 +11,7 @@ use Auth;
 
 class MessageController extends Controller
 {
+    
     public function index(){
     	return view('messenger.new');
     }
