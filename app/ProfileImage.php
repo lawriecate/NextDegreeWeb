@@ -11,10 +11,10 @@ class ProfileImage extends Model
     }
 
     public function getMediumUrlAttribute() {
-    	return url('profiles/'.$this->prefix.'_100.jpg');
+    	return url('profiles/'.$this->prefix.'_300.jpg');
     }
 
    	public function getLargeUrlAttribute() {
-    	return url('profiles/'.$this->prefix.'_100.jpg');
+    	return url('profiles/'.$this->prefix.'_800.jpg');
     }
 }
