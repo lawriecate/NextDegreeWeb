@@ -1,2 +1,3 @@
-# Next Degree Web Site
-Built with Laravel, UIKit 
+# Next Degree Web Application
+
+© Vine And Cate Ltd 2017
