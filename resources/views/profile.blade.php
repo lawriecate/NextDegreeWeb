@@ -44,7 +44,7 @@
 	                <div class="uk-panel">
 	                <p>
 	                    
-	                    <a href="#" class="uk-button uk-button-primary"><i class="uk-icon-envelope"></i> Send Message</a>
+	                    <a href="{{action('MessageController@index')}}?st={{$user->long_id}}" class="uk-button uk-button-primary"><i class="uk-icon-envelope"></i> Send Message</a>
 
 	                    </p>
 	                    @if(isset(Auth::user()->student->cv_path) && Auth::user()->student->cv_path != null)
@@ -59,7 +59,42 @@
 	    </div>
 
     </div>
+@elseif($user->business != null)
+
 	
+	<div class="uk-block uk-block-muted">
+
+	    <div class="uk-container">
+
+	    	<h3>Represents {{$user->business->name}}</h3>
+	        <div class="uk-grid uk-grid-match" data-uk-grid-margin="">
+	            <div class="uk-width-medium-1-3 uk-row-first">
+	                <div class="uk-panel">
+	                   
+	                </div>
+	            </div>
+	            <div class="uk-width-medium-1-3">
+	                <div class="uk-panel">
+	                
+	                </div>
+	            </div>
+	            <div class="uk-width-medium-1-3">
+	                <div class="uk-panel">
+	                <p>
+	                    
+	                    <a href="{{action('MessageController@index')}}?st={{$user->long_id}}" class="uk-button uk-button-primary"><i class="uk-icon-envelope"></i> Send Message</a>
+
+	                    </p>
+	                    
+	                </div>
+	            </div>
+	        </div>
+
+	    </div>
+
+    </div>
+@else
+
 @endif
 </div>
 

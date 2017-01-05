@@ -12,7 +12,12 @@ use Auth;
 class MessageController extends Controller
 {
     
-    public function index(){
+    public function index(Request $request){
+        if($request->st!="") {
+            $user = User::where('long_id',$request->st)->firstOrFail();
+
+            return view('messenger.new')->with('prefill_id',$user->long_id)->with('prefill_name',$user->name);
+        }
     	return view('messenger.new');
     }
 

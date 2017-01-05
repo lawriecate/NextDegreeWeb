@@ -9,11 +9,11 @@
 	
 			<form action="{{action('MessageController@store')}}" method="post" class="uk-form">
 			{{ csrf_field() }}
-			<input type="hidden" name="recipient" class="msg-recipient-field " />
+			<input type="hidden" name="recipient" class="msg-recipient-field " value="{{$prefill_id or ''}}"  />
 			<!--<input type="text" placeholder="Send To ID" name="recipient" />-->
 			<div class="uk-form-row uk-autocomplete msg-name-ac uk-form uk-width-1-1" data-uk-autocomplete="{source:'{{action('MessageController@userAutocomplete')}}' }">
 
-			    <input type="text" class="msg-recipient-name uk-form-controls-text uk-width-1-1" placeholder="Enter name or email"  />
+			    <input type="text" class="msg-recipient-name uk-form-controls-text uk-width-1-1" placeholder="Enter name or email"  value="{{$prefill_name or ''}}"  />
 			    <script type="text/autocomplete">
 			        <ul class="uk-nav uk-nav-autocomplete uk-autocomplete-results">
 			            @{{~items}}

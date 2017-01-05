@@ -1,6 +1,6 @@
 $(function() {
 	validSelection =false;
-		$(".msg-enter-box-new").hide();
+	
 	function showNewMsgBox() {
 		if(validSelection==false) {
 
@@ -9,12 +9,11 @@ $(function() {
 			$("#msgTextarea").focus();
 		}
 	}
-
+	if($('.msg-recipient-field').val() !="") {
+		showNewMsgBox()
+	}
 	$('.msg-name-ac').on('selectitem.uk.autocomplete', function(event, data,acobject){
-	//alert(data.value+' '+data.id);
-	console.log(data);
-	//	console.log(acobject);
-console.log(acobject);
+
 	puzzle = data.value.split('+');
 
 		$('.msg-recipient-field').val(puzzle[0]);
