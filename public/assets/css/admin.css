@@ -8773,6 +8773,9 @@ body, html {
   background-color: #eee;
   color: #333; }
 
+.uk-button-primary {
+  color: #fff !important; }
+
 .nd-dash-stat {
   font-size: 3em; }
 
