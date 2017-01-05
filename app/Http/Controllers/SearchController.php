@@ -53,7 +53,7 @@ class SearchController extends Controller
 		    				'business'=>$business,
 		    				'person'=>$business->user(),
 		    				'image'=>asset('assets/images/business.gif'),
-		    				'url'=>'#'
+		    				'url'=>$business->user->profile_url
 		    			);
 		    		
 	    		}
