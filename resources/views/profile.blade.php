@@ -14,7 +14,7 @@
 	    <div class="uk-container">
 
 	    	<h3>Studies {{$user->student->degree or ''}} at {{$user->student->institution->name}}</h3>
-
+	    	<p>{{$user->student->bio}}</p>
 	        <div class="uk-grid uk-grid-match" data-uk-grid-margin="">
 	            <div class="uk-width-medium-1-3 uk-row-first">
 	                <div class="uk-panel">

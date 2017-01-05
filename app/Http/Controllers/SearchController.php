@@ -37,7 +37,7 @@ class SearchController extends Controller
 		    				'skill'=>$skill,
 		    				'people_count'=>$skill->users()->count(),
 		    				'image'=>asset('assets/images/skill.gif'),
-		    				'url'=>'#'
+		    				'url'=>$skill->url
 		    			);
 		    		}
 	    		}
@@ -64,5 +64,6 @@ class SearchController extends Controller
     	}
     	return view('search.results')->with('results',$results)->with('query',$query);
     }
+
 
 }

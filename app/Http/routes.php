@@ -63,6 +63,8 @@ Route::get('/student', 'StudentHomeController@index');
 Route::get('/profile/{longid}', 'ProfileController@getProfile');
 Route::get('/search','SearchController@search');
 
+Route::get('/skills/{skill}','SkillController@public_page');
+
 Route::get('/partner', 'InstitutionHomeController@index');
 
 

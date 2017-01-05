@@ -76,6 +76,8 @@ class User extends Authenticatable
         return action('ProfileController@getProfile',$this->long_id);
     }
 
+
+
     public function threads() {
         return $this->morphToMany('App\Thread', 'threadable');
     }

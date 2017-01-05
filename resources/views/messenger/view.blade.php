@@ -18,7 +18,7 @@
 			<textarea name="msg" id="msgTextarea" class="uk-width-1-1"></textarea>
 			</div>
 			<div class="uk-form-row ">
-			<input class="uk-button-primary uk-button" type="submit" value="Send"/>
+			<input class="uk-button-primary uk-button uk-contrast" type="submit" value="Send"/>
 			</div>
 			</div>
 
