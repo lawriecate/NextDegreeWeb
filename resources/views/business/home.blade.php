@@ -22,7 +22,7 @@
 			{{csrf_field() }}
 			<input type="text" name="rskills" class="uk-form-large uk-width-1-1" placeholder="Enter skills you need" class="uk-width-1-1 uk-form-large" value="{{old('rskills',Auth::user()->business->skills_string)}}">
 			</form>
-			<p>Results go here</p>
+			<p>Suggestions will appear here over time, and we will send emails if we find a new matching candidate</p>
 		</div>
 		<hr/>
 		<div class="business-feed">
