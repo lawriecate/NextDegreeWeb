@@ -10,9 +10,9 @@
 		<div class="uk-form-row uk-width-1-1">
 				<label class="uk-form-label" for="bio">Describe yourself! <i class="uk-icon-check uk-text-success uk-hidden" id="bio-check"></i></label>
 				<div class="uk-form-controls">
-                    <textarea class="nd-profile-autosave uk-width-1-1 nd-profile-cocheck" placeholder="Pitch yourself in 300 characters!" name="bio">{{old('bio',Auth::user()->student->bio)}}</textarea>
+                    <textarea id="ndStudentProfilePitch" class="nd-profile-autosave uk-width-1-1 nd-profile-cocheck" placeholder="Pitch yourself in 300 characters!" name="bio" maxlength="300">{{old('bio',Auth::user()->student->bio)}}</textarea>
                 </div>
-            
+            	<span id="ndStudentProfilePitchRChar">300</span><span> characters left</span>
 			</div>
 		<div class="uk-form-row uk-width-1-1">
 		<label class="uk-form-label" for="degree">What do you study? <i class="uk-icon-check uk-text-success uk-hidden" id="degree-check"></i></label>

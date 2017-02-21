@@ -126,7 +126,18 @@ $('#profileCompleteForm').submit(function(e) {
 	saveProfile();
 	e.preventDefault();
 });
-    
 
+function checkPitchLength() {
+    var charsleft = 299 - $("#ndStudentProfilePitch").val().length;
+    $("#ndStudentProfilePitchRChar").text(charsleft);
+    if(charsleft < 0) {
+        $("#ndStudentProfilePitch").val($("#ndStudentProfilePitch").val().substr(0,300));
+    }
+
+}
+    $("#ndStudentProfilePitch").keyup(function() {
+        checkPitchLength();
+    });
+ checkPitchLength();
     });
 

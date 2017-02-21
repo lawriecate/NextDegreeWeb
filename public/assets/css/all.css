@@ -5983,7 +5983,6 @@ a.uk-thumbnail:focus {
 [class*='uk-overlay-slide'] {
   transition-duration: 0.3s;
   transition-timing-function: ease-out;
-  transition-property: opacity, transform, -webkit-filter, opacity, transform, filter;
   transition-property: opacity, transform, filter; }
 
 .uk-overlay-active .uk-overlay-fade,
@@ -6029,13 +6028,11 @@ a.uk-thumbnail:focus {
  * Grayscale
  */
 .uk-overlay-grayscale {
-  -webkit-filter: grayscale(100%);
   filter: grayscale(100%); }
 
 .uk-overlay-hover:hover .uk-overlay-grayscale,
 .uk-overlay-hover.uk-hover .uk-overlay-grayscale,
 .uk-overlay-active .uk-active > .uk-overlay-grayscale {
-  -webkit-filter: grayscale(0%);
   filter: grayscale(0%); }
 
 /*
