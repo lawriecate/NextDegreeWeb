@@ -19,13 +19,7 @@ class CreateMessages extends Migration
             $table->timestamps();
         });
 
-        Schema::create('threadables', function (Blueprint $table) {
-            $table->increments('id');
-            $table->integer('thread_id')->unsigned();
-            $table->foreign('thread_id')->references('id')->on('threads');
-            $table->integer('threadable_id')->unsigned();
-            $table->string('threadable_type');
-        });
+
         
         Schema::create('messages', function (Blueprint $table) {
             $table->increments('id');
@@ -35,6 +29,15 @@ class CreateMessages extends Migration
             $table->foreign('sender_id')->references('id')->on('users');
             $table->string('body');
             $table->timestamps();
+        });
+
+        Schema::create('threadables', function (Blueprint $table) {
+            $table->increments('id');
+            $table->integer('thread_id')->unsigned();
+            $table->foreign('thread_id')->references('id')->on('threads');
+            $table->integer('threadable_id')->unsigned();
+            $table->integer('last_read_message_id')->nullable()->default(null);
+            $table->string('threadable_type');
         });
     }
 

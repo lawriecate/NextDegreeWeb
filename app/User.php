@@ -82,4 +82,13 @@ class User extends Authenticatable
         return $this->morphToMany('App\Thread', 'threadable');
     }
 
+    public function getUnreadMessagesAttribute() 
+    {
+        $unread = 0;
+        foreach($this->threads as $thread){ 
+            $unread+=$thread->new_messages();
+        }
+        return $unread;
+    }
+
 }

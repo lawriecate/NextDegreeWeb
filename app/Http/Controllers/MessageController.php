@@ -91,6 +91,14 @@ class MessageController extends Controller
         if(!$thread->users->contains(Auth::user())) {
            abort(403, 'Unauthorized action.');
         }
+        //Message::where('thread_id',$thread->id)->where('sender_id','!=',Auth::user())->where('read','0')->update(['read'=>'1']);
+        //$threadable = $thread->users->where('threadable_id',Auth::user();
+        $threadable = ($thread->users->where('id',Auth::user()->id)->first());
+        //print_r($threadable);
+  //  die(); 
+        $last_msg_id = $thread->messages()->orderBy('created_at', 'desc')->first()->id;
+        $thread->users()->updateExistingPivot($threadable->id, ['last_read_message_id'=>$last_msg_id]);
+        //$threadable->save();
 	return view('messenger.view')->with('thread',$thread);
     }
 

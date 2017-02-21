@@ -21,7 +21,7 @@
 				   	<li><a href="#">No messages yet </a></li>	
 				   @else
 					   	@foreach(Auth::user()->threads->take(10) as $thread)
-							<li><a href="{{$thread->url}}">{{$thread->title}}</a></li>
+							<li><a href="{{$thread->url}}">{{$thread->title}} @if($thread->new_messages() > 0) <span class="uk-float-right uk-text-bold"> {{$thread->new_messages()}} unread </span> @endif</a></li>
 						@endforeach
 				   @endif
 				

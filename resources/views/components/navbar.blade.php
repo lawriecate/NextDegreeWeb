@@ -19,7 +19,7 @@
 	 <div class="uk-navbar-flip">
 	    <ul class="uk-navbar-nav">
 	    @if(!Auth::guest())
-        <li><a href="{{url('messages')}}"><i class="uk-icon-envelope"></i></a></li>
+        <li><a href="{{url('messages')}}"><i class="uk-icon-envelope"></i> {{Auth::user()->unread_messages}}</a></li>
 	       <li class="uk-parent" data-uk-dropdown="" aria-haspopup="true" aria-expanded="false">
                 <a href="#">@if(!Auth::user()->verified)<i class="uk-icon-asterisk uk-text-danger"></i> @endif {{Auth::user()->email}} <i class="uk-icon-caret-down"></i></a>
 
