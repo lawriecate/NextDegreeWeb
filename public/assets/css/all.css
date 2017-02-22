@@ -8770,6 +8770,17 @@ body, html {
   background-color: #eee;
   color: #333; }
 
+.msg-to-label {
+  width: 40px;
+  display: inline-block; }
+
+.msg-recipient-name {
+  width: calc(100% - 40px); }
+
+.nd-newmsg-textarea {
+  width: 100%;
+  min-height: 140px; }
+
 .uk-button-primary {
   color: #fff !important; }
 

@@ -22,11 +22,15 @@ $(function() {
 	});
 
 	$('.new-msg-form').submit(function(e) {
-		$.post($('#newMsgForm').attr('action'),$('#newMsgForm').serialize(),function(r) {
-			if(r.result == "sent") {
-				window.location=r.threadUrl;
-			}
-		});
+		if(validSelection) {
+			$.post($('#newMsgForm').attr('action'),$('#newMsgForm').serialize(),function(r) {
+				if(r.result == "sent") {
+					window.location=r.threadUrl;
+				}
+			});
+		} else {
+			$('.msg-recipient-name').addClass("uk-form-danger");
+		}
 		e.preventDefault();
 	});
 

@@ -105,13 +105,14 @@ class MessageController extends Controller
     public function userAutocomplete(Request $request){
     	$query = $request->search;
 
-    	$users = User::where('name','like',"%$query%")->get();
+    	$users = User::where('id','!=',Auth::user()->id)->where('name','like',"%$query%")->get();
 
     	$data =array();
     	foreach($users as $user) {
     		$data[]= array(
     			'value'=>$user->long_id . '+' . $user->name,
     			'title'=>$user->name,
+                'img'=>$user->profile_image_or_placeholder()->small_url,
     			'url'=>'#',
     			'text'=>$user->name);
     	

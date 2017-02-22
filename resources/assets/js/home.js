@@ -63,6 +63,11 @@
 
                 
                if(response.status == "success") {
+                    if (/Mobi/.test(navigator.userAgent)) {
+                        // mobile!
+                    } else {
+                        // show cropping
+                    }
                     $("#profileProgress").addClass("uk-hidden");
                     $("[name=profile-exists]").val('1');
                     showChecks();
@@ -127,17 +132,23 @@ $('#profileCompleteForm').submit(function(e) {
 	e.preventDefault();
 });
 
-function checkPitchLength() {
-    var charsleft = 299 - $("#ndStudentProfilePitch").val().length;
-    $("#ndStudentProfilePitchRChar").text(charsleft);
+function checkPitchLength(textarea,label) {
+    var charsleft = 299 - textarea.val().length;
+    label.text(charsleft);
     if(charsleft < 0) {
-        $("#ndStudentProfilePitch").val($("#ndStudentProfilePitch").val().substr(0,300));
+        textarea.val(textarea.val().substr(0,300));
     }
 
 }
     $("#ndStudentProfilePitch").keyup(function() {
-        checkPitchLength();
+        checkPitchLength($("#ndStudentProfilePitch"),$("#ndStudentProfilePitchRChar"));
     });
- checkPitchLength();
+    checkPitchLength($("#ndStudentProfilePitch"),$("#ndStudentProfilePitchRChar"));
+
+    $("#ndBusinessPitch").keyup(function() {
+        checkPitchLength($("#ndBusinessPitch"),$("#ndBusinessPitchRChar"));
+    });
+    checkPitchLength($("#ndBusinessPitch"),$("#ndBusinessPitchRChar"));
+
     });
 
