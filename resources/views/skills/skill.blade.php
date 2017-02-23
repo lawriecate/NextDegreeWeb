@@ -21,7 +21,8 @@
 				 <img class="uk-align-left uk-margin-right" width="150" height="150" src="{{$person->profile_image_or_placeholder()->medium_url}}" alt="Image for {{$person->name}}">
 				 </a>
                 <h3 class="uk-panel-title"><a href="{{$person->profile_url}}">{{$person->name}}</a></h3>
-                	{{$person->bio}}
+                <h4>Studies {{$person->student->degree or ''}} at {{$person->student->institution->name}}</h4>
+                	<p>{{$person->student->bio or ""}}</p>
             </div>
 			
 				@endforeach
