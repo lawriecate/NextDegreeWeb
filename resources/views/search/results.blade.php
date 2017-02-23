@@ -27,7 +27,8 @@
 				 </a>
                 <h3 class="uk-panel-title"><a href="{{$result['url']}}">{{$result['name']}}</a></h3>
                 	@if($result['type']	=='skill')
-                    		{{$result['people_count']}} people have this skill listed
+                    		{{$result['people_count']}} people have this skill listed<br/>
+                    		@foreach($result['people_names'] as $name) {{$name}}, @endforeach
                     @elseif($result['type']=='person')
                     	@if(isset($result['person']->student))
                     	 	Studies at {{$result['person']->student->institution->name}}

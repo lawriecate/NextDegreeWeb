@@ -16,6 +16,13 @@ class InstitutionsTableSeeder extends Seeder
             'enable_registration' => true,
             'domain' => 'ntu.ac.uk'
         ]);
+        DB::table('institutions')->insert([
+            'name' => 'Nottinghams',
+            'slug' => 'nottingham',
+            'enable_registration' => true,
+            'domain' => 'nottingham.ac.uk'
+        ]);
+
 
          
     }

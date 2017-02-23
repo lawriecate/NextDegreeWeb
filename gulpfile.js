@@ -20,6 +20,7 @@ elixir(function(mix) {
         './bower_components/jquery/dist/jquery.min.js',
         './resources/assets/js/settings.js',
         './bower_components/uikit/js/uikit.min.js',
+         './resources/assets/js/tags.js',
 
         './bower_components/uikit/js/components/parallax.min.js',
         './bower_components/uikit/js/components/sticky.min.js',

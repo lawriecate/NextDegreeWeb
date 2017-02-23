@@ -36,6 +36,7 @@ class SearchController extends Controller
 		    				'name'=>$skill->name,
 		    				'skill'=>$skill,
 		    				'people_count'=>$skill->users()->count(),
+		    				'people_names'=>$skill->users()->take(5)->pluck('name'),
 		    				'image'=>asset('assets/images/skill.gif'),
 		    				'url'=>$skill->url
 		    			);

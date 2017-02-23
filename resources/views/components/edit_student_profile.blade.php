@@ -25,7 +25,7 @@
 		<div class="uk-form-row uk-width-1-1">
 		<label class="uk-form-label" for="skills">What are your top skills? <i class="uk-icon-check uk-text-success uk-hidden" id="skills-check"></i></label>
 		<div class="uk-form-controls  uk-width-1-1">
-		 <input type="text" class="nd-profile-cocheck nd-profile-autosave uk-form-small uk-width-1-1" name="skills" value="{{old('skills',Auth::user()->student->skills_string)}}" />
+		 <input id="ndProfileSkills" type="text" class="nd-profile-cocheck nd-profile-autosave uk-form-small uk-width-1-1" name="skills" value="{{old('skills',Auth::user()->student->skills_string)}}" />
 		 </div>
 		</div>
 		<div class="uk-form-row  uk-width-1-1"> 

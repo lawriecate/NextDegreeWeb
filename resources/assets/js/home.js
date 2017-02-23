@@ -164,5 +164,13 @@
             $("#ndProfileCourse input").val(puzzle[0]);
                 saveProfile();
         });
+
+    $('#ndProfileSkills').tagsInput({
+      'defaultText':'add a skill',
+       'onChange' : function() {
+        saveProfile();
+       }
+       
+    });
 });
 

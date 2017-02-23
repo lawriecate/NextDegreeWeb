@@ -43,9 +43,9 @@
 	            <div class="uk-width-medium-1-3">
 	                <div class="uk-panel">
 	                <p>
-	                    
+	                    @if((isset(Auth::user()->id)) && Auth::user()->id != $user->id)
 	                    <a href="{{action('MessageController@index')}}?st={{$user->long_id}}" class="uk-button uk-button-primary"><i class="uk-icon-envelope"></i> Send Message</a>
-
+	                    @endif
 	                    </p>
 	                    @if(isset(Auth::user()->student->cv_path) && Auth::user()->student->cv_path != null)
 	                    <p>
