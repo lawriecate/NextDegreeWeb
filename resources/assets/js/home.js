@@ -94,61 +94,75 @@
             profileDrop   = UIkit.uploadDrop($("#profile-upload-drop"), settings);
 
        
-////////////
-function showChecks() {
-    var completed = 0;
-    var fields = 0;
-    $('.nd-profile-cocheck').each(function() {
-        fields++;
-        if($(this).val()!="") {
-            completed++;
-            var field_name = $(this).attr('name');
-            
-            $('#'+field_name+'-check').removeClass('uk-hidden');
-        }
-    });
-    var progressbar = $("#profile_progressbar"),
-            bar         = progressbar.find('.uk-progress-bar');
-    var percent = Math.floor((completed/fields)*100);
-    //$('#profile-percent-status').text(percent);
-    bar.css("width", percent+"%").text('Profile ' + percent+"% Complete");
+    ////////////
+    function showChecks() {
+        var completed = 0;
+        var fields = 0;
+        $('.nd-profile-cocheck').each(function() {
+            fields++;
+            if($(this).val()!="") {
+                completed++;
+                var field_name = $(this).attr('name');
+                
+                $('#'+field_name+'-check').removeClass('uk-hidden');
+            }
+        });
+        var progressbar = $("#profile_progressbar"),
+                bar         = progressbar.find('.uk-progress-bar');
+        var percent = Math.floor((completed/fields)*100);
+        //$('#profile-percent-status').text(percent);
+        bar.css("width", percent+"%").text('Profile ' + percent+"% Complete");
 
-}
- showChecks();
-
-function saveProfile() {
-	$("#profileFormStatus").text('saving...');
-	$.post($('#profileCompleteForm').attr('action'),$('#profileCompleteForm').serialize(),function(r) {
-		$("#profileFormStatus").text('');
-        showChecks();
-	});
-}
-$("#profileFormSave").hide();
-$('.nd-profile-autosave').change(function() {
-	saveProfile();
-});
-$('#profileCompleteForm').submit(function(e) {
-	saveProfile();
-	e.preventDefault();
-});
-
-function checkPitchLength(textarea,label) {
-    var charsleft = 299 - textarea.val().length;
-    label.text(charsleft);
-    if(charsleft < 0) {
-        textarea.val(textarea.val().substr(0,300));
     }
+     showChecks();
 
-}
-    $("#ndStudentProfilePitch").keyup(function() {
-        checkPitchLength($("#ndStudentProfilePitch"),$("#ndStudentProfilePitchRChar"));
-    });
-    checkPitchLength($("#ndStudentProfilePitch"),$("#ndStudentProfilePitchRChar"));
+    function saveProfile() {
+    	$("#profileFormStatus").text('saving...');
+    	$.post($('#profileCompleteForm').attr('action'),$('#profileCompleteForm').serialize(),function(r) {
+    		$("#profileFormStatus").text('');
+            showChecks();
+    	});
+    }
+    $("#profileFormSave").hide();
 
-    $("#ndBusinessPitch").keyup(function() {
-        checkPitchLength($("#ndBusinessPitch"),$("#ndBusinessPitchRChar"));
+    $('.nd-profile-autosave').change(function() {
+    	saveProfile();
     });
-    checkPitchLength($("#ndBusinessPitch"),$("#ndBusinessPitchRChar"));
 
+    $('#profileCompleteForm').submit(function(e) {
+    	saveProfile();
+    	e.preventDefault();
     });
+
+        function checkPitchLength(textarea,label) {
+            var charsleft = 299 - textarea.val().length;
+            label.text(charsleft);
+            if(charsleft < 0) {
+                textarea.val(textarea.val().substr(0,300));
+            }
+
+        }
+
+        if( $("#ndStudentProfilePitch").length ) {
+            $("#ndStudentProfilePitch").keyup(function() {
+                checkPitchLength($("#ndStudentProfilePitch"),$("#ndStudentProfilePitchRChar"));
+            });
+            checkPitchLength($("#ndStudentProfilePitch"),$("#ndStudentProfilePitchRChar"));
+        }
+
+        if( $("#ndBusinessPitch").length ) {
+            $("#ndBusinessPitch").keyup(function() {
+                checkPitchLength($("#ndBusinessPitch"),$("#ndBusinessProfilePitchRChar"));
+            });
+            checkPitchLength($("#ndBusinessPitch"),$("#ndBusinessProfilePitchRChar"));
+        }
+
+        //data-uk-autocomplete="{source:'{{action('ProfileController@getCourseAutocomplete')}}'}"
+        var autocomplete = UIkit.autocomplete($("#ndProfileCourse"), { source: ROOT_URL + 'profile/courses-search' });
+        $("#ndProfileCourse").on('selectitem.uk.autocomplete', function(event, data,acobject){
+            puzzle = data.value.split('+');
+            $("#ndProfileCourse input").val(puzzle[0]);
+                saveProfile();
+        });
+});
 

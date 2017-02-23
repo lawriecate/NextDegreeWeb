@@ -75,6 +75,7 @@ Route::post('/profile/save-profile', 'ProfileController@saveProfile');
 Route::post('/profile/save-profile-ajax', 'ProfileController@saveProfileAjax');
 Route::post('/profile/send-photo','ProfileController@updateProfilePhoto');
 Route::post('/profile/send-cv','ProfileController@updateStudentCv');
+Route::post('/profile/courses-search','ProfileController@getCourseAutocomplete');
 
 
 Route::get('/settings/facebook/callback', 'SettingsController@facebookCallback');//seperate because allows login

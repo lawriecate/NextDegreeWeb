@@ -32,15 +32,16 @@ elixir(function(mix) {
         './resources/assets/js/home.js',
         './resources/assets/js/search.js',
         './resources/assets/js/messenger.js',
-        './resources/assets/js/notifications.js',
+       
         './resources/assets/js/universal.js'
     ],'./public/assets/js/all.js');
 
-    mix.webpack(
+    /*mix.webpack(
         'notifications.js',
         './resources/assets/js',
         './public/assets/js'
     );
+     './resources/assets/js/notifications.js',*/
 
     mix.browserify('./public/assets/js/notifications.js');
 

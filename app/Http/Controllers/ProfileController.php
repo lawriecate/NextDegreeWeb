@@ -17,6 +17,7 @@ use App\Institution;
 use ImageProcessing;
 use App\ProfileImage;
 use App\Skill;
+use App\Course;
 
 class ProfileController extends Controller
 {
@@ -280,5 +281,24 @@ class ProfileController extends Controller
       
         $profile->save();
         return response()->json(array('status'=>'success'));
+    }
+
+    public function getCourseAutocomplete(Request $request) {
+        $query = $request->search;
+
+        $courses = Course::where('name','LIKE',"%$query%")->get()->take(5);
+
+        $results = array();
+        foreach($courses as $course) {
+
+            $results[] = array(
+                'value'=>$course->name,
+                'title'=>$course->name,
+                'url'=>$course->name,
+                'text'=>$course->name
+                );
+        }
+        
+        return response()->json($results);
     }
 }

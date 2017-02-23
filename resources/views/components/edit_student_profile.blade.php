@@ -16,8 +16,10 @@
 			</div>
 		<div class="uk-form-row uk-width-1-1">
 		<label class="uk-form-label" for="degree">What do you study? <i class="uk-icon-check uk-text-success uk-hidden" id="degree-check"></i></label>
-		<div class="uk-form-controls  uk-width-1-1">
-		 <input type="text" class="nd-profile-cocheck nd-profile-autosave uk-form-small uk-width-1-1" name="degree" value="{{old('degree',Auth::user()->student->degree)}}" />
+		<div class="uk-form-controls  uk-width-1-1uk-form" id="ndProfileCourse" >
+			
+			 <input type="text" class="nd-profile-cocheck nd-profile-autosave uk-form-small uk-width-1-1" name="degree" value="{{old('degree',Auth::user()->student->degree)}}" />
+
 		 </div>
 		</div>
 		<div class="uk-form-row uk-width-1-1">
