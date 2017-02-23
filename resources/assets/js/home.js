@@ -166,10 +166,14 @@
         });
 
     $('#ndProfileSkills').tagsInput({
-      'defaultText':'add a skill',
-       'onChange' : function() {
+      'defaultText':'add skill',
+       'onAddTag' : function() {
         saveProfile();
-       }
+       },
+       'onRemoveTag' : function() {
+        saveProfile();
+       },
+       'width':'100%',
        
     });
 });

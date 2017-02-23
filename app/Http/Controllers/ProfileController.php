@@ -56,8 +56,9 @@ class ProfileController extends Controller
                     $skillf = ucwords(trim(str_replace( ',', '', $skill )));
                     if($skillf != "" ) {
                         if($skill_model = Skill::where('name' , $skillf)->first()) {
-
-                            $user->skills()->attach($skill_model);
+                           
+                            $user->skills()->syncWithoutDetaching([$skill_model->id]);
+                            
                         }
                         else
                         {
