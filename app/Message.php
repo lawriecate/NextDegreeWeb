@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Auth;
+
 class Message extends Model
 {
     public  $primaryKey = 'long_id';
@@ -14,7 +15,11 @@ class Message extends Model
     ];
 
     public function thread() {
-    	return $this->belongsTo('App/Thread');
+    	return $this->belongsTo('App\Thread');
+    }
+
+    public function sender() {
+        return $this->hasOne('App\User','id','sender_id');
     }
 
     public function getFromOrToAttribute(){

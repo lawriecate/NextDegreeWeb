@@ -903,4 +903,4 @@ $(function() {
 	  $("time.htr").timeago();
 	});
 });
-//# sourceMappingURL=all.js.map
+//# sourceMappingURL=vanilla.js.map

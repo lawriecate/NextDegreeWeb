@@ -8,6 +8,7 @@ use App\Message;
 use App\User;
 use Vinkla\Hashids\Facades\Hashids;
 use Auth;
+use App\Events\MessageSent;
 
 class MessageController extends Controller
 {
@@ -75,6 +76,8 @@ class MessageController extends Controller
     	$message->thread_id = $thread->id;
         $message->sender_id = Auth::user()->id;
 		$message->save();
+        //$message->load('thread.users','sender');
+        event(new MessageSent($message));
 
     	return redirect($thread->url);
 
@@ -83,7 +86,6 @@ class MessageController extends Controller
 
     public function create(Request $request) {
     	return view('messenger.new');
-
     }
 
     public function view(Request $request, $thread) {
@@ -104,9 +106,7 @@ class MessageController extends Controller
 
     public function userAutocomplete(Request $request){
     	$query = $request->search;
-
     	$users = User::where('id','!=',Auth::user()->id)->where('name','like',"%$query%")->get();
-
     	$data =array();
     	foreach($users as $user) {
     		$data[]= array(
