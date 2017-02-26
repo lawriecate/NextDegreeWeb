@@ -42,10 +42,10 @@
 
         var cvSelect = UIkit.uploadSelect($("#cv-upload-select"), settings),
             cvDrop   = UIkit.uploadDrop($("#cv-upload-drop"), settings);
-
+/*
         settings    = {
 
-            action: ROOT_URL+'profile/send-photo', // upload url
+            action: ROOT_URL+'profile/send-photo-crop', // upload url
             params: { "_token": $('[name="csrf_token"]').attr('content') },
             allow: '*.(jpg|jpeg|gif|png)', // allow only images
             type: 'json',
@@ -68,6 +68,7 @@
                     } else {
                         // show cropping
                     }
+                    var modal = UIkit.modal($("#profileImageModal")).show();
                     $("#profileProgress").addClass("uk-hidden");
                     $("[name=profile-exists]").val('1');
                     showChecks();
@@ -92,7 +93,99 @@
 
         var profileSelect = UIkit.uploadSelect($("#profile-upload-select"), settings),
             profileDrop   = UIkit.uploadDrop($("#profile-upload-drop"), settings);
+*/
 
+    var imageLoader = document.getElementById('profile-upload-select');
+    imageLoader.addEventListener('change', handleImage, false);
+   // var canvas = document.getElementById('cropCanvas');
+    //var ctx = canvas.getContext('2d');
+
+
+    function handleImage(event){
+        var file = document.getElementById('profile-upload-select').files[0];
+        if (!file.type.match('image.*')) {
+            UIkit.notify("You must select an image");
+        } else {
+            cropImage(event.target.files[0]);
+        }
+       
+    }
+
+    function cropImage(file) {
+        var reader = new FileReader();
+            reader.onload = function(event){
+               
+      
+                    $('#cropImage').attr('src', event.target.result);
+
+                    $('#cropImage').cropper({
+                        aspectRatio: 1,
+                        crop: function(e) {
+                        // Output the result data for cropping image.
+                            console.log(e.x);
+                            console.log(e.y);
+                            console.log(e.width);
+                            console.log(e.height);
+                            console.log(e.rotate);
+                            console.log(e.scaleX);
+                            console.log(e.scaleY);
+                        }
+                    });
+
+                    $("#profileSaveImage").click(function() {
+                        // crop and upload
+                        
+
+                        var formData = new FormData();
+
+                          formData.append('croppedImage', $("#cropImage").cropper('getCroppedCanvas').toDataURL('image/jpeg'));
+                          formData.append("_token", $('[name="csrf_token"]').attr('content') );
+
+                          $.ajax(ROOT_URL+'profile/send-photo-cropped', {
+                            method: "POST",
+                            data: formData,
+                            processData: false,
+                            contentType: false,
+                            success: function (response) {
+                                if(response.status=="success") {
+                                    $("#profileProgress").addClass("uk-hidden");
+                            $("[name=profile-exists]").val('1');
+                            showChecks();
+                            $("#profile-upload-drop").css('background-image','url('+ROOT_URL+'profiles/'+response.prefix + '_300.jpg)');
+                      
+                                    UIkit.modal($("#profileImageModal")).hide();  
+                                } 
+                                else {
+                                    UIkit.notify("Unfortunately there was a problem processing your image :( ");
+                                     UIkit.modal($("#profileImageModal")).hide();  
+                                }
+                              console.log('Upload success');
+                            },
+                            error: function () {
+                                 UIkit.notify("Unfortunately there was a problem processing your image :( ");
+                                  UIkit.modal($("#profileImageModal")).hide();  
+                              console.log('Upload error');
+                            }
+                          });
+                
+                    });
+            }
+            reader.readAsDataURL(file);   
+                    var modal = UIkit.modal($("#profileImageModal")).show();  
+    }
+ 
+    $('#profile-upload-drop').on({
+        dragover: false,
+        drop: function(e) {
+            e.stopPropagation();
+            e.preventDefault();
+            e.dataTransfer = e.originalEvent.dataTransfer;
+            file = event.dataTransfer.files[0];
+            if (file.type.match('image.*')) {
+               cropImage(file)
+            }
+        }
+    });
        
     ////////////
     function showChecks() {

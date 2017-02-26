@@ -21,6 +21,7 @@ elixir(function(mix) {
         './resources/assets/js/settings.js',
         './bower_components/uikit/js/uikit.min.js',
          './resources/assets/js/tags.js',
+         './node_modules/cropper/dist/cropper.min.js',
 
         './bower_components/uikit/js/components/parallax.min.js',
         './bower_components/uikit/js/components/sticky.min.js',

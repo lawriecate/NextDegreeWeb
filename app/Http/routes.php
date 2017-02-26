@@ -76,7 +76,8 @@ Route::post('/business/save-radar', 'BusinessHomeController@saveRadarSkills');
 Route::post('/profile/save-profile', 'ProfileController@saveProfile');
 Route::post('/profile/save-profile-ajax', 'ProfileController@saveProfileAjax');
 Route::post('/profile/save-jobsearch-ajax','ProfileController@saveJobSearch');
-Route::post('/profile/send-photo','ProfileController@updateProfilePhoto');
+//Route::post('/profile/send-photo','ProfileController@updateProfilePhoto');
+Route::post('/profile/send-photo-cropped','ProfileController@processCroppedImageFile');
 Route::post('/profile/send-cv','ProfileController@updateStudentCv');
 Route::post('/profile/courses-search','ProfileController@getCourseAutocomplete');
 
