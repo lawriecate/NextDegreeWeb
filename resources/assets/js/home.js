@@ -169,12 +169,73 @@
       'defaultText':'add skill',
        'onAddTag' : function() {
         saveProfile();
+        loadSuggestedSkills();
        },
        'onRemoveTag' : function() {
         saveProfile();
        },
        'width':'100%',
        
+    });
+
+    
+
+    function loadSuggestedSkills() {
+        $.get(ROOT_URL+'student/suggested-skills',function(data) {
+            $(".suggested-skills-l").html('');
+            if(data.length > 0) {
+                $.each(data,function(k,skill) {
+                    $(".suggested-skills-l").append($('<li><a href="#" class="uk-button uk-button-large suggested-skills-button"><i class="uk-icon-large uk-icon-'+skill.icon+'"></i></br><span class="n">'+skill.name+'</span></a></li>'));
+                });
+                $(".suggested-skills-button").click(function() {
+                    $('#ndProfileSkills').addTag($(this).find('span.n').text());
+                });
+            } 
+            else {
+                 $(".suggested-skills").hide().html("");
+            }
+        });
+
+        
+    }
+
+    if($(".suggested-skills").length) {
+        loadSuggestedSkills();
+    }
+
+    function refreshJobseekIcons() {
+        $(".jobseek-checkboxes li").each(function() {
+            checkbox = $(this).find("input");
+            if(checkbox.prop("checked")) {
+                $(this).find("i").removeClass("uk-icon-square-o").addClass("uk-icon-check-square-o");
+            } else {
+                $(this).find("i").addClass("uk-icon-square-o").removeClass("uk-icon-check-square-o");
+            }
+        });
+    }
+
+    if($(".jobseek-checkboxes").length) {
+        $(".jobseek-checkboxes .control").hide();
+        refreshJobseekIcons();
+        $(".jobseek-checkboxes li a").click(function() {
+            checkbox = $(this).parent().find(".control label input");
+            checkbox.prop("checked", !checkbox.prop("checked"));
+            
+            saveJobSeek();
+        })
+    }
+
+    function saveJobSeek() {
+        $("#profileFormStatus").text('saving...');
+        $.post($('#jobseekForm').attr('action'),$('#jobseekForm').serialize(),function(r) {
+            $("#profileFormStatus").text('');
+            refreshJobseekIcons();
+        });
+    }
+    $("#jobseekFormSave").hide();
+
+    $('.nd-jobseek-autosave').change(function() {
+        saveJobSeek();
     });
 });
 

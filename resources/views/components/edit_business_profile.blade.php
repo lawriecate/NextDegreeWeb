@@ -33,6 +33,7 @@
 	<div class="uk-form-row  uk-width-1-1"> 
 		
 		<input id="profileFormSave" type="submit"/>
+		  <a href="{{Auth::user()->profile_url}}" class="uk-button uk-button-primary">Preview Profile</a>
 		<span class="uk-text-small" id="profileFormStatus">&nbsp;</span>
 	</div>
 		</form>

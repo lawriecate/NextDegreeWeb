@@ -11,14 +11,14 @@ class InstitutionsTableSeeder extends Seeder
     public function run()
     {
         DB::table('institutions')->insert([
-            'name' => 'NTU',
+            'name' => 'Nottingham Trent University',
             'slug' => 'ntu',
             'enable_registration' => true,
             'domain' => 'ntu.ac.uk'
         ]);
         DB::table('institutions')->insert([
-            'name' => 'Nottinghams',
-            'slug' => 'nottingham',
+            'name' => 'The University of Nottingham',
+            'slug' => 'uon',
             'enable_registration' => true,
             'domain' => 'nottingham.ac.uk'
         ]);

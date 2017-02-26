@@ -16,6 +16,7 @@ class Skills extends Migration
         Schema::create('skills', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name')->unique();
+            $table->string('icon')->nullable()->default('star');
             $table->timestamps();
         });
 

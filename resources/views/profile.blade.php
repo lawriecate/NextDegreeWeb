@@ -21,10 +21,14 @@
 	                    @if($user->skills->first())
 						<h4>Skills:</h4>
 						<ul class="uk-list uk-list-line">
-							@foreach($user->skills as $skill)
-							<li>{{$skill->name}}</li>
+							@foreach($user->skills as $i=> $skill)
+							<li class="@if($i > 10) hiddenSkill @endif"><i class="uk-icon-{{$skill->icon}}"></i> {{$skill->name}}</li>
 							@endforeach
 						</ul>
+						@if($user->skills->count() > 10)
+						<p><a href="#" class="showAllSkills">Plus {{($user->skills->count())-10}} more</a></p>
+						@endif
+
 						@endif
 	                </div>
 	            </div>

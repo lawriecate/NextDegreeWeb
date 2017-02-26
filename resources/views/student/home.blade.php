@@ -33,11 +33,38 @@
 			@endforeach
 			</ul>
 		</div>
-				
-				
-			
+		<div class="suggested-skills">
+			<h3>Suggested Skills</h3>
+			<ul class="suggested-skills-l">
+			<li>loading...</li>
+			</ul>
+			<div class="uk-clearfix">&nbsp;</div>
+		</div>
+		<div class="job-seek">
+			<form id="jobseekForm" action="{{action('ProfileController@saveJobSearch')}}" method="POST" class="uk-form-stacked uk-form">
+			    {{csrf_field()}}
+			<div class="uk-form-row  uk-width-1-1"> 
 		
+				<h3>I want to find:</h3>
+				<ul class="jobseek-checkboxes">
+				
+					@foreach(App\JobType::orderBy('created_at', 'desc')->get() as $job_type)
+						<li>
+						<a href="#"  class="uk-button uk-button-large "><i class="uk-icon-square-o uk-icon-large"></i><br>{{$job_type->title}}</a>
+						<div class="control"><label><input type="checkbox" class="nd-jobseek-autosave " name="jobtype[{{$job_type->id}}]" value="1" @if(Auth::user()->job_types()->find($job_type->id)) checked="checked" @endif> {{$job_type->title}}</label></div>
+					</li>
+					@endforeach
+
+				</ul>
+				
+
+			</div>
+				<input id="jobseekFormSave" type="submit"/>
+			</form>
+		</div>
+
 </div>
+
 	<div class="uk-width-medium-2-6">
 		@if(!is_null(Auth::user()->student))
 		@include('components.edit_student_profile')

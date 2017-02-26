@@ -34,4 +34,12 @@ $(function() {
 		e.preventDefault();
 	});
 
+
+    if( $(".nd-msg-vcontainer").length ) {
+		var last = $('.nd-msg-vcontainer li').last();
+		 $(".nd-msg-vcontainer").animate({
+		    scrollTop: last.position().top + last.height()
+		  }, 500);
+	}
+
 });

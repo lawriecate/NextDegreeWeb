@@ -77,7 +77,11 @@ $(function() {
 
 			styleField = $('<select name="editor['+i+'][value][class]" ></select>');
 			editArea.append(styleField);
-			editArea.append($('<textarea name="editor['+i+'][value][text]" rows="5" placeholder="Type here..." class="uk-width-1-1 " >'+value.text+'</textarea>'));
+			textareaText = "";
+			if(typeof value.text !== "undefined") {
+				textareaText = value.text;
+			}
+			editArea.append($('<textarea name="editor['+i+'][value][text]" rows="5" placeholder="Type here..." class="uk-width-1-1 " >'+textareaText+'</textarea>'));
 			
 			
 

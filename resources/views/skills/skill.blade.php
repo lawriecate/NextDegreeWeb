@@ -17,7 +17,7 @@
 		
 			<div class="uk-panel uk-panel-divider">
 
-				<a href="{{$person->url}}">
+				<a href="{{$person->profile_url}}">
 				 <img class="uk-align-left uk-margin-right" width="150" height="150" src="{{$person->profile_image_or_placeholder()->medium_url}}" alt="Image for {{$person->name}}">
 				 </a>
                 <h3 class="uk-panel-title"><a href="{{$person->profile_url}}">{{$person->name}}</a></h3>

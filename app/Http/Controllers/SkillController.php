@@ -30,4 +30,5 @@ class SkillController extends Controller
 	    	
 	    	return view('skills.skill')->with('skill',$skill);
     }
+
 }

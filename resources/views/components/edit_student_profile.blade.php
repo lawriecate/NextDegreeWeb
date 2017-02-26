@@ -40,15 +40,11 @@
 			<a class="uk-form-file uk-button uk-button-primary uk-width-1-1" id="nd-cv-upload-button"><span id="nd-cv-upload-status">Upload PDF CV or Drag Here <i class="uk-icon-check uk-text-success uk-hidden" id="cv-exists-check"></i></span><input id="cv-upload-select" type="file"></a>
         </div>
 	</div>
+		<div class="uk-form-row uk-width-1-1">
+			<input id="profileFormSave" type="submit"/>
+			<span class="uk-text-small" id="profileFormStatus">&nbsp;</span>
+			  <a href="{{Auth::user()->profile_url}}" class="uk-button uk-button-primary">Preview Profile</a>
+		</div>
 
-	<div class="uk-form-row  uk-width-1-1"> 
-		<hr/>
-		<h1>I want to find:</h1>
-		@foreach(App\JobType::orderBy('created_at', 'desc')->get() as $job_type)
-		<label><input type="checkbox" class="nd-profile-autosave " name="jobtype[{{$job_type->id}}]" value="1" @if(Auth::user()->job_types()->find($job_type->id)) checked="checked" @endif> {{$job_type->title}}</label><br>
-		@endforeach
-		<input id="profileFormSave" type="submit"/>
-		<span class="uk-text-small" id="profileFormStatus">&nbsp;</span>
 
-	</div>
 		</form>

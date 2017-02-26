@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use App\Skill;
+use Auth;
 
 class StudentHomeController extends Controller
 {
@@ -22,4 +24,10 @@ class StudentHomeController extends Controller
         return view('student.home');
     }
 
+    public function getSuggestedSkills() 
+    {
+        $hasSkills = Auth::user()->skills;
+        $skills = Skill::orderByRaw('RAND()')->whereNotIn('id',$hasSkills->pluck('id'))->take(5)->get();
+        return response()->json($skills);
+    }
 }

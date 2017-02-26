@@ -8733,6 +8733,12 @@ body, html {
   padding: 0;
   margin: 0;
   clear: both;
+  display: block;
+  width: 95%; }
+
+.nd-msg-vcontainer {
+  height: calc(100% - 260px);
+  overflow-y: scroll;
   display: block; }
 
 .nd-msg-m {
@@ -8783,5 +8789,104 @@ body, html {
 
 .uk-button-primary {
   color: #fff !important; }
+
+.suggested-skills-l {
+  list-style: none;
+  margin: 0;
+  padding: 0; }
+
+.suggested-skills-l li {
+  display: inline-block;
+  float: left;
+  margin: 0;
+  padding: 0; }
+
+.suggested-skills-l li a {
+  min-width: 120px;
+  max-width: 120px;
+  height: 140px;
+  display: block;
+  margin: 1px;
+  padding-top: 10px; }
+
+.suggested-skills-button {
+  min-width: 100px;
+  height: 100px;
+  text-align: center;
+  display: block; }
+
+.jobseek-checkboxes {
+  list-style: none;
+  margin: 0;
+  padding: 0; }
+
+.jobseek-checkboxes li {
+  display: inline-block;
+  float: left;
+  margin: 0;
+  padding: 0; }
+
+.jobseek-checkboxes li a {
+  min-width: 120px;
+  max-width: 120px;
+  height: 140px;
+  display: block;
+  margin: 1px;
+  padding-top: 10px; }
+
+.hiddenSkill {
+  display: none; }
+
+div.tagsinput {
+  border: 1px solid #CCC;
+  background: #FFF;
+  padding: 5px;
+  width: 100%;
+  height: 100px;
+  overflow-y: auto; }
+
+div.tagsinput span.tag {
+  border: 1px solid #333;
+  -moz-border-radius: 2px;
+  -webkit-border-radius: 2px;
+  display: block;
+  float: left;
+  padding: 5px;
+  text-decoration: none;
+  background: #ccc;
+  color: #333;
+  margin-right: 5px;
+  margin-bottom: 5px; }
+
+div.tagsinput span.tag a {
+  font-weight: bold;
+  color: #333;
+  text-decoration: none;
+  font-size: 11px; }
+
+div.tagsinput input {
+  width: 80px;
+  margin: 0px;
+  font-size: 13px;
+  border: 1px solid transparent;
+  padding: 5px;
+  background: transparent;
+  color: #000;
+  outline: 0px;
+  margin-right: 5px;
+  margin-bottom: 5px; }
+
+div.tagsinput div {
+  display: block;
+  float: left; }
+
+.tags_clear {
+  clear: both;
+  width: 100%;
+  height: 0px; }
+
+.not_valid {
+  background: #FBD8DB !important;
+  color: #90111A !important; }
 
 /*# sourceMappingURL=all.css.map */

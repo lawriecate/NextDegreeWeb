@@ -29,7 +29,7 @@
 					
 			
 				</div>
-					<div class="uk-width-medium-4-6 uk-margin-top">
+					<div class="uk-width-medium-4-6 uk-margin-top uk-height-viewport">
 						@yield('messenger.container')
 					</div>
 				</div>

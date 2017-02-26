@@ -59,6 +59,8 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index');
 Route::get('/student', 'StudentHomeController@index');
+Route::get('/student/suggested-skills','StudentHomeController@getSuggestedSkills');
+
 
 Route::get('/profile/{longid}', 'ProfileController@getProfile');
 Route::get('/search','SearchController@search');
@@ -73,9 +75,11 @@ Route::get('/business/search', 'BusinessHomeController@search');
 Route::post('/business/save-radar', 'BusinessHomeController@saveRadarSkills');
 Route::post('/profile/save-profile', 'ProfileController@saveProfile');
 Route::post('/profile/save-profile-ajax', 'ProfileController@saveProfileAjax');
+Route::post('/profile/save-jobsearch-ajax','ProfileController@saveJobSearch');
 Route::post('/profile/send-photo','ProfileController@updateProfilePhoto');
 Route::post('/profile/send-cv','ProfileController@updateStudentCv');
 Route::post('/profile/courses-search','ProfileController@getCourseAutocomplete');
+
 
 
 Route::get('/settings/facebook/callback', 'SettingsController@facebookCallback');//seperate because allows login

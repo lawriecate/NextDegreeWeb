@@ -26,17 +26,10 @@ class ProfileController extends Controller
         $user = User::where('long_id',$lid)->firstOrFail();
         return view('profile')->with('user',$user);
     }
-    public function saveProfile(Request $request)
-    {
-        $user = Auth::user();
-        $user->name = $request->name;
-        if(isset($request->bio)) 
-        {
-            $user->student->bio = $request->bio;
-            $user->student->degree = $request->degree;
-            $user->student->save();
 
-            // user job types
+    public function saveJobSearch(Request $request) {
+         $user = Auth::user();
+          // user job types
             $user->job_types()->detach();
             if(null!==($request->input('jobtype'))) 
             {
@@ -47,6 +40,18 @@ class ProfileController extends Controller
                     }
                 }
             }
+    }
+    public function saveProfile(Request $request)
+    {
+        $user = Auth::user();
+        $user->name = $request->name;
+        if(isset($request->bio)) 
+        {
+            $user->student->bio = $request->bio;
+            $user->student->degree = $request->degree;
+            $user->student->save();
+
+          
 
             $user->skills()->detach();
             if(null!==($request->input('skills'))) 
