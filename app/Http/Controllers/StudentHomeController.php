@@ -26,8 +26,17 @@ class StudentHomeController extends Controller
 
     public function getSuggestedSkills() 
     {
+        
         $hasSkills = Auth::user()->skills;
-        $skills = Skill::orderByRaw('RAND()')->whereNotIn('id',$hasSkills->pluck('id'))->take(5)->get();
-        return response()->json($skills);
+        $skills = Skill::orderByRaw('RAND()')->where('verified',true)->whereNotIn('id',$hasSkills->pluck('id'));
+
+        if(Auth::user()->student->course_id != null) {
+            $filter = Auth::user()->student->course->suggested_skills;
+
+            $skills = $skills->whereIn('id',$filter->pluck('id'));
+        }
+
+        
+        return response()->json($skills->take(5)->get());
     }
 }

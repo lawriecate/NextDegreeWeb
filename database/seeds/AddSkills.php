@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use App\Skill;
+use App\Course; 
 class AddSkills extends Seeder
 {
     /**
@@ -87,7 +88,14 @@ class AddSkills extends Seeder
 ]');
 
 		foreach($skills as $skill) {
-			Skill::create(['name' => $skill->name, 'icon'=>$skill->icon]);
+			Skill::create(['name' => $skill->name, 'icon'=>$skill->icon, 'verified'=>true]);
 		}
+
+    $cosci = Course::where('name','Computer science')->first();
+    $cosci->suggested_skills()->attach(Skill::where("name","Web Design")->first()->id);
+    $cosci->suggested_skills()->attach(Skill::where("name","App Design")->first()->id);
+    $cosci->suggested_skills()->attach(Skill::where("name","Programming")->first()->id);
+    $cosci->suggested_skills()->attach(Skill::where("name","IT Support")->first()->id);
+    $cosci->suggested_skills()->attach(Skill::where("name","Social Media")->first()->id);
     }
 }

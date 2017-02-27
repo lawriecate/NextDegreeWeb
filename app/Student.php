@@ -4,6 +4,7 @@ namespace App;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use App\Skills;
+use App\Course;
 
 class Student extends Model
 {
@@ -13,6 +14,10 @@ class Student extends Model
 
     public function institution() {
     	return $this->belongsTo('App\Institution');
+    }
+
+    public function course() {
+        return $this->belongsTo('App\Course');
     }
 
     public function getCvUploadedAtHumanAttribute()
@@ -35,4 +40,6 @@ class Student extends Model
         }
         return $output;
     }
+
+
 }

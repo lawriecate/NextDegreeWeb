@@ -49,6 +49,22 @@ class ProfileController extends Controller
         {
             $user->student->bio = $request->bio;
             $user->student->degree = $request->degree;
+
+            $courses = Course::all();
+            $most_similar_course = null;
+            $coval = 100;
+            foreach($courses as $course) {
+                $lv = levenshtein($course->name,$request->degree);
+                if($lv < $coval) {
+                    $coval = $lv;
+                    $most_similar_course = $course;
+                }
+            }
+            
+            if($coval < 10) {
+                $user->student->course_id = $most_similar_course->id;
+            }
+
             $user->student->save();
 
           

@@ -17,6 +17,7 @@ class Skills extends Migration
             $table->increments('id');
             $table->string('name')->unique();
             $table->string('icon')->nullable()->default('star');
+            $table->boolean('verified')->default(false);
             $table->timestamps();
         });
 

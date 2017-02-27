@@ -18,6 +18,19 @@ class CreateCoursesTable extends Migration
             $table->string('name');
             $table->timestamps();
         });
+
+        Schema::create('course_skill', function (Blueprint $table) {
+            $table->increments('id');
+            $table->integer('skill_id')->unsigned();
+            $table->integer('course_id')->unsigned();
+        });
+
+         Schema::table('students', function (Blueprint $table) {
+           
+            $table->integer('course_id')->unsigned()->nullable()->default(null);
+            $table->foreign('course_id')->references('id')->on('courses');
+          
+        });
     }
 
     /**
@@ -27,6 +40,15 @@ class CreateCoursesTable extends Migration
      */
     public function down()
     {
+         Schema::table('students', function (Blueprint $table) {
+           
+            $table->dropColumn('course_id');
+            $table->dropColumn('course_id');
+          
+        });
         Schema::dropIfExists('courses');
+        Schema::dropIfExists('course_skill');
+
+
     }
 }
