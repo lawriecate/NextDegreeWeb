@@ -112,9 +112,11 @@
     }
 
     function cropImage(file) {
+      
+        $("#profileImageModalContent").html('<div><img id="cropImage"/></div>');
         var reader = new FileReader();
             reader.onload = function(event){
-               
+                    
       
                     $('#cropImage').attr('src', event.target.result);
 
@@ -122,13 +124,13 @@
                         aspectRatio: 1,
                         crop: function(e) {
                         // Output the result data for cropping image.
-                            console.log(e.x);
+                         /* console.log(e.x);
                             console.log(e.y);
                             console.log(e.width);
                             console.log(e.height);
                             console.log(e.rotate);
                             console.log(e.scaleX);
-                            console.log(e.scaleY);
+                            console.log(e.scaleY);*/
                         }
                     });
 
@@ -159,11 +161,13 @@
                                     UIkit.notify("Unfortunately there was a problem processing your image :( ");
                                      UIkit.modal($("#profileImageModal")).hide();  
                                 }
+                                 // $('#cropImage').cropper().destroy();
                               console.log('Upload success');
                             },
                             error: function () {
                                  UIkit.notify("Unfortunately there was a problem processing your image :( ");
                                   UIkit.modal($("#profileImageModal")).hide();  
+                                  //  $('#cropImage').cropper().destroy();
                               console.log('Upload error');
                             }
                           });

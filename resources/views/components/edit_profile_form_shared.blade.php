@@ -14,7 +14,9 @@
     <div class="uk-modal-dialog">
     	<button type="button" class="uk-modal-close uk-close"></button>
         <div class="uk-modal-header">New Profile Image</div>
-        <div><img id="cropImage"/></div>
+        <div id="profileImageModalContent">
+        	<div><img id="cropImage"/></div>
+        </div>
         <div class="uk-modal-footer uk-text-right">
                                         <button type="button" class="uk-button uk-modal-close ">Cancel</button>
                                         <button type="button" class="uk-button uk-button-primary" id="profileSaveImage">Save</button>
