@@ -49,5 +49,10 @@ class SplashController extends Controller
 
 
     }
+
+    public function newsFeed() {
+       // $feed =
+        return response()->json($feed);
+    }
 }
 

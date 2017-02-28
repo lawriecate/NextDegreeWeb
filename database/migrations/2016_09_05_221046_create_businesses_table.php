@@ -17,9 +17,9 @@ class CreateBusinessesTable extends Migration
             $table->timestamps();
             $table->integer('user_id')->unique()->unsigned();
             $table->foreign('user_id')->references('id')->on('users');
-            $table->string('name');
-            $table->string('description');
-            $table->string('location');
+            $table->string('name')->nullable()->default(null);
+            $table->string('description',300)->nullable()->default(null);
+            $table->string('location')->nullable()->default(null);
         });
     }
 

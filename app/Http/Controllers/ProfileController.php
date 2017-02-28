@@ -63,6 +63,8 @@ class ProfileController extends Controller
             
             if($coval < 10) {
                 $user->student->course_id = $most_similar_course->id;
+            } else {
+                $user->student->course_id = null;
             }
 
             $user->student->save();
@@ -165,15 +167,16 @@ class ProfileController extends Controller
                 unlink($filepath);
 
                 $response['status'] = 'success';
-                $profileImage->save();
+               
                 $user = Auth::user();
                 if($user->profile_image_id != null) {
                     $old = ProfileImage::findOrFail($user->profile_image_id);
                     unlink($destinationPath . '/'.$old->prefix.'_100.jpg');
                     unlink($destinationPath . '/'.$old->prefix.'_300.jpg');
                     unlink($destinationPath . '/'.$old->prefix.'_800.jpg');
-                    $old->delete();
+                    ProfileImage::where('user_id',$user->id)->delete();
                 }
+                 $profileImage->save();
                 $user->profile_image_id = $profileImage->id;
                 $user->save();
 
@@ -325,7 +328,7 @@ class ProfileController extends Controller
     public function getCourseAutocomplete(Request $request) {
         $query = $request->search;
 
-        $courses = Course::where('name','LIKE',"%$query%")->get()->take(5);
+        $courses = Course::where('name','LIKE',"%$query%")->where('institution_id',Auth::user()->student->institution->id)->get()->take(5);
 
         $results = array();
         foreach($courses as $course) {

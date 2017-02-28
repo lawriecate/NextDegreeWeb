@@ -92,4 +92,28 @@ $(function() {
 	if($("#nd-contact-sent").length) {
 		UIkit.notify("Your message has been sent, thanks for getting in touch.  <br>We will reply ASAP!", {status:'success'})
 	}
+
+	function loadNews() {
+		var url = "https://news.nextdegree.co.uk/wp-json/wp/v2/posts";
+		//ROOT_URL+'testnews.json'
+		$.get(url,function(data) {
+			$.each(data,function(key,article) {
+				//console.log(article['_embedded']['wp:featuredmedia'][0]);
+				html = '<div class="uk-width-medium-1-4" >'+
+						'	        <div class="uk-panel-box" >'+
+						'		        <a href="'+article.link+'">'+
+						'		        <div class="uk-panel-teaser">'+
+						'		        	<img src="'+article['_embedded']['wp:featuredmedia'][0]['media_details']['sizes']['medium_large']['source_url']+'"/>'+
+						'		        </div> '+
+						'		        '+
+						'		<h3>'+article.title.rendered+'</h3><p>'+article.excerpt.rendered+'</p>'+
+						'		        	</a>'+
+						'		        </div>';
+				el = $(html);
+				$(".nd-news").append(el);
+			});
+		})
+
+	}
+	loadNews();
 });

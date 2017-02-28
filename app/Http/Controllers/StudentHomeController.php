@@ -28,12 +28,17 @@ class StudentHomeController extends Controller
     {
         
         $hasSkills = Auth::user()->skills;
-        $skills = Skill::orderByRaw('RAND()')->where('verified',true)->whereNotIn('id',$hasSkills->pluck('id'));
+        $skills = Skill::where('verified',true)->whereNotIn('id',$hasSkills->pluck('id'));
 
         if(Auth::user()->student->course_id != null) {
             $filter = Auth::user()->student->course->suggested_skills;
-
-            $skills = $skills->whereIn('id',$filter->pluck('id'));
+            if($filter->count() > 0) {
+                $skills = $skills->whereIn('id',$filter->pluck('id'));
+            } else {
+                $skills = $skills->orderByRaw('RAND()');
+            }
+        } else {
+            $skills = $skills->orderByRaw('RAND()');
         }
 
         

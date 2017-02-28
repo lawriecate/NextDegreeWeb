@@ -29,9 +29,9 @@
 		                <div class="uk-width-medium-1-1 uk-margin-top uk-margin-large-bottom uk-contrast ">
 		 
 		                	<h2 class="uk-heading-large ">Jumpstart Your Career</h2>
-		                	<p class="uk-text-large uk-text-bold">Next Degree connects students and local businesses to help develop student careers from freshers week to graduation and beyond. </p>{{--<p class="uk-text-large">
+		                	<p class="uk-text-large"><span class="uk-text-bold">Next Degree connects students and local businesses</span> to help develop student careers from freshers week to graduation and beyond. </p>{{--<p class="uk-text-large">
 You can use the skills you're developing at University to gain paid work experience, boosting your income and your CV. <br>From programming to tuition, Next Degree brings work to you.</p>--}}
-<p class="uk-text-large">Next Degree is being developed for students in Nottingham. Our website will give you your own profile and schedule.  Based on your profile and interests employers will be able to contact you to offer work opportunities.</p>
+<p class="uk-text-large">Next Degree is being developed for students in Nottingham. You can create your own profile and based on your skills and interests employers will be able to contact you to offer work opportunities relevant to you.</p>
 <p class="uk-text-large ">Sign up now to create your basic profile, to access careers and university advice written by recent graduates and current students, and to stay up to date with Next Degree's development.   <a href="{{url('for-students')}}"  class="uk-contrast">Read more &raquo;</a></p>
 		                	<h2>Sign up now with your university email</h2>
 		                	<p>Open to students of the University of Nottingham or Nottingham Trent University</p>
@@ -51,7 +51,7 @@ You can use the skills you're developing at University to gain paid work experie
 							        </ul>
 							    </div>
 							@endif
-		                	<p id="invalidUniMsg" class="uk-hidden">Unfortunately we are not currently accepting registrations from your University yet!<br>If you're interested in getting Next Degree at your University please <a href="#">get in touch</a>.  </p>
+		                	<p id="invalidUniMsg" class="uk-hidden">Unfortunately we are not currently accepting registrations from your University yet!<br>If you're interested in getting Next Degree at your University please <a href="{{url('faq')}}">get in touch</a>.  </p>
 		                	@else
 		                	<p>You're already signed in!</p>
 		                	@endif
@@ -85,7 +85,8 @@ You can use the skills you're developing at University to gain paid work experie
 		                <div class="uk-width-medium-1-1 uk-margin-top uk-margin-large-bottom  ">
 		 
 		                	<h2 class="uk-heading-large ">Recruit Fresh Talent</h2>
-		                	<p class="uk-text-large uk-text-bold">Next Degree will put you in touch with local students and graduates so you can bring fresh talent and skills into your business. <a href="{{url('for-business')}}">Read more &raquo;</a></p>
+		                	<p class="uk-text-large uk-text-bold">Next Degree will put you in touch with local students and graduates so you can bring fresh talent and skills into your business. </p>
+		                	<p class="uk-text-large" >When you sign up, you can create a business profile and look for students based on the skills you need. <a href="{{url('for-business')}}">Read more &raquo;</a></p>
 		                	<h2>Sign up for a business account now</h2>
 		                	
 		                	@if(Auth::guest())
@@ -133,7 +134,7 @@ You can use the skills you're developing at University to gain paid work experie
 								<li><a href="#">Do I need a LinkedIn profile?</a></li>
 		                	</ul>--}}
 
-		                	<div class="uk-grid uk-grid-match" data-uk-grid-match="{target:'.uk-panel'}">
+		                	<div class="uk-grid uk-grid-match nd-news" data-uk-grid-match="{target:'.uk-panel'}" >
 		                		@foreach(App\Post::stream()->take(4)->get() as $post)
 		                		<div class="uk-width-medium-1-4" >
 						        <div class="uk-panel-box" >

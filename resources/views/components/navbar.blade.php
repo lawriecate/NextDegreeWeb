@@ -62,7 +62,7 @@
             </li>
             @endif
 	    @else 
- 			<li><a href="{{url('signin')}}">Sign In <i class="uk-icon-arrow-right"></i></a></li>
+ 			<li><a href="{{url('login')}}">Sign In <i class="uk-icon-arrow-right"></i></a></li>
 	    @endif
 		 </ul>
 	</div>

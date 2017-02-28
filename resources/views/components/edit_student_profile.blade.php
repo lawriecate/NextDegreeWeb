@@ -4,6 +4,9 @@
 		<div id="profile_progressbar" class="uk-progress">
             <div class="uk-progress-bar" style="width: 20%;">&nbsp;</div>
         </div>
+        <div class="uk-hidden showOnCompleteProfile">
+        <p>Thanks for completing your profile.  Now companies will be able to search for you and send you messages if they're interested in hiring you.  Don't forget to keep your profile up to date! </p>
+        </div>
         <form id="profileCompleteForm" action="{{action('ProfileController@saveProfile')}}" method="POST" class="uk-form-stacked uk-form">
         {{csrf_field()}}
 				@include('components.edit_profile_form_shared')

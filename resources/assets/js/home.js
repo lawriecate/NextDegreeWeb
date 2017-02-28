@@ -209,21 +209,48 @@
         var percent = Math.floor((completed/fields)*100);
         //$('#profile-percent-status').text(percent);
         bar.css("width", percent+"%").text('Profile ' + percent+"% Complete");
-
+        if(percent == 100) {
+            $(".showOnCompleteProfile").removeClass("uk-hidden");
+        }
     }
      showChecks();
 
-    function saveProfile() {
+    function saveProfile(callback) {
     	$("#profileFormStatus").text('saving...');
     	$.post($('#profileCompleteForm').attr('action'),$('#profileCompleteForm').serialize(),function(r) {
     		$("#profileFormStatus").text('');
             showChecks();
+            if(typeof callback === 'function') {
+                //console.log(callback);
+                callback();
+            }
     	});
     }
     $("#profileFormSave").hide();
 
+    function loadSuggestedSkills() {
+        $.get(ROOT_URL+'student/suggested-skills',function(data) {
+            $(".suggested-skills-l").html('');
+            if(data.length > 0) {
+                $.each(data,function(k,skill) {
+                    $(".suggested-skills-l").append($('<li><a href="#" class="uk-button uk-button-large suggested-skills-button"><i class="uk-icon-large uk-icon-'+skill.icon+'"></i></br><span class="n">'+skill.name+'</span></a></li>'));
+                });
+                $(".suggested-skills-button").click(function() {
+                    $('#ndProfileSkills').addTag($(this).find('span.n').text());
+                });
+            } 
+            else {
+                 $(".suggested-skills").hide().html("");
+            }
+        });
+    }
+
     $('.nd-profile-autosave').change(function() {
-    	saveProfile();
+        callback = null;
+        if($(this).attr('name') == 'degree') {
+            callback = loadSuggestedSkills;
+        }
+    	saveProfile(callback);
     });
 
     $('#profileCompleteForm').submit(function(e) {
@@ -232,7 +259,7 @@
     });
 
         function checkPitchLength(textarea,label) {
-            var charsleft = 299 - textarea.val().length;
+            var charsleft = 300 - textarea.val().length;
             label.text(charsleft);
             if(charsleft < 0) {
                 textarea.val(textarea.val().substr(0,300));
@@ -262,11 +289,13 @@
                 saveProfile();
         });
 
+    
+
     $('#ndProfileSkills').tagsInput({
       'defaultText':'add skill',
        'onAddTag' : function() {
-        saveProfile();
-        loadSuggestedSkills();
+        saveProfile(loadSuggestedSkills);
+        
        },
        'onRemoveTag' : function() {
         saveProfile();
@@ -277,24 +306,7 @@
 
     
 
-    function loadSuggestedSkills() {
-        $.get(ROOT_URL+'student/suggested-skills',function(data) {
-            $(".suggested-skills-l").html('');
-            if(data.length > 0) {
-                $.each(data,function(k,skill) {
-                    $(".suggested-skills-l").append($('<li><a href="#" class="uk-button uk-button-large suggested-skills-button"><i class="uk-icon-large uk-icon-'+skill.icon+'"></i></br><span class="n">'+skill.name+'</span></a></li>'));
-                });
-                $(".suggested-skills-button").click(function() {
-                    $('#ndProfileSkills').addTag($(this).find('span.n').text());
-                });
-            } 
-            else {
-                 $(".suggested-skills").hide().html("");
-            }
-        });
-
-        
-    }
+  
 
     if($(".suggested-skills").length) {
         loadSuggestedSkills();
@@ -334,5 +346,9 @@
     $('.nd-jobseek-autosave').change(function() {
         saveJobSeek();
     });
+
+    if($(".tmpnewslist").length) {
+        $.get()
+    }
 });
 

@@ -10,10 +10,10 @@
 		<input type="text" name="q" class="business-search-input uk-form-large uk-width-1-1" placeholder="Search for people, skills, companies" class="uk-width-1-1 uk-form-large">
 		</form>
 		<hr/>
-		<div class="business-search-results">
+		<div class="business-search-results uk-margin-bottom">
 		&nbsp;
 		</div>
-		<div class="business-monitor">
+		<div class="business-monitor uk-margin-bottom">
 			<h3>Skills Radar</h3>
 			
 			<p>Let people know what you're looking for and we'll match you with students who can help you.</p>  
@@ -25,7 +25,7 @@
 			<p>Suggestions will appear here over time, and we will send emails if we find a new matching candidate</p>
 		</div>
 		<hr/>
-		<div class="business-feed">
+		<div class="business-feed uk-margin-bottom">
 			<h3>News</h3>
 			<ul class="nd-stream"> 
 			@foreach(App\Post::stream()->take(10)->get() as $post)
