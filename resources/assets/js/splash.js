@@ -94,7 +94,7 @@ $(function() {
 	}
 
 	function loadNews() {
-		var url = "https://news.nextdegree.co.uk/wp-json/wp/v2/posts";
+		var url = ROOT_URL+"news.json";
 		//ROOT_URL+'testnews.json'
 		$.get(url,function(data) {
 			$.each(data,function(key,article) {

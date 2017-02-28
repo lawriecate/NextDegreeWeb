@@ -12,6 +12,7 @@
 */
 
 Route::get('/', 'SplashController@splash');
+Route::get('news.json', 'SplashController@newsFeed');
 Route::post('/contact-form','SplashController@sendContactForm');
 // Authentication Routes...
 //Route::get('login', 'Auth\AuthController@showLoginForm');
