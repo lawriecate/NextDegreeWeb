@@ -665,17 +665,17 @@ $ntu = array("Accounting and Finance",
 "Youth Studies",
 "Zoo Biology",
 );
-        /*$institution = Institution::where('slug','ntu')->first()->id;
+        $institution = Institution::where('slug','ntu')->first()->id;
 		foreach($ntu as $name) {
 			Course::create(['name' => $name,'institution_id'=>$institution]);
 		}
         $institution = Institution::where('slug','uon')->first()->id;
         foreach($uon as $name) {
             Course::create(['name' => $name,'institution_id'=>$institution]);
-        }*/
-        $courses = array_merge($uon,$ntu);
+        }
+        /*$courses = array_merge($uon,$ntu);
         foreach($courses as $name) {
             Course::create(['name' => $name,'institution_id'=>$institution]);
-        }
+        }*/
     }
 }
