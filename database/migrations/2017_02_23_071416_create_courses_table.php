@@ -44,7 +44,6 @@ class CreateCoursesTable extends Migration
          Schema::table('students', function (Blueprint $table) {
            
             $table->dropColumn('course_id');
-            $table->dropColumn('course_id');
           
         });
         Schema::dropIfExists('courses');
