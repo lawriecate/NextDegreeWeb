@@ -51,7 +51,7 @@ class SplashController extends Controller
     }
 
     public function newsFeed() {
-        $file = file_get_contents('https://news.nextdegree.co.uk/wp-json/wp/v2/posts');
+        $file = file_get_contents('https://news.nextdegree.co.uk/wp-json/wp/v2/posts?_embed');
         return response($file)->header('Content-Type', 'application/json');
     }
 }
