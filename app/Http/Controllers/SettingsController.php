@@ -52,19 +52,30 @@ class SettingsController extends Controller
     public function facebookCallback(SocialAccountService $service,Request $request)
     {
         try {
-            $fb_user = Socialite::driver('facebook')->user();
+            $fb_user = Socialite::driver('facebook')->user(); // get facebook data
             if(Auth::guest()) {
-                // login request
-                try {
-                    $service->authenticateWith('facebook',$fb_user);
-                    return redirect()->action('HomeController@index'); 
-                } catch (\Exception $e) {
-                    $request->session()->flash('social_login_error',true);
-                    return redirect()->action('Auth\AuthController@showLoginForm'); 
+                if($request->session()->get('fbcallbackaction') == 'register') {
+                    // register with email already set
+                    return redirect()->action('QuickSignupController@createByFacebook');
+                }
+                else 
+                {
+                    // attempt a login
+                    try {
+                        $authResult = $service->authenticateWith('facebook',$fb_user); // true if matching account found and authenticated
+                        if($authResult) {
+                            return redirect()->action('HomeController@index'); 
+                        }
+                        return redirect()->action('QuickSignupController@facebookEmailPrompt'); 
+                    } catch (\Exception $e) {
+                        // System error
+                        $request->session()->flash('social_login_error',true);
+                        return redirect()->action('Auth\AuthController@showLoginForm'); 
+                    }
                 }
             }
             else {
-                // association request
+                // association request on already logged in account
                 $service->setSocialConnection('facebook',$fb_user,Auth::user());
 
                 // All Providers

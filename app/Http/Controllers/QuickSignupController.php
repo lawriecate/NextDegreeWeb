@@ -19,7 +19,7 @@ class QuickSignupController extends Controller
 
     public function __construct()
     {
-        $this->middleware('auth', ['except' => ['makeUser','redirectToFacebook','setupAdmin','error','redirect']]);
+        $this->middleware('auth', ['except' => ['makeUser','redirectToFacebook','setupAdmin','error','redirect','facebookEmailPrompt','createByFacebook']]);
     }
     public function makeUser(Request $request,UserCreationService $userCreationService) {
         if($request->type == "business") 
@@ -138,5 +138,24 @@ class QuickSignupController extends Controller
             return $this->redirect($request);
         }
 return view('ndauth.nameprompt');
+    }
+
+    public function facebookEmailPrompt() {
+        return view('ndauth.signup_fromfb');
+    }
+
+    public function facebookEmailPromptSave() {
+        // save email to session/cookie and set registration flag
+        $request->session()->put('fbpromptemail' ,$request->email);
+        $request->session()->put('fbcallbackaction' ,'register');
+
+        // go back to facebook 
+        return redirect(action('SettingsController@redirectToFacebook'));
+    }
+
+    public function createByFacebook(Request $request) {
+        $email = '';
+        return 'Signing you up now!';
+        //$this->makeUser($request->all()->put('email',$email)->put('type','student'));
     }
 }
