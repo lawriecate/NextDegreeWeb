@@ -87,7 +87,6 @@ class QuickSignupController extends Controller
     }
     public function signUpUser(Request $request) {
         return $this->makeUser($request->type,$request->email);
-    	
     }
 
     public function redirect(Request $request) {
@@ -161,7 +160,7 @@ return view('ndauth.nameprompt');
 
     public function createByFacebook(Request $request) {
         $email = $request->session()->get('fbpromptemail');
-        return $this->makeUser('student',$request->email);
+        return $this->makeUser('student',$email);
         
         //return 'Signing you up now!';
         //return $this->makeUser($request->all()->put('email',$email)->put('type','student'));
