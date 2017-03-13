@@ -47,12 +47,14 @@ Route::group(['middleware' => ['web']], function () {
 	//Route::post('password/email', 'Auth\PasswordController@sendResetLinkEmail');
 	//Route::post('password/reset', 'Auth\PasswordController@reset');
 
+	Route::get('/facebook2','QuickSignupController@facebookEmailPrompt');
+	Route::post('/facebook2','QuickSignupController@facebookEmailPromptSave');
+
 	Route::post('/signup/welcome','QuickSignupController@makeUser');
 	Route::get('/signup/start','QuickSignupController@redirect');
 	Route::post('/signup/start','QuickSignupController@redirect');
 	Route::post('/signup/facebook','QuickSignupController@redirectToFacebook');
-	Route::get('/signup/facebook2','QuickSignupController@facebookEmailPrompt');
-	Route::post('/signup/facebook2','QuickSignupController@facebookEmailPromptSave');
+	
 	Route::get('/signup/facebook3','QuickSignupController@createByFacebook');
 	Route::get('/signup/error','QuickSignupController@error');
 	Route::get('/signup/step1','QuickSignupController@namePrompt');
