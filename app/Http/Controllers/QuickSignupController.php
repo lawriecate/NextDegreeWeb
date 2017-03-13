@@ -148,7 +148,8 @@ return view('ndauth.nameprompt');
         // save email to session/cookie and set registration flag
         $request->session()->put('fbpromptemail' ,$request->email);
         $request->session()->put('fbcallbackaction' ,'register');
-
+        dd($request->session()->all());
+        die();
         // go back to facebook 
         return redirect(action('SettingsController@redirectToFacebook'));
     }
