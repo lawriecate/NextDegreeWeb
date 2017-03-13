@@ -36,7 +36,7 @@ You can use the skills you're developing at University to gain paid work experie
 		                	<h2>Sign up now with your university email</h2>
 		                	<p>Open to students of the University of Nottingham or Nottingham Trent University</p>
 		                	@if(Auth::guest())
-		                	<form method="post" action="{{action('QuickSignupController@makeUser')}}" id="signUpForm" class="uk-form">
+		                	<form method="post" action="{{action('QuickSignupController@signUpUser')}}" id="signUpForm" class="uk-form">
 		                	{{ csrf_field() }}
 		                	<input name="type" value="student" type="hidden">
 		                		<input id="signUpInput" type="email" class="uk-form-width-large uk-form-large" name="email">
@@ -90,7 +90,7 @@ You can use the skills you're developing at University to gain paid work experie
 		                	<h2>Sign up for a business account now</h2>
 		                	
 		                	@if(Auth::guest())
-		                	<form method="post" action="{{action('QuickSignupController@makeUser')}}" id="buSignUpForm" class="uk-form">
+		                	<form method="post" action="{{action('QuickSignupController@signUpUser')}}" id="buSignUpForm" class="uk-form">
 		                	{{ csrf_field() }}
 		                	<input name="type" value="business" type="hidden">
 		                		<input id="signUpInput" type="email" class="uk-form-width-large uk-form-large" name="email">

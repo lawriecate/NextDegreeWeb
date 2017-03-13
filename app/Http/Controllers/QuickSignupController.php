@@ -21,10 +21,11 @@ class QuickSignupController extends Controller
     {
         $this->middleware('auth', ['except' => ['makeUser','redirectToFacebook','setupAdmin','error','redirect','facebookEmailPrompt','createByFacebook','facebookEmailPromptSave']]);
     }
-    public function makeUser(Request $request,UserCreationService $userCreationService) {
-        if($request->type == "business") 
+
+    public function makeUser($type,$email,UserCreationService $userCreationService) {
+        if($type == "business") 
         {
-            $validator = Validator::make($request->all(), [
+            $validator = Validator::make(['email'=>$email], [
                 'email' => 'required|email|max:255|unique:users'
             ]);
 
@@ -33,7 +34,7 @@ class QuickSignupController extends Controller
                             ->withErrors($validator)
                             ->withInput();
             }
-            $email = $request->email;
+   
             $password = Random::generateString(12, 'abcdefghjkmnpqrstuvwxyzABCDEFGHJKMNPQRSTUVWXYZ23456789!@#$%&*?');
             $user = $userCreationService->createUser($email,$password,false);
             // create business profile
@@ -49,9 +50,9 @@ class QuickSignupController extends Controller
           
             return view('ndauth.signup',['email'=>$email,'password'=>$password]);
         }
-        else if($request->type == "student") 
+        else if($type == "student") 
         {
-            $validator = Validator::make($request->all(), [
+            $validator = Validator::make(['email'=>$email], [
                 'email' => 'required|email|max:255|unique:users|studentdomain'
             ]);
 
@@ -60,7 +61,7 @@ class QuickSignupController extends Controller
                             ->withErrors($validator)
                             ->withInput();
             }
-            $email = $request->email;
+
             $password = Random::generateString(12, 'abcdefghjkmnpqrstuvwxyzABCDEFGHJKMNPQRSTUVWXYZ23456789!@#$%&*?');
             $user = $userCreationService->createUser($email,$password,false);
 
@@ -82,6 +83,9 @@ class QuickSignupController extends Controller
         {
             return abort(401, 'Unauthorized action.');
         }
+    }
+    public function signUpUser(Request $request) {
+        return $this->makeUser($request->type,$request->email);
     	
     }
 
@@ -155,8 +159,10 @@ return view('ndauth.nameprompt');
     }
 
     public function createByFacebook(Request $request) {
-        $email = '';
-        return 'Signing you up now!';
-        //$this->makeUser($request->all()->put('email',$email)->put('type','student'));
+        $email = $request->session()->get('fbpromptemail');
+        return $this->makeUser('student',$request->email);
+        
+        //return 'Signing you up now!';
+        //return $this->makeUser($request->all()->put('email',$email)->put('type','student'));
     }
 }
