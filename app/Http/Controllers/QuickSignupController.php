@@ -22,7 +22,7 @@ class QuickSignupController extends Controller
         $this->middleware('auth', ['except' => ['makeUser','redirectToFacebook','setupAdmin','error','redirect','facebookEmailPrompt','createByFacebook','facebookEmailPromptSave']]);
     }
 
-    public function makeUser($type,$email) {}
+    public function makeUser($type,$email) {
          $userCreationService = UserCreationService;
         if($type == "business") 
         {
