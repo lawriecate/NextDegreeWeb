@@ -78,9 +78,9 @@ class QuickSignupController extends Controller
             // send verification email, must happen AFTER login so can send to current user
             $this->sendWelcomeEmail('student');
 
-            if($request->session()->get('fbcallbackaction') == 'register') {
+            if(session('fbcallbackaction') == 'register') {
                 // just connect to facebook, user already connected
-                $request->session()->put('fbcallbackaction', 'assoc_then_copy');
+               session('fbcallbackaction', 'assoc_then_copy');
                 return redirect(action('SettingsController@redirectToFacebook'));
             }
           
