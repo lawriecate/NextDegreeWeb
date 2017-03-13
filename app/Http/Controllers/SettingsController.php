@@ -86,6 +86,10 @@ class SettingsController extends Controller
                 var_dump($fb_user->getAvatar());*/
                 $request->session()->flash('social_name', $fb_user->getName());
                 $request->session()->flash('social_avatar', $fb_user->getAvatar());
+                if($request->session()->get('fbcallbackaction') == 'assoc_then_copy') {
+                    // don't need prompt, jst copy
+                    return redirect()->action('SettingsController@copyProfile');
+                }
                 return redirect()->action('SettingsController@promptCopyProfile',['network'=>'facebook']); 
             }
             
