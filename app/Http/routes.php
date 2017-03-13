@@ -32,35 +32,38 @@ Route::get('goto/instagram', function() {
 	return redirect('https://instagram.com/next_degree');
 });
 
-Route::get('signin/facebook', 'SettingsController@redirectToFacebook');
-//Route::get('signin/facebook', 'FacebookSignInController@redirectToFacebook');
-//Route::get('signin/facebook/callback', 'FacebookSignInController@facebookLoginCallback');
 
-// Registration Routes...
-Route::get('register', 'Auth\AuthController@showRegistrationForm');
-Route::post('register', 'Auth\AuthController@register');
+Route::group(['middleware' => ['web']], function () {
+	Route::get('signin/facebook', 'SettingsController@redirectToFacebook');
+	//Route::get('signin/facebook', 'FacebookSignInController@redirectToFacebook');
+	//Route::get('signin/facebook/callback', 'FacebookSignInController@facebookLoginCallback');
 
-// Password Reset Routes...
-//Route::get('password/reset/{token?}', 'Auth\PasswordController@showResetForm');
-//Route::post('password/email', 'Auth\PasswordController@sendResetLinkEmail');
-//Route::post('password/reset', 'Auth\PasswordController@reset');
+	// Registration Routes...
+	Route::get('register', 'Auth\AuthController@showRegistrationForm');
+	Route::post('register', 'Auth\AuthController@register');
 
-Route::post('/signup/welcome','QuickSignupController@makeUser');
-Route::get('/signup/start','QuickSignupController@redirect');
-Route::post('/signup/start','QuickSignupController@redirect');
-Route::post('/signup/facebook','QuickSignupController@redirectToFacebook');
-Route::get('/signup/facebook2','QuickSignupController@facebookEmailPrompt');
-Route::post('/signup/facebook2','QuickSignupController@facebookEmailPromptSave');
-Route::get('/signup/facebook3','QuickSignupController@createByFacebook');
-Route::get('/signup/error','QuickSignupController@error');
-Route::get('/signup/step1','QuickSignupController@namePrompt');
-Route::post('/signup/step1','QuickSignupController@saveName');
+	// Password Reset Routes...
+	//Route::get('password/reset/{token?}', 'Auth\PasswordController@showResetForm');
+	//Route::post('password/email', 'Auth\PasswordController@sendResetLinkEmail');
+	//Route::post('password/reset', 'Auth\PasswordController@reset');
+
+	Route::post('/signup/welcome','QuickSignupController@makeUser');
+	Route::get('/signup/start','QuickSignupController@redirect');
+	Route::post('/signup/start','QuickSignupController@redirect');
+	Route::post('/signup/facebook','QuickSignupController@redirectToFacebook');
+	Route::get('/signup/facebook2','QuickSignupController@facebookEmailPrompt');
+	Route::post('/signup/facebook2','QuickSignupController@facebookEmailPromptSave');
+	Route::get('/signup/facebook3','QuickSignupController@createByFacebook');
+	Route::get('/signup/error','QuickSignupController@error');
+	Route::get('/signup/step1','QuickSignupController@namePrompt');
+	Route::post('/signup/step1','QuickSignupController@saveName');
 
 
-Route::get('/signup/verification/{token?}','VerificationController@status');
-Route::post('/signup/verification/','VerificationController@request_resend');
-Route::get('/logout', 'Auth\LoginController@logout');
-Auth::routes();
+	Route::get('/signup/verification/{token?}','VerificationController@status');
+	Route::post('/signup/verification/','VerificationController@request_resend');
+	Route::get('/logout', 'Auth\LoginController@logout');
+	Auth::routes();
+}
 
 Route::get('/home', 'HomeController@index');
 Route::get('/student', 'StudentHomeController@index');
