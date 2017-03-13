@@ -8,7 +8,7 @@
 {{--<p>To verify your identity, we have emailed you a link which you must open in the next 7 days!</p>--}}
 <p>Please enter your university email address to continue:</p>
 </div>
-<form method="post" action="{{action('QuickSignupController@QuickSignupController@facebookEmailPromptSave')}}" id="signUpForm" class="uk-panel uk-panel-box uk-form">
+<form method="post" action="{{action('QuickSignupController@facebookEmailPromptSave')}}" id="signUpForm" class="uk-panel uk-panel-box uk-form">
 {{ csrf_field() }}
 	{{--<input id="signUpInput" type="email" class="uk-hidden" name="email" value="">
 	<input type="password" value="" class="uk-hidden">--}}
