@@ -19,7 +19,7 @@ class QuickSignupController extends Controller
 
     public function __construct()
     {
-        $this->middleware('auth', ['except' => ['makeUser','redirectToFacebook','setupAdmin','error','redirect','facebookEmailPrompt','createByFacebook','facebookEmailPromptSave']]);
+        $this->middleware('auth', ['except' => ['makeUser','redirectToFacebook','setupAdmin','error','redirect','facebookEmailPrompt','createByFacebook','facebookEmailPromptSave','signUpUser']]);
     }
 
     public function makeUser($type,$email) {
