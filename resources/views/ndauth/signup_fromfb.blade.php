@@ -11,7 +11,7 @@
 {{session('fbpromptemail')}}
 @endif
 </div>
-<form method="post" action="{{action('QuickSignupController@facebookEmailPromptSave')}}" id="signUpForm" class="uk-panel uk-panel-box uk-form">
+<form method="post" action="{{action('QuickSignupController@facebookEmailPromptSave')}}" class="uk-panel uk-panel-box uk-form">
 {{ csrf_field() }}
 	{{--<input id="signUpInput" type="email" class="uk-hidden" name="email" value="">
 	<input type="password" value="" class="uk-hidden">--}}
