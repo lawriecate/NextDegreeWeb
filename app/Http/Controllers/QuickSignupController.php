@@ -151,7 +151,7 @@ return view('ndauth.nameprompt');
         dd($request->session()->all());
         die();
         // go back to facebook 
-        return redirect(action('SettingsController@redirectToFacebook'));
+        //return redirect(action('SettingsController@redirectToFacebook'));
     }
 
     public function createByFacebook(Request $request) {
