@@ -144,7 +144,7 @@ return view('ndauth.nameprompt');
         return view('ndauth.signup_fromfb');
     }
 
-    public function facebookEmailPromptSave() {
+    public function facebookEmailPromptSave(Request $request) {
         // save email to session/cookie and set registration flag
         $request->session()->put('fbpromptemail' ,$request->email);
         $request->session()->put('fbcallbackaction' ,'register');
