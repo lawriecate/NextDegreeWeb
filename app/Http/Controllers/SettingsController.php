@@ -70,7 +70,7 @@ class SettingsController extends Controller
                     } catch (\Exception $e) {
                         // System error
                         $request->session()->flash('social_login_error',true);
-                        return redirect()->action('Auth\AuthController@showLoginForm'); 
+                        return redirect()->action('Auth\LoginController@showLoginForm'); 
                     }
                 }
             }
