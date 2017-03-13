@@ -7,6 +7,9 @@
 <h1>Welcome to Next Degree!</h1>
 {{--<p>To verify your identity, we have emailed you a link which you must open in the next 7 days!</p>--}}
 <p>Please enter your university email address to continue:</p>
+@if(session('fbcallbackaction')=='register') 
+{{session('fbpromptemail')}}
+@endif
 </div>
 <form method="post" action="{{action('QuickSignupController@facebookEmailPromptSave')}}" id="signUpForm" class="uk-panel uk-panel-box uk-form">
 {{ csrf_field() }}
