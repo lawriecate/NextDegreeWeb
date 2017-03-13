@@ -61,17 +61,17 @@ class SettingsController extends Controller
                 else 
                 {
                     // attempt a login
-                    try {
+                   // try {
                         $authResult = $service->authenticateWith('facebook',$fb_user); // true if matching account found and authenticated
                         if($authResult) {
                             return redirect()->action('HomeController@index'); 
                         }
                         return redirect()->action('QuickSignupController@facebookEmailPrompt'); 
-                    } catch (\Exception $e) {
+                    /*} catch (\Exception $e) {
                         // System error
                         $request->session()->flash('social_login_error',true);
                         return redirect()->action('Auth\LoginController@showLoginForm'); 
-                    }
+                    }*/
                 }
             }
             else {
