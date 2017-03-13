@@ -23,7 +23,7 @@ class QuickSignupController extends Controller
     }
 
     public function makeUser($type,$email) {
-         $userCreationService = UserCreationService;
+        UserCreationService $userCreationService = new UserCreationService();
         if($type == "business") 
         {
             $validator = Validator::make(['email'=>$email], [
