@@ -101,6 +101,7 @@ class QuickSignupController extends Controller
     }
 
     public function error(Request $request) {
+        $request->session()->flush();
     	return view('ndauth.error');
     }
 
