@@ -19,7 +19,7 @@ class QuickSignupController extends Controller
 
     public function __construct()
     {
-        $this->middleware('auth', ['except' => ['makeUser','redirectToFacebook','setupAdmin','error','redirect','facebookEmailPrompt','createByFacebook']]);
+        $this->middleware('auth', ['except' => ['makeUser','redirectToFacebook','setupAdmin','error','redirect','facebookEmailPrompt','createByFacebook','facebookEmailPromptSave']]);
     }
     public function makeUser(Request $request,UserCreationService $userCreationService) {
         if($request->type == "business") 
@@ -148,10 +148,10 @@ return view('ndauth.nameprompt');
         // save email to session/cookie and set registration flag
         $request->session()->put('fbpromptemail' ,$request->email);
         $request->session()->put('fbcallbackaction' ,'register');
-        dd($request->session()->all());
-        die();
+        //dd($request->session()->all());
+        //die();
         // go back to facebook 
-        //return redirect(action('SettingsController@redirectToFacebook'));
+        return redirect(action('SettingsController@redirectToFacebook'));
     }
 
     public function createByFacebook(Request $request) {
