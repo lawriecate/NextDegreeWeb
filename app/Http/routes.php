@@ -63,7 +63,7 @@ Route::group(['middleware' => ['web']], function () {
 	Route::post('/signup/verification/','VerificationController@request_resend');
 	Route::get('/logout', 'Auth\LoginController@logout');
 	Auth::routes();
-}
+});
 
 Route::get('/home', 'HomeController@index');
 Route::get('/student', 'StudentHomeController@index');
