@@ -51,7 +51,7 @@ class SettingsController extends Controller
 
     public function facebookCallback(SocialAccountService $service,Request $request)
     {
-        try {
+     //   try {
             $fb_user = Socialite::driver('facebook')->user(); // get facebook data
             if(Auth::guest()) {
                 if($request->session()->get('fbcallbackaction') == 'register') {
@@ -61,17 +61,18 @@ class SettingsController extends Controller
                 else 
                 {
                     // attempt a login
-                   // try {
+                    try {
                         $authResult = $service->authenticateWith('facebook',$fb_user); // true if matching account found and authenticated
                         if($authResult) {
                             return redirect()->action('HomeController@index'); 
                         }
+                        // else lets sign up
                         return redirect()->action('QuickSignupController@facebookEmailPrompt'); 
-                    /*} catch (\Exception $e) {
+                    } catch (\Exception $e) {
                         // System error
                         $request->session()->flash('social_login_error',true);
                         return redirect()->action('Auth\LoginController@showLoginForm'); 
-                    }*/
+                    }
                 }
             }
             else {
@@ -86,14 +87,15 @@ class SettingsController extends Controller
                 var_dump($fb_user->getAvatar());*/
                 $request->session()->flash('social_name', $fb_user->getName());
                 $request->session()->flash('social_avatar', $fb_user->getAvatar());
+
                 if($request->session()->get('fbcallbackaction') == 'assoc_then_copy') {
                     // don't need prompt, jst copy
-                    return redirect()->action('SettingsController@copyProfile');
+                    return redirect()->action('SettingsController@copyProfile',['network'=>'facebook']);
                 }
                 return redirect()->action('SettingsController@promptCopyProfile',['network'=>'facebook']); 
             }
             
-        } catch (\Exception $e) {
+       /* } catch (\Exception $e) {
             
             $request->session()->flash('social_connect_error',true);
             if(Auth::guest()) {
@@ -101,7 +103,7 @@ class SettingsController extends Controller
                 return redirect()->action('Auth\LoginController@showLoginForm'); 
             }
             return redirect()->action('SettingsController@accountForm');
-        }
+        }*/
         
     }
 
@@ -171,8 +173,9 @@ class SettingsController extends Controller
         return view('settings.copyprofile')->with('network',$network_name);
     }
 
-    public function copyProfile(Request $request,ProfileImageService $profileImageService) 
+    public function copyProfile($network,Request $request,ProfileImageService $profileImageService) 
     {
+        $request->session()->reflash();
         if(!\Session::has('social_name')) {
             return redirect()->action('SettingsController@accountForm');
         }
@@ -184,6 +187,10 @@ class SettingsController extends Controller
         file_put_contents($tmp_image, file_get_contents(session('social_avatar')));
 
         $profileImageService->saveNewProfileImage($tmp_image);
+
+        if(session('fbcallbackaction') == 'assoc_then_copy') {
+            return redirect()->action('HomeController@index');
+        }
 
         return redirect()->action('SettingsController@accountForm');
     }

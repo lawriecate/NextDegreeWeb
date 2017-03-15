@@ -80,7 +80,7 @@ class QuickSignupController extends Controller
 
             if(session('fbcallbackaction') == 'register') {
                 // just connect to facebook, user already connected
-               session('fbcallbackaction', 'assoc_then_copy');
+                session(['fbcallbackaction'=> 'assoc_then_copy']);
                 return redirect(action('SettingsController@redirectToFacebook'));
             }
           

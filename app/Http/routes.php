@@ -91,14 +91,16 @@ Route::post('/profile/courses-search','ProfileController@getCourseAutocomplete')
 
 
 
-Route::get('/settings/facebook/callback', 'SettingsController@facebookCallback');//seperate because allows login
+Route::get('/settings/facebook/callback', 'SettingsController@facebookCallback');
+Route::get('/facebook/connect', 'SettingsController@redirectToFacebook');//seperate because allows login
+
 Route::group(['prefix' => 'settings','middleware' => ['auth']], function () {
 Route::get('/', 'SettingsController@accountForm');
 Route::post('/', 'SettingsController@update');
 Route::get('/{network}/copyphoto', 'SettingsController@promptCopyProfile');
-Route::post('/{network}/copyphoto', 'SettingsController@copyProfile');
+Route::post('/{network}/savesocial', 'SettingsController@copyProfile');
+Route::get('/{network}/savesocial', 'SettingsController@copyProfile');
 
-Route::get('/facebook/connect', 'SettingsController@redirectToFacebook');
 Route::get('/linkedin/callback', 'SettingsController@linkedInCallback');
 Route::get('/linkedin/connect', 'SettingsController@redirectToLinkedIn');
 Route::get('/twitter/callback', 'SettingsController@twitterCallback');
