@@ -20,6 +20,7 @@
 	<div class=" uk-text-large">
 
 		<p>More and more students are looking to take on part time work while studying. <br>Why not make the most of your time by finding work that is relevant to your future career?</p>
+		<p><iframe width="640" height="360" src="https://www.youtube.com/embed/0X0H1dTK00w?rel=0&amp;showinfo=0" frameborder="0" allowfullscreen class="uk-responsive-width uk-align-center"></iframe></p>
 		<p>Signing up to Next Degree is free and will give you:<ul>
 		<li>Unique opportunities near your university: part time work, placements/internships and graduate jobs</li>
 		<li>Exclusive news and articles that will help you boost your career prospects</li>

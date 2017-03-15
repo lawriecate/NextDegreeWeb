@@ -19,10 +19,11 @@
 	<div class="uk-container uk-container-center ">
 	<div class="uk-text-large">
 		<p>Businesses often struggle to attract students because they do not have the time or resources to compete with large organisations.  We hope to build a local community of dynamic companies and entrepreneurial students who can work together to grow.</p>
-		<p>We aren't signing up business users quite yet, but we will be soon! When we launch our business section you will be able to:</p>
+		<p><iframe width="640" height="360" src="https://www.youtube.com/embed/0X0H1dTK00w?rel=0&amp;showinfo=0" frameborder="0" allowfullscreen class="uk-responsive-width uk-align-center"></iframe></p>
+		<p>Sign up to Next Degree as a business and you will be able to:</p>
 		<ul>
-		<li>Reach out to local students </li>
-		<li>Post job listings</li>
+		<li>Search based on the skills you need </li>
+		<li>Hire talented students </li>
 		<li>Promote your business from a recruitment perspective</li>
 		
 		</ul>
