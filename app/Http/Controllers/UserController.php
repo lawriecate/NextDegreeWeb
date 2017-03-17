@@ -98,7 +98,8 @@ class UserController extends Controller
      */
     public function destroy(Request $request,$user)
     {
-        if($request->confirm != "true") {
+
+        if($request->confirm != "true" || $user->admin == true) {
             die();
         }
         $user->delete();
