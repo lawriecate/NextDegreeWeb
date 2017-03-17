@@ -34,6 +34,17 @@
        <input type="hidden" id="nd-user-id" value="{{$user->id}}">
     </form>
 
+<form class="uk-form" action="{{action('UserController@destroy',$user->id)}}" method="POST"  enctype="multipart/form-data">
+    {{csrf_field()}}
+        {{ method_field('DELETE') }}
+        <div class="uk-form-row">
+        <div class="uk-form-row">
+            Authorize Action: <input type="checkbox" name="confirm" value="true" >
+        </div>
+            <button class="uk-button-danger uk-button uk-button-large " type="submit">Delete User &amp; All Data</button>
+       </div>
+    </form>
+
 </div>
 
 <div id="nd-select-institution-modal" class="uk-modal">

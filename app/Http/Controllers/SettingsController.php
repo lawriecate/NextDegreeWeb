@@ -52,7 +52,7 @@ class SettingsController extends Controller
     public function facebookCallback(SocialAccountService $service,Request $request)
     {
      //   try {
-            $fb_user = Socialite::driver('facebook')->user(); // get facebook data
+            $fb_user = Socialite::driver('facebook')->stateless()->user(); // get facebook data
             if(Auth::guest()) {
                 if($request->session()->get('fbcallbackaction') == 'register') {
                     // register with email already set

@@ -168,6 +168,7 @@ return [
         Illuminate\Notifications\NotificationServiceProvider::class,
         Vinkla\Hashids\HashidsServiceProvider::class,
 
+        App\Providers\UserAccountServiceProvider::class,
        
     ],
 
