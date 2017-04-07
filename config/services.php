@@ -39,17 +39,17 @@ return [
         'secret' => env('STRIPE_SECRET'),
     ],
 
-   /* 'facebook' => [
-        'client_id' => '163964194055948',
-        'client_secret' => '44218e01b94b30583acfe9d886e073ea',
-        'redirect' => 'https://www.nextdegree.co.uk/settings/facebook/callback',
-    ],*/
-
     'facebook' => [
         'client_id' => '163964194055948',
         'client_secret' => '44218e01b94b30583acfe9d886e073ea',
-        'redirect' => 'http://localhost:5252/nd/NextDegreeWeb/public/settings/facebook/callback',
+        'redirect' => 'https://www.nextdegree.co.uk/settings/facebook/callback',
     ],
+
+    /*'facebook' => [
+        'client_id' => '163964194055948',
+        'client_secret' => '44218e01b94b30583acfe9d886e073ea',
+        'redirect' => 'https://localhost:5252/nd/NextDegreeWeb/public/settings/facebook/callback',
+    ],*/
 
      'linkedin' => [
         'client_id' => '7797po61yyxddc',
