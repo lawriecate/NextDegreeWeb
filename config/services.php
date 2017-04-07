@@ -48,7 +48,7 @@ return [
     'facebook' => [
         'client_id' => '163964194055948',
         'client_secret' => '44218e01b94b30583acfe9d886e073ea',
-        'redirect' => 'https://www.nextdegree.co.uk/settings/facebook/callback',
+        'redirect' => 'http://localhost:5252/nd/NextDegreeWeb/public/settings/facebook/callback',
     ],
 
      'linkedin' => [
